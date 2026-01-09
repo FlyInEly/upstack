@@ -1,0 +1,3 @@
+# Classpath exclusions contain absolute classpaths
+Fabric_Client___fabric__fabric.xml
+Fabric_Server___fabric__fabric.xml
