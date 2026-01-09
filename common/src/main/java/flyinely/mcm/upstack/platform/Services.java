@@ -2,26 +2,35 @@ package flyinely.mcm.upstack.platform;
 
 import flyinely.mcm.upstack.Constants;
 import flyinely.mcm.upstack.platform.services.IPlatformHelper;
+import org.jetbrains.annotations.Contract;
 
 import java.util.ServiceLoader;
 
-// Service loaders are a built-in Java feature that allow us to locate implementations of an interface that vary from one
-// environment to another. In the context of MultiLoader we use this feature to access a mock API in the common code that
-// is swapped out for the platform specific implementation at runtime.
+
 public class Services {
 
-   // In this example we provide a platform helper which provides information about what platform the mod is running on.
-   // For example this can be used to check if the code is running on Forge vs Fabric, or to ask the modloader if another
-   // mod is loaded.
+   @Contract(pure = true)
+   private Services() {}
+
+   /**
+    * Service for queries about the current platform.
+    */
    public static final IPlatformHelper PLATFORM = load(IPlatformHelper.class);
 
-   // This code is used to load a service for the current environment. Your implementation of the service must be defined
-   // manually by including a text file in META-INF/services named with the fully qualified class name of the service.
-   // Inside the file you should write the fully qualified class name of the implementation to load for the platform. For
-   // example our file on Forge points to ForgePlatformHelper while Fabric points to FabricPlatformHelper.
-   public static <T> T load(Class<T> clazz) {
-      final T loadedService = ServiceLoader.load(clazz).findFirst().orElseThrow(() -> new NullPointerException("Failed to load service for " + clazz.getName()));
-      Constants.LOG.debug("Loaded {} for service {}", loadedService, clazz);
+   /**
+    * Loads the environment-specific implementation of the service.
+    * <p>
+    * The implementation is specified by the fully qualified class name in a META-INF/services file,
+    * whose name is the service's fully qualified class name.
+    *
+    * @param service the service interface
+    * @param <T>     of the service
+    * @return the service implementation loaded
+    * @see ServiceLoader
+    */
+   public static <T> T load(Class<T> service) {
+      final T loadedService = ServiceLoader.load(service).findFirst().orElseThrow(() -> new NullPointerException("Failed to load service for " + service.getName()));
+      Constants.LOG.debug("Loaded {} for service {}", loadedService, service);
       return loadedService;
    }
 }
