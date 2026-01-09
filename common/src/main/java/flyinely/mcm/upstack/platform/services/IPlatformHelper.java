@@ -1,35 +1,82 @@
 package flyinely.mcm.upstack.platform.services;
 
+import java.nio.file.Path;
+import java.util.Collection;
+
+/**
+ * Service for queries about the current platform.
+ */
+@SuppressWarnings("unused") // api
 public interface IPlatformHelper {
 
+   /* PLATFORM */
+
    /**
-    * Gets the name of the current platform
+    * Gets the current platform's name.
     *
-    * @return The name of the current platform.
+    * @return the platform's name
     */
-   String getPlatformName();
+   String getName();
+
+   /* PATHS */
+
+   /**
+    * Gets the game's root directory.
+    * @return the root directory path
+    */
+   Path getRootDir();
+
+   /**
+    * Gets the game's config directory.
+    * @return the config directory path
+    */
+   Path getConfigDir();
+
+   /**
+    * Gets the game's mods directory.
+    * @return the mods directory path
+    */
+   Path getModsDir();
+
+   /* MODS */
+
+   /**
+    * Gets a collection of loaded mod ids.
+    *
+    * @return a collection of loaded mod ids
+    */
+   Collection<String> getModIds();
 
    /**
     * Checks if a mod with the given id is loaded.
     *
-    * @param modId The mod to check if it is loaded.
-    * @return True if the mod is loaded, false otherwise.
+    * @param id the mod id to check
+    * @return true if the mod is loaded, false otherwise
     */
-   boolean isModLoaded(String modId);
+   boolean isModLoaded(String id);
+
+   /* ENVIRONMENT */
 
    /**
-    * Check if the game is currently in a development environment.
+    * Checks if the game is running in a development environment.
     *
-    * @return True if in a development environment, false otherwise.
+    * @return true if in a development environment, false otherwise
     */
-   boolean isDevelopmentEnvironment();
+   boolean isDevelopment();
 
    /**
-    * Gets the name of the environment type as a string.
+    * Checks if the game is running in a production environment.
     *
-    * @return The name of the environment type.
+    * @return true if in a production environment, false otherwise
+    */
+   boolean isProduction();
+
+   /**
+    * Gets the current environment's name: {@code development} or {@code production}.
+    *
+    * @return the environment's name
     */
    default String getEnvironmentName() {
-      return isDevelopmentEnvironment() ? "development" : "production";
+      return isDevelopment() ? "development" : "production";
    }
 }
