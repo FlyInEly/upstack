@@ -7,7 +7,6 @@ import net.fabricmc.loader.api.metadata.ModMetadata;
 
 import java.nio.file.Path;
 import java.util.Collection;
-import java.util.List;
 
 public class FabricPlatformHelper implements IPlatformHelper {
 
