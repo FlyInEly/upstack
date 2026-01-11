@@ -1,2 +1,6 @@
 /shelf/
 /workspace.xml
+
+# Contains absolute classpaths
+/compiler.xml
+runConfigurations/
