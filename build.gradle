@@ -1,7 +1,25 @@
 plugins {
     // https://fabricmc.net/develop/
-    id 'fabric-loom' version '1.14-SNAPSHOT' apply false
+    id 'fabric-loom' version '1.7-SNAPSHOT' apply false // can we get this version higher? need dependency maven update?
 
     // https://projects.neoforged.net/neoforged/moddevgradle
     id 'net.neoforged.moddev' version '2.0.137' apply false
+}
+
+// Configure all subprojects
+subprojects {
+    // Configure javadoc - https://docs.oracle.com/en/java/javase/11/tools/javadoc.html
+    tasks.withType(Javadoc).tap {
+        configureEach {
+            // Add Java 8 tags
+            options.tags("implSpec:a:Implementation Requirements:")
+            options.tags("implNote:a:Implementation Note:")
+            options.tags("apiNote:a:API Note:")
+
+            // Suppress check for missing comments/tags
+            // If using plume-lib/require-javadoc in the future, instead use more granular options:
+            // --dont-require-noarg-constructor
+            options.addStringOption('Xdoclint:all,-missing')
+        }
+    }
 }
