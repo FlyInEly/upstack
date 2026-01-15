@@ -40,6 +40,10 @@ repositories {
         name = 'BlameJared'
         url = 'https://maven.blamejared.com'
     }
+    maven {
+        name = "WispForest"
+        url = 'https://maven.wispforest.io/releases/'
+    }
 }
 
 // Declare capabilities on the outgoing configurations.
@@ -92,7 +96,9 @@ processResources {
                        'neoforge_version'             : neoforge_version,
                        'neoforge_loader_version_range': neoforge_loader_version_range,
                        'credits'                      : credits,
-                       'java_version'                 : java_version]
+                       'java_version'                 : java_version,
+                       'owo_version'                  : owo_version,
+                       'modmenu_version'              : modmenu_version]
 
     filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
         expand expandProps
