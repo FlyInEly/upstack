@@ -2,7 +2,6 @@ package flyinely.mcm.upstack.registry;
 
 import flyinely.mcm.upstack.util.ItemComponentUtil;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
 public class UpstackStackSizes {

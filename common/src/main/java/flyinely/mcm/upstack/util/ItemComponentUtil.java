@@ -75,9 +75,7 @@ public class ItemComponentUtil {
          LOG.warn("Tried to modify {} of all items in #{}, but the tag is empty. Was modification attempted too early?", component, tag.location());
       } else {
          LOG.info("Modifying {} of all items in #{}", component, tag.location());
-         BuiltInRegistries.ITEM.getTag(tag).get().stream().filter(Holder::isBound).map(Holder::value).forEach(item -> {
-            set(item, component, value);
-         });
+         BuiltInRegistries.ITEM.getTag(tag).get().stream().filter(Holder::isBound).map(Holder::value).forEach(item -> set(item, component, value));
       }
    }
 
