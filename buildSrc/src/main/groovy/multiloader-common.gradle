@@ -42,10 +42,16 @@ repositories {
         url = 'https://maven.blamejared.com'
     }
 
-    // owo-lib, owo-lib-neo
+    // owo-lib (fabric), owo-lib-neo (neo)
     maven {
         name = "WispForest"
         url = 'https://maven.wispforest.io/releases/'
+    }
+
+    // emi, modmenu (fabric)
+    maven {
+        name = "Terraformers"
+        url = "https://maven.terraformersmc.com/"
     }
 }
 

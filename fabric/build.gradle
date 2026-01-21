@@ -3,15 +3,6 @@ plugins {
     id 'fabric-loom'
 }
 
-repositories {
-    // modmenu
-    maven {
-        name = "Terraformers"
-        url = "https://maven.terraformersmc.com/"
-    }
-}
-
-
 dependencies {
     // core
     minecraft "com.mojang:minecraft:${minecraft_version}"
@@ -28,6 +19,9 @@ dependencies {
 
     // modmenu
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+
+    // emi
+    modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
 }
 
 loom {
