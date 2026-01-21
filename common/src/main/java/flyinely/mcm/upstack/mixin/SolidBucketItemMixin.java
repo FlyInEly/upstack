@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 /**
  * Common-side mixin.
  * <p>
- * Fixes issues due to {@link SolidBucketItem} assuming that it is not stackable.
+ * Fixes issues due to the vanilla assumption that {@link SolidBucketItem} is not stackable.
  */
 @Mixin(SolidBucketItem.class)
 public class SolidBucketItemMixin {
