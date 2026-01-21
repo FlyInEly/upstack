@@ -38,7 +38,10 @@ neoForge {
 
 
 repositories {
-    maven { url "https://maven.su5ed.dev/releases" } // ffapi
+    // ffapi
+    maven {
+        url "https://maven.su5ed.dev/releases"
+    }
 }
 
 dependencies {
