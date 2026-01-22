@@ -69,7 +69,14 @@ public class ItemComponentUtil {
 
    // TODO NEXT: Hook UpstackStackSizes.register() to resource reload
    // TODO NEXT: Make other setters support item holders or some other abstraction that allows for modifying modded items
-   // TODO NEXT: JAVADOC for this method. Note that this will not keep up to date if the tag is repopulated, and must be called after population
+   /**
+    * Sets the component to the given value, on all items in the given tag.
+    * @param tag the target tag
+    * @param component the target component
+    * @param value the component value
+    * @param <T> of the component value
+    * @see #set(Item, DataComponentType, Object)
+    */
    public static <T> void set(@NotNull TagKey<Item> tag, @NotNull DataComponentType<T> component, @Nullable T value) {
       if (BuiltInRegistries.ITEM.getTag(tag).isEmpty()) {
          LOG.warn("Tried to modify {} of all items in #{}, but the tag is empty. Was modification attempted too early?", component, tag.location());
