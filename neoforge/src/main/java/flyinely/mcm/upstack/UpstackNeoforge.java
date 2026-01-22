@@ -4,6 +4,7 @@ package flyinely.mcm.upstack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 @Mod(Constants.MOD_ID)
@@ -12,6 +13,8 @@ public class UpstackNeoforge {
    public UpstackNeoforge(IEventBus eventBus) {
       // Use NeoForge to bootstrap the Common mod.
       UpstackCommon.init();
+
+      // How to add listener to datapack reload?
    }
 
    @SubscribeEvent

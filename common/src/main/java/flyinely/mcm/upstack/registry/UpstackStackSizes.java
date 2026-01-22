@@ -6,18 +6,25 @@ import net.minecraft.world.item.Items;
 
 public class UpstackStackSizes {
 
-   // Only need to use the ItemPredicateRegistry for rules that aren't per-item.
 
-   /*
-    * 1.21.1 works out of the box for:
-    * - Fluid buckets, e.g. water, tadpole
-    * - Milk buckets
-    * - Potions
-    *
-    * And needs mixins for:
-    * - Solid buckets, e.g. powder snow
+   public static int BUCKET = 64;
+
+   /**
+    * Set max stack sizes for the mod.
     */
-   public static void register() {// TODO: get each from config
+   public static void register() {// TODO: get each from owo config
+      /*
+       * 1.21.1 works out of the box for:
+       * - Fluid buckets, e.g. water, tadpole
+       * - Milk buckets
+       * - Potions
+       *
+       * And needs mixins for:
+       * - Solid buckets, e.g. powder snow
+       */
+
+      // Only need to use the ItemPredicateRegistry for rules that aren't per-item.
+
       // buckets
       ItemComponentUtil.setMaxStackSize(Items.BUCKET, 64); // vanilla: 16. mod default: parity with empty bottles.
       ItemComponentUtil.setMaxStackSize(Items.WATER_BUCKET, 16); // vanilla: 1
