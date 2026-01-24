@@ -6,7 +6,6 @@ import net.minecraft.world.item.Items;
 
 public class UpstackStackSizes {
 
-
    public static int BUCKET = 64;
 
    /**

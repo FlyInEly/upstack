@@ -55,6 +55,15 @@ repositories {
     }
 }
 
+dependencies {
+    if ()
+    implementation("io.wispforest:owo-lib:${project.owo_neo_version}")
+    annotationProcessor("io.wispforest:owo-lib:${project.owo_version}") {
+        exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
+        exclude group: "net.fabricmc", module: "fabric-loader"
+    }
+}
+
 // Declare capabilities on the outgoing configurations.
 // Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
 ['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
