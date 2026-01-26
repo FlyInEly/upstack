@@ -42,6 +42,11 @@ repositories {
     maven {
         url "https://maven.su5ed.dev/releases"
     }
+
+    // fzzyconfig
+    maven {
+        url = "https://thedarkcolour.github.io/KotlinForForge/"
+    }
 }
 
 dependencies {
@@ -49,8 +54,12 @@ dependencies {
 //    implementation("io.wispforest:owo-lib-neoforge:${project.owo_neo_version}")
 //    api "org.sinytra.forgified-fabric-api:forgified-fabric-api:${ffapi_version}" // Scope may exceed necessity. Is just forgified-fabric-api:fabric-api-base sufficient?
 
+    // fzzy_config
+    implementation "me.fzzyhmstrs:fzzy_config:${project.fzzy_config_version}+neoforge"
+
     // emi
     runtimeOnly "dev.emi:emi-neoforge:${emi_version}"
+
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
