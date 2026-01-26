@@ -42,25 +42,16 @@ repositories {
         url = 'https://maven.blamejared.com'
     }
 
-    // owo-lib (fabric), owo-lib-neo (neo)
-    maven {
-        name = "WispForest"
-        url = 'https://maven.wispforest.io/releases/'
-    }
+//    // owo-lib (fabric), owo-lib-neo (neo)
+//    maven {
+//        name = "WispForest"
+//        url = 'https://maven.wispforest.io/releases/'
+//    }
 
     // emi, modmenu (fabric)
     maven {
         name = "Terraformers"
         url = "https://maven.terraformersmc.com/"
-    }
-}
-
-dependencies {
-    if ()
-    implementation("io.wispforest:owo-lib:${project.owo_neo_version}")
-    annotationProcessor("io.wispforest:owo-lib:${project.owo_version}") {
-        exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
-        exclude group: "net.fabricmc", module: "fabric-loader"
     }
 }
 
@@ -115,8 +106,6 @@ processResources {
                        'neoforge_loader_version_range': neoforge_loader_version_range,
                        'credits'                      : credits,
                        'java_version'                 : java_version,
-                       'owo_version'                  : owo_version,
-                       'owo_neo_version'              : owo_neo_version,
                        'ffapi_version'                : ffapi_version,
                        'modmenu_version'              : modmenu_version]
 

@@ -45,10 +45,9 @@ repositories {
 }
 
 dependencies {
-    // owo-lib-neo
-//    annotationProcessor
-    implementation("io.wispforest:owo-lib-neoforge:${project.owo_neo_version}")
-    api "org.sinytra.forgified-fabric-api:forgified-fabric-api:${ffapi_version}" // Scope may exceed necessity. Is just forgified-fabric-api:fabric-api-base sufficient?
+//    // owo-lib-neo
+//    implementation("io.wispforest:owo-lib-neoforge:${project.owo_neo_version}")
+//    api "org.sinytra.forgified-fabric-api:forgified-fabric-api:${ffapi_version}" // Scope may exceed necessity. Is just forgified-fabric-api:fabric-api-base sufficient?
 
     // emi
     runtimeOnly "dev.emi:emi-neoforge:${emi_version}"

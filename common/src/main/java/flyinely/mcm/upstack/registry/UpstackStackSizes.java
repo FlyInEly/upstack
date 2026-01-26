@@ -4,6 +4,7 @@ import flyinely.mcm.upstack.util.ItemComponentUtil;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 
+// Server side
 public class UpstackStackSizes {
 
    public static int BUCKET = 64;
