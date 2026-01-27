@@ -53,12 +53,6 @@ repositories {
         name = "Terraformers"
         url = "https://maven.terraformersmc.com/"
     }
-
-    // fzzy_config
-    maven {
-        name = "FzzyMaven"
-        url = "https://maven.fzzyhmstrs.me/"
-    }
 }
 
 // Declare capabilities on the outgoing configurations.
