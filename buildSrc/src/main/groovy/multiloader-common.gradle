@@ -42,11 +42,13 @@ repositories {
         url = 'https://maven.blamejared.com'
     }
 
-//    // owo-lib (fabric), owo-lib-neo (neo)
-//    maven {
-//        name = "WispForest"
-//        url = 'https://maven.wispforest.io/releases/'
-//    }
+    // balm
+    maven {
+        url = 'https://maven.twelveiterations.com/repository/maven-public/'
+        content {
+            includeGroup 'net.blay09.mods'
+        }
+    }
 
     // emi, modmenu (fabric)
     maven {
@@ -106,7 +108,9 @@ processResources {
                        'neoforge_loader_version_range': neoforge_loader_version_range,
                        'credits'                      : credits,
                        'java_version'                 : java_version,
-                       'ffapi_version'                : ffapi_version,
+                       'balm_version'                 : balm_version,
+                       'mixin_version'                : mixin_version,
+                       'mixinextras_version'          : mixinextras_version,
                        'modmenu_version'              : modmenu_version]
 
     filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {

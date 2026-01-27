@@ -45,9 +45,10 @@ repositories {
 }
 
 dependencies {
-//    // owo-lib-neo
-//    implementation("io.wispforest:owo-lib-neoforge:${project.owo_neo_version}")
-//    api "org.sinytra.forgified-fabric-api:forgified-fabric-api:${ffapi_version}" // Scope may exceed necessity. Is just forgified-fabric-api:fabric-api-base sufficient?
+    // balm
+    implementation("net.blay09.mods:balm-neoforge:${balm_version}") {
+        changing = balm_version.contains('SNAPSHOT')
+    }
 
     // emi
     runtimeOnly "dev.emi:emi-neoforge:${emi_version}"
