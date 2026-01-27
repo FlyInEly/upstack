@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/upstack.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/upstack.common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/upstack.common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/common/upstack.common.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/upstack.fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/upstack.fabric.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/upstack.fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/upstack.fabric.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/neoforge/upstack.neoforge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/neoforge/upstack.neoforge.main.iml" />

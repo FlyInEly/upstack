@@ -18,6 +18,9 @@ dependencies {
 
     // emi
     modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
+
+    // forgeconfigapiport
+    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${fcapiport_version}"
 }
 
 loom {

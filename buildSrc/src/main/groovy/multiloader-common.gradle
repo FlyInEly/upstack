@@ -42,6 +42,12 @@ repositories {
         url = 'https://maven.blamejared.com'
     }
 
+    // forgeconfigapiport
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
+
     // emi, modmenu (fabric)
     maven {
         name = "Terraformers"
@@ -102,7 +108,8 @@ processResources {
                        'java_version'                 : java_version,
                        'mixin_version'                : mixin_version,
                        'mixinextras_version'          : mixinextras_version,
-                       'modmenu_version'              : modmenu_version]
+                       'modmenu_version'              : modmenu_version,
+                       'fcapiport_version'            : fcapiport_version]
 
     filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
         expand expandProps
