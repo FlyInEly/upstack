@@ -42,14 +42,6 @@ repositories {
         url = 'https://maven.blamejared.com'
     }
 
-    // balm
-    maven {
-        url = 'https://maven.twelveiterations.com/repository/maven-public/'
-        content {
-            includeGroup 'net.blay09.mods'
-        }
-    }
-
     // emi, modmenu (fabric)
     maven {
         name = "Terraformers"
@@ -108,8 +100,6 @@ processResources {
                        'neoforge_loader_version_range': neoforge_loader_version_range,
                        'credits'                      : credits,
                        'java_version'                 : java_version,
-                       'balm_version'                 : balm_version,
-                       'balm_version_range'           : balm_version_range,
                        'mixin_version'                : mixin_version,
                        'mixinextras_version'          : mixinextras_version,
                        'modmenu_version'              : modmenu_version]

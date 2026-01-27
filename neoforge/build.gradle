@@ -37,19 +37,7 @@ neoForge {
 }
 
 
-repositories {
-    // ffapi
-    maven {
-        url "https://maven.su5ed.dev/releases"
-    }
-}
-
 dependencies {
-    // balm
-    implementation("net.blay09.mods:balm-neoforge:${balm_version}") {
-        changing = balm_version.contains('SNAPSHOT')
-    }
-
     // emi
     runtimeOnly "dev.emi:emi-neoforge:${emi_version}"
 }
