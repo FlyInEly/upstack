@@ -37,7 +37,7 @@ side = "BOTH"
 [[dependencies."${mod_id}"]]
 modId = "balm"
 type = "required"
-versionRange = "[${balm_version},)"
+versionRange = "${balm_version_range}"
 ordering = "NONE"
 side = "BOTH"
 

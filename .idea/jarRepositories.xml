@@ -96,5 +96,10 @@
       <option name="name" value="FzzyMaven" />
       <option name="url" value="https://maven.fzzyhmstrs.me/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://maven.twelveiterations.com/repository/maven-public/" />
+    </remote-repository>
   </component>
 </project>

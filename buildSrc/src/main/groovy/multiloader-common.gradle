@@ -109,6 +109,7 @@ processResources {
                        'credits'                      : credits,
                        'java_version'                 : java_version,
                        'balm_version'                 : balm_version,
+                       'balm_version_range'           : balm_version_range,
                        'mixin_version'                : mixin_version,
                        'mixinextras_version'          : mixinextras_version,
                        'modmenu_version'              : modmenu_version]
