@@ -25,6 +25,9 @@ import org.slf4j.LoggerFactory;
  */
 public class ItemComponentUtil {
 
+   public static final int ABSOLUTE_MIN_STACK_SIZE = 1; // hardcoded: value copied from DataComponents.MAX_STACK_SIZE
+   public static final int ABSOLUTE_MAX_STACK_SIZE = Item.ABSOLUTE_MAX_STACK_SIZE;
+
    private static final Logger LOG = LoggerFactory.getLogger(Constants.LOG.getName() + "/" + ItemComponentUtil.class.getSimpleName());
 
    // GENERAL
@@ -69,12 +72,14 @@ public class ItemComponentUtil {
 
    // TODO NEXT: Hook UpstackStackSizes.register() to resource reload
    // TODO NEXT: Make other setters support item holders or some other abstraction that allows for modifying modded items
+
    /**
     * Sets the component to the given value, on all items in the given tag.
-    * @param tag the target tag
+    *
+    * @param tag       the target tag
     * @param component the target component
-    * @param value the component value
-    * @param <T> of the component value
+    * @param value     the component value
+    * @param <T>       of the component value
     * @see #set(Item, DataComponentType, Object)
     */
    public static <T> void set(@NotNull TagKey<Item> tag, @NotNull DataComponentType<T> component, @Nullable T value) {
@@ -89,24 +94,28 @@ public class ItemComponentUtil {
    // SPECIFIC
 
    /**
-    * Sets the {@link DataComponents#MAX_STACK_SIZE} component to the given value, clamped to
-    * [1, {@link Item#ABSOLUTE_MAX_STACK_SIZE}].
+    * Sets the {@link DataComponents#MAX_STACK_SIZE} component to the given value,
+    * if the value is within [1, {@link Item#ABSOLUTE_MAX_STACK_SIZE}].
     *
     * @param item  the target item
     * @param value the max stack size value
     */
    public static void setMaxStackSize(@NotNull Item item, int value) {
-      set(item, DataComponents.MAX_STACK_SIZE, Math.clamp(value, 1, Item.ABSOLUTE_MAX_STACK_SIZE));
+      if (value >= ABSOLUTE_MIN_STACK_SIZE && value <= ABSOLUTE_MAX_STACK_SIZE) {
+         set(item, DataComponents.MAX_STACK_SIZE, value);
+      }
    }
 
    /**
-    * Sets the {@link DataComponents#MAX_STACK_SIZE} component to the given value, clamped to
-    * [1, {@link Item#ABSOLUTE_MAX_STACK_SIZE}], on all items in the tag.
+    * Sets the {@link DataComponents#MAX_STACK_SIZE} component to the given value on all items
+    * in the tag, if the value is within [1, {@link Item#ABSOLUTE_MAX_STACK_SIZE}].
     *
     * @param tag   the target tag
     * @param value the max stack size value
     */
    public static void setMaxStackSize(@NotNull TagKey<Item> tag, int value) {
-      set(tag, DataComponents.MAX_STACK_SIZE, Math.clamp(value, 1, Item.ABSOLUTE_MAX_STACK_SIZE));
+      if (value >= ABSOLUTE_MIN_STACK_SIZE && value <= ABSOLUTE_MAX_STACK_SIZE) {
+         set(tag, DataComponents.MAX_STACK_SIZE, value);
+      }
    }
 }

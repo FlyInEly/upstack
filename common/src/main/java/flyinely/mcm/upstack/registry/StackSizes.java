@@ -1,18 +1,19 @@
 package flyinely.mcm.upstack.registry;
 
+import flyinely.mcm.upstack.Constants;
 import flyinely.mcm.upstack.util.ItemComponentUtil;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 
-// Server side
-public class UpstackStackSizes {
+import static flyinely.mcm.upstack.config.Config.*;
 
-   public static int BUCKET = 64;
+// Server side
+public class StackSizes {
 
    /**
     * Set max stack sizes for the mod.
     */
-   public static void register() {// TODO: get each from owo config
+   public static void apply() {// TODO: get each from owo config
       /*
        * 1.21.1 works out of the box for:
        * - Fluid buckets, e.g. water, tadpole
@@ -25,18 +26,20 @@ public class UpstackStackSizes {
 
       // Only need to use the ItemPredicateRegistry for rules that aren't per-item.
 
+      Constants.LOG.info("{} empty bucket", StackSize.EMPTY_BUCKET.get());
+
       // buckets
-      ItemComponentUtil.setMaxStackSize(Items.BUCKET, 64); // vanilla: 16. mod default: parity with empty bottles.
-      ItemComponentUtil.setMaxStackSize(Items.WATER_BUCKET, 16); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.LAVA_BUCKET, 16); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.PUFFERFISH_BUCKET, 16); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.SALMON_BUCKET, 16); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.COD_BUCKET, 16); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.TROPICAL_FISH_BUCKET, 16); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.AXOLOTL_BUCKET, 16); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.TADPOLE_BUCKET, 16); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.MILK_BUCKET, 16); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.POWDER_SNOW_BUCKET, 16); // vanilla: 1
+      ItemComponentUtil.setMaxStackSize(Items.BUCKET, StackSize.EMPTY_BUCKET.get()); // vanilla: 16
+      ItemComponentUtil.setMaxStackSize(Items.WATER_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
+      ItemComponentUtil.setMaxStackSize(Items.LAVA_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
+      ItemComponentUtil.setMaxStackSize(Items.PUFFERFISH_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
+      ItemComponentUtil.setMaxStackSize(Items.SALMON_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
+      ItemComponentUtil.setMaxStackSize(Items.COD_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
+      ItemComponentUtil.setMaxStackSize(Items.TROPICAL_FISH_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
+      ItemComponentUtil.setMaxStackSize(Items.AXOLOTL_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
+      ItemComponentUtil.setMaxStackSize(Items.TADPOLE_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
+      ItemComponentUtil.setMaxStackSize(Items.MILK_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
+      ItemComponentUtil.setMaxStackSize(Items.POWDER_SNOW_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
 
       // bottles
       ItemComponentUtil.setMaxStackSize(Items.HONEY_BOTTLE, 16); // only matters if customized

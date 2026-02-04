@@ -1,17 +1,23 @@
 package flyinely.mcm.upstack;
 
 import flyinely.mcm.upstack.config.Config;
+import flyinely.mcm.upstack.registry.StackSizes;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.fml.javafmlmod.FMLModContainer;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.event.ModifyDefaultComponentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.jetbrains.annotations.NotNull;
 
 @Mod(Constants.MOD_ID)
+@EventBusSubscriber(modid = Constants.MOD_ID)
 public class UpstackNeoForge {
 
    public UpstackNeoForge(@NotNull FMLModContainer container) {
@@ -28,12 +34,21 @@ public class UpstackNeoForge {
    // listener for datapack reload: how?
 
    @SubscribeEvent
-   public void onServerStarting(ServerStartingEvent event) {
+   public static void onServerStarting(ServerStartingEvent event) {
+      Constants.LOG.info("Bootstrapping server starting");
       UpstackCommon.onServerStarting(); // Bootstrap
    }
 
+   // Event is called once on game init, not on datapack reload
    @SubscribeEvent
-   public void onConfigReload(ModConfigEvent.Reloading event) {
+   public static void mdce(ModifyDefaultComponentsEvent event) {
+      Constants.LOG.info("MDCE");
+      event.modify(Items.BUCKET, b -> b.set(DataComponents.MAX_STACK_SIZE, 69));
+//      StackSizes.apply();
+   }
+
+   @SubscribeEvent
+   public static void onConfigReload(ModConfigEvent.Reloading event) {
       UpstackCommon.onConfigReloading(); // Bootstrap
    }
 }
