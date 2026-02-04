@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 /**
  * Implements {@link ItemPredicateRegistry}.
@@ -39,8 +40,13 @@ public abstract class ItemPredicateRegistryImpl<T> implements ItemPredicateRegis
 			}
 		}
 	}
-	
-	@Override
+
+   @Override
+   public Stream<ItemValue<T>> stream() {
+      return ITEM_VALUES.stream();
+   }
+
+   @Override
 	public void register(ItemPredicate item, Supplier<T> supplier) {
 		ITEM_VALUES.add(new ItemValue<>(item, supplier));
 	}

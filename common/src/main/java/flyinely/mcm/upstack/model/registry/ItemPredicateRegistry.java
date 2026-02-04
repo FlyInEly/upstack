@@ -5,6 +5,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 /**
  * An {@link ItemValue} registry. Entries consist of a {@link ItemPredicate} "key" and {@link T} {@link Supplier} "value".
@@ -39,6 +40,12 @@ public interface ItemPredicateRegistry<T> {
 	 * (based on a specified search order).
 	 */
 	void apply(ItemStack stack, Consumer<T> consumer);
+
+   /**
+    * Returns a stream of all entries.
+    * @return a stream of all entries
+    */
+   Stream<ItemValue<T>> stream();
 	
 	/**
 	 * Registers an entry.
