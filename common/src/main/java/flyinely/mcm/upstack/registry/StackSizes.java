@@ -1,6 +1,7 @@
 package flyinely.mcm.upstack.registry;
 
 import flyinely.mcm.upstack.Constants;
+import flyinely.mcm.upstack.platform.ItemRegistries;
 import flyinely.mcm.upstack.util.ItemComponentUtil;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
@@ -9,6 +10,10 @@ import static flyinely.mcm.upstack.config.Config.*;
 
 // Server side
 public class StackSizes {
+
+   public static void init() {
+      ItemRegistries.STACK_SIZE.register(Items.BUCKET, StackSize.EMPTY_BUCKET::getAsInt);
+   }
 
    /**
     * Set max stack sizes for the mod.
@@ -26,10 +31,10 @@ public class StackSizes {
 
       // Only need to use the ItemPredicateRegistry for rules that aren't per-item.
 
-      Constants.LOG.info("{} empty bucket", StackSize.EMPTY_BUCKET.get());
+//      Constants.LOG.info("{} empty bucket", StackSize.EMPTY_BUCKET.get());
 
       // buckets
-      ItemComponentUtil.setMaxStackSize(Items.BUCKET, StackSize.EMPTY_BUCKET.get()); // vanilla: 16
+//      ItemComponentUtil.setMaxStackSize(Items.BUCKET, StackSize.EMPTY_BUCKET.get()); // vanilla: 16
       ItemComponentUtil.setMaxStackSize(Items.WATER_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
       ItemComponentUtil.setMaxStackSize(Items.LAVA_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
       ItemComponentUtil.setMaxStackSize(Items.PUFFERFISH_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1

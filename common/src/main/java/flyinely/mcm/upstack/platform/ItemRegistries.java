@@ -1,0 +1,25 @@
+package flyinely.mcm.upstack.platform;
+
+import flyinely.mcm.upstack.model.annotation.CContract;
+import flyinely.mcm.upstack.model.registry.ItemRegistry;
+import flyinely.mcm.upstack.model.registry.ItemRegistryImpl;
+import flyinely.mcm.upstack.util.ItemComponentUtil;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
+public class ItemRegistries {
+
+   public static ItemRegistry<Integer> STACK_SIZE = new ItemRegistryImpl<>() {
+      /**
+       * Sentinel value that indicates to leave the item's stack size unmodified.
+       * @return the sentinel value
+       */
+      @Contract(pure = true)
+      @CContract.ConstantReturn
+      @Override
+      public @NotNull Integer sentinelValue() {
+         return ItemComponentUtil.ABSOLUTE_MIN_STACK_SIZE - 1;
+      }
+   };
+
+}

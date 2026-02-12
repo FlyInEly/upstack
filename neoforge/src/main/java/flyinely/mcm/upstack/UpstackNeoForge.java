@@ -39,14 +39,6 @@ public class UpstackNeoForge {
       UpstackCommon.onServerStarting(); // Bootstrap
    }
 
-   // Event is called once on game init, not on datapack reload
-   @SubscribeEvent
-   public static void mdce(ModifyDefaultComponentsEvent event) {
-      Constants.LOG.info("MDCE");
-      event.modify(Items.BUCKET, b -> b.set(DataComponents.MAX_STACK_SIZE, 69));
-//      StackSizes.apply();
-   }
-
    @SubscribeEvent
    public static void onConfigReload(ModConfigEvent.Reloading event) {
       UpstackCommon.onConfigReloading(); // Bootstrap

@@ -1,16 +1,18 @@
 package flyinely.mcm.upstack.model.registry;
 
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 /**
- * Implements {@link ItemPredicateRegistry}.
+ * Implements {@link ItemRegistry}.
  * <p>
  * If multiple entries match the {@link ItemStack} passed to {@link #apply(ItemStack, Consumer)},
  * {@link Consumer} is called only once. The earliest-registered entry supplies the consumed value.
@@ -19,10 +21,9 @@ import java.util.stream.Stream;
  * @implNote Stores registration order using a linked list. Consequently, duplicate entries can be registered,
  * but since only the earliest-registered entry supplies the value, they have no effect.
  */
-public abstract class ItemPredicateRegistryImpl<T> implements ItemPredicateRegistry<T> {
-	
-	// LATER: Include a way to insert items before others? Mods could compete to be added here.
-	private final List<ItemValue<T>> ITEM_VALUES = new LinkedList<>();
+public abstract class ItemRegistryImpl<T> implements ItemRegistry<T> {
+
+	private final List<Entry<T>> ITEM_VALUES = new LinkedList<>();
 	
 	/**
 	 * If {@link ItemStack} matches an entry, then {@link Consumer} is called with the value it supplies.
@@ -42,13 +43,13 @@ public abstract class ItemPredicateRegistryImpl<T> implements ItemPredicateRegis
 	}
 
    @Override
-   public Stream<ItemValue<T>> stream() {
+   public Stream<Entry<T>> stream() {
       return ITEM_VALUES.stream();
    }
 
    @Override
-	public void register(ItemPredicate item, Supplier<T> supplier) {
-		ITEM_VALUES.add(new ItemValue<>(item, supplier));
+	public void register(Predicate<? super Item> predicate, Supplier<T> supplier) {
+		ITEM_VALUES.add(new Entry<>(predicate, supplier));
 	}
 	
 }
