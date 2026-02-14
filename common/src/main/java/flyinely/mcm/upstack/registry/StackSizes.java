@@ -1,9 +1,10 @@
 package flyinely.mcm.upstack.registry;
 
-import flyinely.mcm.upstack.Constants;
 import flyinely.mcm.upstack.platform.ItemRegistries;
 import flyinely.mcm.upstack.util.ItemComponentUtil;
+import flyinely.mcm.upstack.util.ResUtil;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Items;
 
 import static flyinely.mcm.upstack.config.Config.*;
@@ -12,7 +13,9 @@ import static flyinely.mcm.upstack.config.Config.*;
 public class StackSizes {
 
    public static void init() {
+      // bucket is in #c:buckets; register it first for priority
       ItemRegistries.STACK_SIZE.register(Items.BUCKET, StackSize.EMPTY_BUCKET::getAsInt);
+      ItemRegistries.STACK_SIZE.register(ResUtil.itemTag("c:buckets"), StackSize.FILLED_BUCKETS::getAsInt); // TODO: By tag
    }
 
    /**

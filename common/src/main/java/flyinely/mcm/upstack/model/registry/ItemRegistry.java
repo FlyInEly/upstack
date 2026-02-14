@@ -2,6 +2,7 @@ package flyinely.mcm.upstack.model.registry;
 
 import flyinely.mcm.upstack.model.annotation.CContract;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -60,6 +61,16 @@ public interface ItemRegistry<T> {
    /**
     * Registers an entry.
     *
+    * @param tag      the tag to match
+    * @param supplier the value supplier
+    */
+   default void register(@NotNull TagKey<Item> tag, Supplier<T> supplier) {
+      register(i -> i.getDefaultInstance().is(tag), supplier);
+   }
+
+   /**
+    * Registers an entry.
+    *
     * @param predicate the item predicate to match
     * @param value     the constant value to supply
     */
@@ -95,6 +106,7 @@ public interface ItemRegistry<T> {
 
    /**
     * Stream all entries which <i>presently</i> return non-sentinel values.
+    *
     * @return a stream of entries
     */
    default Stream<Entry<T>> streamData() {
@@ -123,7 +135,7 @@ public interface ItemRegistry<T> {
        * If {@link ItemStack} matches {@code item}, then {@link Consumer} is called with {@code valueSupplier.get()}
        * and {@code true} is returned.
        *
-       * @param stack         the item for lookup
+       * @param stack    the item for lookup
        * @param consumer the value consumer
        * @return {@code true} if {@link ItemStack} matches {@code item}, {@code false} otherwise
        */
