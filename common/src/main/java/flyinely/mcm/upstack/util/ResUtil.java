@@ -9,14 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class ResUtil {
 
-   public static @NotNull TagKey<Item> itemTag(ResourceLocation id) {
-      return TagKey.create(Registries.ITEM, id);
-   }
-
-   public static @NotNull TagKey<Item> itemTag(String location) {
-      return TagKey.create(Registries.ITEM, id(location));
-   }
-
    @Contract("_, _ -> new")
    public static @NotNull ResourceLocation id(String namespace, String path) {
       return ResourceLocation.fromNamespaceAndPath(namespace, path);

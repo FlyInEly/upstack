@@ -1,11 +1,8 @@
 package flyinely.mcm.upstack.registry;
 
-import flyinely.mcm.upstack.Constants;
-import flyinely.mcm.upstack.platform.ItemRegistries;
 import flyinely.mcm.upstack.util.ItemComponentUtil;
-import flyinely.mcm.upstack.util.ResUtil;
+import flyinely.mcm.upstack.util.TagUtil;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Items;
 
 import static flyinely.mcm.upstack.config.Config.*;
@@ -22,25 +19,11 @@ public class StackSizes {
 		increasing and decreasing stack size settings in an existing world. Finally, Fabric and NeoForge both support our
 		custom system, which simply works with Vanilla's tools.
 	 */
-	// TODO: Revert to previous approach for stack size modification.
-	
-   public static void init() {
-		// buckets
-      // bucket is in #c:buckets; register it first for priority
-      ItemRegistries.STACK_SIZE.register(Items.BUCKET, StackSize.EMPTY_BUCKET::getAsInt);
-      ItemRegistries.STACK_SIZE.register(ResUtil.itemTag("c:buckets"), StackSize.FILLED_BUCKETS::getAsInt); // TODO: By tag
-		
-		// bottles
-		ItemRegistries.STACK_SIZE.register(Items.HONEY_BOTTLE, 16); // only matters if customized
-		ItemRegistries.STACK_SIZE.register(Items.POTION, 16); // vanilla: 1
-		ItemRegistries.STACK_SIZE.register(Items.SPLASH_POTION, 4); // vanilla: 1. TODO splash, lingering: add cooldown
-		ItemRegistries.STACK_SIZE.register(Items.LINGERING_POTION, 4); // vanilla: 1
-	}
 
    /**
     * Set max stack sizes for the mod.
     */
-   public static void apply() {// TODO: get each from owo config
+   public static void apply() {
       /*
        * 1.21.1 works out of the box for:
        * - Fluid buckets, e.g. water, tadpole
@@ -50,13 +33,18 @@ public class StackSizes {
        * And needs mixins for:
        * - Solid buckets, e.g. powder snow
        */
-
-      // Only need to use the ItemPredicateRegistry for rules that aren't per-item.
-
-//      Constants.LOG.info("{} empty bucket", StackSize.EMPTY_BUCKET.get());
-
-
-      
+		
+		
+		// buckets
+		// minecraft:bucket is in #c:buckets; apply last to override
+		ItemComponentUtil.setMaxStackSize(TagUtil.item("c:buckets"), StackSize.FILLED_BUCKETS.get());
+		ItemComponentUtil.setMaxStackSize(Items.BUCKET, StackSize.EMPTY_BUCKET.get());
+		
+		// bottles
+		ItemComponentUtil.setMaxStackSize(Items.HONEY_BOTTLE, 16); // only matters if customized
+		ItemComponentUtil.setMaxStackSize(Items.POTION, 16); // vanilla: 1
+		ItemComponentUtil.setMaxStackSize(Items.SPLASH_POTION, 4); // vanilla: 1. TODO splash, lingering: add cooldown
+		ItemComponentUtil.setMaxStackSize(Items.LINGERING_POTION, 4); // vanilla: 1
 
       // placed foods
       ItemComponentUtil.setMaxStackSize(Items.CAKE, 16); // vanilla: 1. do by tag?
@@ -73,7 +61,7 @@ public class StackSizes {
       // TESTING:
       ItemComponentUtil.setMaxStackSize(ItemTags.BANNERS, 64);
 
-      // TODO: banner tag, boats tag
+      // TODO: boats tag
    }
 
 }

@@ -69,13 +69,11 @@ public interface ItemRegistry<T> {
     *
     * @param tag      the tag to match
     * @param supplier the value supplier
+	 * @apiNote Before item tags are loaded, this entry will never match any item stack passed to
+	 * {@link #apply(ItemStack, Consumer)}.
     */
    default void register(@NotNull TagKey<Item> tag, Supplier<T> supplier) {
-      register(i -> {
-			Constants.LOG.info("{} is {}", i, Items.ACACIA_LOG.getDefaultInstance().getTags().count());
-//			Constants.LOG.info("{} is {} {}", i, i.getDefaultInstance().is(tag) ? "" : "not", tag);
-			return i.getDefaultInstance().is(tag);
-		}, supplier);
+      register(i -> i.getDefaultInstance().is(tag), supplier);
    }
 
    /**
