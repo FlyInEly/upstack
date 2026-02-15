@@ -1,7 +1,6 @@
 package flyinely.mcm.upstack;
 
-import flyinely.mcm.upstack.registry.StackSizes;
-import net.minecraft.world.item.Items;
+import flyinely.mcm.upstack.registry.MStackSizes;
 
 public class UpstackCommon {
    
@@ -11,11 +10,11 @@ public class UpstackCommon {
 
    public static void onServerStarting() {
       Constants.LOG.info("Bootstrapped server starting handler");
-      StackSizes.apply(); // TODO: Should (also) do this on resource reload. Is doing it ONLY on resource reload sufficient? Probably not?
+      MStackSizes.apply();
    }
 
    public static void onConfigReloading() {
       Constants.LOG.info("Bootstrapped config reloading handler");
-      StackSizes.apply();
+		// Intentionally do not apply stack sizes until world restart, to give chances to revert a decision.
    }
 }

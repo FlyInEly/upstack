@@ -18,8 +18,7 @@ public class UpstackFabric implements ModInitializer {
 
       // Register event listeners
       ServerLifecycleEvents.SERVER_STARTING.register(s -> UpstackCommon.onServerStarting());
-
-      // TODO: This ain't working. And neoforge's is completely not working.
+		
       NeoForgeModConfigEvents.reloading(Constants.MOD_ID).register(c -> UpstackCommon.onConfigReloading());
 
       // Register config w/screen
