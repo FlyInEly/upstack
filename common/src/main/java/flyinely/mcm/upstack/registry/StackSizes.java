@@ -1,5 +1,6 @@
 package flyinely.mcm.upstack.registry;
 
+import flyinely.mcm.upstack.Constants;
 import flyinely.mcm.upstack.platform.ItemRegistries;
 import flyinely.mcm.upstack.util.ItemComponentUtil;
 import flyinely.mcm.upstack.util.ResUtil;
@@ -11,12 +12,30 @@ import static flyinely.mcm.upstack.config.Config.*;
 
 // Server side
 public class StackSizes {
-
+	
+	/*
+		Notes on approach for item component modification.
+		
+		Decided not to use NeoForge's ModifyDefaultComponentsEvent because it fires before item tag data is loaded,
+		and so we can't modify the stack sizes of all items belonging to a given tag. Moreover, using our own system
+		allows us to update stack sizes on config reload, though we will need to minimize breaking side effects of both
+		increasing and decreasing stack size settings in an existing world. Finally, Fabric and NeoForge both support our
+		custom system, which simply works with Vanilla's tools.
+	 */
+	// TODO: Revert to previous approach for stack size modification.
+	
    public static void init() {
+		// buckets
       // bucket is in #c:buckets; register it first for priority
       ItemRegistries.STACK_SIZE.register(Items.BUCKET, StackSize.EMPTY_BUCKET::getAsInt);
       ItemRegistries.STACK_SIZE.register(ResUtil.itemTag("c:buckets"), StackSize.FILLED_BUCKETS::getAsInt); // TODO: By tag
-   }
+		
+		// bottles
+		ItemRegistries.STACK_SIZE.register(Items.HONEY_BOTTLE, 16); // only matters if customized
+		ItemRegistries.STACK_SIZE.register(Items.POTION, 16); // vanilla: 1
+		ItemRegistries.STACK_SIZE.register(Items.SPLASH_POTION, 4); // vanilla: 1. TODO splash, lingering: add cooldown
+		ItemRegistries.STACK_SIZE.register(Items.LINGERING_POTION, 4); // vanilla: 1
+	}
 
    /**
     * Set max stack sizes for the mod.
@@ -36,24 +55,8 @@ public class StackSizes {
 
 //      Constants.LOG.info("{} empty bucket", StackSize.EMPTY_BUCKET.get());
 
-      // buckets
-//      ItemComponentUtil.setMaxStackSize(Items.BUCKET, StackSize.EMPTY_BUCKET.get()); // vanilla: 16
-      ItemComponentUtil.setMaxStackSize(Items.WATER_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.LAVA_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.PUFFERFISH_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.SALMON_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.COD_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.TROPICAL_FISH_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.AXOLOTL_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.TADPOLE_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.MILK_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.POWDER_SNOW_BUCKET, StackSize.FILLED_BUCKETS.get()); // vanilla: 1
 
-      // bottles
-      ItemComponentUtil.setMaxStackSize(Items.HONEY_BOTTLE, 16); // only matters if customized
-      ItemComponentUtil.setMaxStackSize(Items.POTION, 16); // vanilla: 1
-      ItemComponentUtil.setMaxStackSize(Items.SPLASH_POTION, 4); // vanilla: 1. TODO splash, lingering: add cooldown
-      ItemComponentUtil.setMaxStackSize(Items.LINGERING_POTION, 4); // vanilla: 1
+      
 
       // placed foods
       ItemComponentUtil.setMaxStackSize(Items.CAKE, 16); // vanilla: 1. do by tag?

@@ -1,10 +1,16 @@
 package flyinely.mcm.upstack.model.registry;
 
+import flyinely.mcm.upstack.Constants;
 import flyinely.mcm.upstack.model.annotation.CContract;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.advancements.critereon.TagPredicate;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.tags.TagLoader;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -65,7 +71,11 @@ public interface ItemRegistry<T> {
     * @param supplier the value supplier
     */
    default void register(@NotNull TagKey<Item> tag, Supplier<T> supplier) {
-      register(i -> i.getDefaultInstance().is(tag), supplier);
+      register(i -> {
+			Constants.LOG.info("{} is {}", i, Items.ACACIA_LOG.getDefaultInstance().getTags().count());
+//			Constants.LOG.info("{} is {} {}", i, i.getDefaultInstance().is(tag) ? "" : "not", tag);
+			return i.getDefaultInstance().is(tag);
+		}, supplier);
    }
 
    /**
