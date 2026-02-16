@@ -70,6 +70,7 @@ public class MStackSizes {
 		ItemComponentUtil.setMaxStackSize(ItemTags.BEDS, StackSize.BEDS.get());
 
       // TESTING:
+		ItemComponentUtil.setMaxStackSize(MItemTags.C.MINECARTS, StackSize.MINECARTS.get());
       ItemComponentUtil.setMaxStackSize(ItemTags.BANNERS, StackSize.BANNERS.get());
 		ItemComponentUtil.setMaxStackSize(MItemTags.C.CHICKEN_EGGS, StackSize.CHICKEN_EGGS.get());
 

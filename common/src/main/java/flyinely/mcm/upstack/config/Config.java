@@ -63,6 +63,7 @@ public class Config {
 		public static final IntValue FILLED_BUCKETS;
 		public static final IntValue HONEY_BOTTLE;
 		public static final IntValue LINGERING_POTION;
+		public static final IntValue MINECARTS;
 		public static final IntValue POTION;
 		public static final IntValue SNOWBALL;
 		public static final IntValue SPLASH_POTION;
@@ -119,6 +120,9 @@ public class Config {
 			BOATS = BUILDER.worldRestart()
 					.comment("#minecraft:boats")
 					.defineInRange("boats", 16, MIN, MAX); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
+			MINECARTS = BUILDER.worldRestart()
+					.comment("#c:minecarts")
+					.defineInRange("minecarts", 16, MIN, MAX); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
 		}
 		
 		/**
