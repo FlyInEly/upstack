@@ -28,7 +28,7 @@ public class MItemTagsProvider extends ItemTagsProvider {
 		
 		tag(MItemTags.C.CHICKEN_EGGS)
 				.add(Items.EGG)
-				.addOptional(ResUtil.id("minecraft:blue_egg")) // vanillabackport registers these under the minecraft namespace
+				.addOptional(ResUtil.id("minecraft:blue_egg")) // vanillabackport 1.1.4.5.2 registers these under the minecraft namespace
 				.addOptional(ResUtil.id("minecraft:brown_egg"));
 	}
 	// TODO: Entire common tags provider
