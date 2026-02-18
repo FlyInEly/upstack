@@ -9,8 +9,7 @@ public class Config {
 	
 	public static final ModConfigSpec SPEC;
 	public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
-	
-	
+
 	static {
 		StackSize.init();
 		
@@ -56,6 +55,7 @@ public class Config {
 		public static final IntValue ARMOR_STAND;
 		public static final IntValue BANNERS;
 		public static final IntValue BEDS;
+		public static final IntValue BOATS;
 		public static final IntValue BUCKET;
 		public static final IntValue CAKE;
 		public static final IntValue CHICKEN_EGGS;
@@ -69,9 +69,10 @@ public class Config {
 		public static final IntValue SPLASH_POTION;
 		public static final IntValue TOTEM_OF_UNDYING;
 		public static final IntValue WRITTEN_BOOK;
-		public static final IntValue BOATS;
 		
 		static {
+         BUILDER.push("stack_size");
+
 			ARMOR_STAND = BUILDER.worldRestart()
 					.comment("minecraft:armor_stand")
 					.defineInRange("armor_stand", 64, MIN, MAX); // vanilla: 16. default: parity w/general items.
@@ -123,7 +124,9 @@ public class Config {
 			MINECARTS = BUILDER.worldRestart()
 					.comment("#c:minecarts")
 					.defineInRange("minecarts", 16, MIN, MAX); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
-		}
+
+         BUILDER.pop();
+      }
 		
 		/**
 		 * Dummy method to trigger the static initializer.

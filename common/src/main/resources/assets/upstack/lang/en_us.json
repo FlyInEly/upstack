@@ -1,0 +1,20 @@
+{
+  "upstack.configuration.stack_size": "Stack Size",
+  "upstack.configuration.armor_stand": "Armor Stand",
+  "upstack.configuration.banners": "Banners",
+  "upstack.configuration.beds": "Beds",
+  "upstack.configuration.boats": "Boats",
+  "upstack.configuration.bucket": "Bucket",
+  "upstack.configuration.cake": "Cake",
+  "upstack.configuration.chicken_eggs": "Chicken Eggs",
+  "upstack.configuration.ender_pearl": "Ender Pearl",
+  "upstack.configuration.filled_buckets": "Filled Buckets",
+  "upstack.configuration.honey_bottle": "Honey Bottle",
+  "upstack.configuration.lingering_potion": "Lingering Potion",
+  "upstack.configuration.minecarts": "Minecarts",
+  "upstack.configuration.potion": "Potion",
+  "upstack.configuration.snowball": "Snowball",
+  "upstack.configuration.splash_potion": "Splash Potion",
+  "upstack.configuration.totem_of_undying": "Totem of Undying",
+  "upstack.configuration.written_book": "Written Book"
+}
