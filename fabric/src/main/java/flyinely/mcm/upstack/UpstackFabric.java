@@ -2,7 +2,6 @@ package flyinely.mcm.upstack;
 
 import flyinely.mcm.upstack.config.Config;
 import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeConfigRegistry;
-import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeModConfigEvents;
 import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.client.ConfigScreenFactoryRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -18,8 +17,6 @@ public class UpstackFabric implements ModInitializer {
 
       // Register event listeners
       ServerLifecycleEvents.SERVER_STARTING.register(s -> UpstackCommon.onServerStarting());
-		
-      NeoForgeModConfigEvents.reloading(Constants.MOD_ID).register(c -> UpstackCommon.onConfigReloading());
 
       // Register config w/screen
       NeoForgeConfigRegistry.INSTANCE.register(Constants.MOD_ID, ModConfig.Type.COMMON, Config.SPEC);

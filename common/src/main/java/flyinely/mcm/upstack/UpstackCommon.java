@@ -12,9 +12,4 @@ public class UpstackCommon {
       Constants.LOG.info("Bootstrapped server starting handler");
       MStackSizes.apply();
    }
-
-   public static void onConfigReloading() {
-      Constants.LOG.info("Bootstrapped config reloading handler");
-		// Intentionally do not apply stack sizes until world restart, to give chances to revert a decision.
-   }
 }

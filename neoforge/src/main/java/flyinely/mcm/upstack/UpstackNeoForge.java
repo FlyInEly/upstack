@@ -5,7 +5,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.fml.javafmlmod.FMLModContainer;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
@@ -27,16 +26,9 @@ public class UpstackNeoForge {
       Constants.LOG.info("Finished NeoForge init");
    }
 
-   // listener for datapack reload: how?
-
    @SubscribeEvent
    public static void onServerStarting(ServerStartingEvent event) {
       Constants.LOG.info("Bootstrapping server starting");
       UpstackCommon.onServerStarting(); // Bootstrap
-   }
-
-   @SubscribeEvent
-   public static void onConfigReload(ModConfigEvent.Reloading event) {
-      UpstackCommon.onConfigReloading(); // Bootstrap
    }
 }
