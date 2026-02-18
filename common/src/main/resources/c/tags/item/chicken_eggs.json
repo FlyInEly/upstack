@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:egg",
+    {
+      "id": "minecraft:blue_egg",
+      "required": false
+    },
+    {
+      "id": "minecraft:brown_egg",
+      "required": false
+    }
+  ]
+}
