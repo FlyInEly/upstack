@@ -43,9 +43,8 @@ public class MStackSizes {
 		//		some dedicated folder, rather than just a commit you'll forget about
 		
 		// buckets
-		// minecraft:bucket is in #c:buckets; apply last to override
 		ItemComponentUtil.setMaxStackSize(MItemTags.C.BUCKETS, StackSize.FILLED_BUCKETS.get());
-		ItemComponentUtil.setMaxStackSize(Items.BUCKET, StackSize.BUCKET.get());
+		ItemComponentUtil.setMaxStackSize(Items.BUCKET, StackSize.BUCKET.get()); // apply after MItemTags.C.BUCKETS to override stack size for Items.BUCKET specifically
 		
 		// bottles
 		ItemComponentUtil.setMaxStackSize(Items.HONEY_BOTTLE, StackSize.HONEY_BOTTLE.get());
@@ -53,14 +52,13 @@ public class MStackSizes {
 		ItemComponentUtil.setMaxStackSize(Items.SPLASH_POTION, StackSize.SPLASH_POTION.get());
 		ItemComponentUtil.setMaxStackSize(Items.LINGERING_POTION, StackSize.LINGERING_POTION.get());
 
-      // placed foods
-      ItemComponentUtil.setMaxStackSize(Items.CAKE, StackSize.CAKE.get()); // LATER: Do by tag?
-
       // entity-spawning
 		ItemComponentUtil.setMaxStackSize(ItemTags.BOATS, StackSize.BOATS.get());
       ItemComponentUtil.setMaxStackSize(Items.ENDER_PEARL, StackSize.ENDER_PEARL.get());
       ItemComponentUtil.setMaxStackSize(Items.SNOWBALL, StackSize.SNOWBALL.get());
       ItemComponentUtil.setMaxStackSize(Items.ARMOR_STAND, StackSize.ARMOR_STAND.get());
+      ItemComponentUtil.setMaxStackSize(MItemTags.C.MINECARTS, StackSize.MINECARTS.get());
+      ItemComponentUtil.setMaxStackSize(MItemTags.C.CHICKEN_EGGS, StackSize.CHICKEN_EGGS.get());
 
       // misc
       ItemComponentUtil.setMaxStackSize(Items.WRITTEN_BOOK, StackSize.WRITTEN_BOOK.get());
@@ -68,13 +66,13 @@ public class MStackSizes {
 		
 		// blocks
 		ItemComponentUtil.setMaxStackSize(ItemTags.BEDS, StackSize.BEDS.get());
+      ItemComponentUtil.setMaxStackSize(Items.CAKE, StackSize.CAKE.get());
+      ItemComponentUtil.setMaxStackSize(ItemTags.BANNERS, StackSize.BANNERS.get());
 
       // TESTING:
-		ItemComponentUtil.setMaxStackSize(MItemTags.C.MINECARTS, StackSize.MINECARTS.get());
-      ItemComponentUtil.setMaxStackSize(ItemTags.BANNERS, StackSize.BANNERS.get());
-		ItemComponentUtil.setMaxStackSize(MItemTags.C.CHICKEN_EGGS, StackSize.CHICKEN_EGGS.get());
+      ItemComponentUtil.setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.HORSE_ARMOR.get()); // TODO: test in horse
+      ItemComponentUtil.setMaxStackSize(Items.SADDLE, StackSize.SADDLE.get()); // TODO: test in horse
 
-      // LATER: Minecarts via tag
    }
 
 }

@@ -1,4 +1,8 @@
 {
+  "tag.item.c.chicken_eggs": "Chicken Eggs",
+  "tag.item.c.minecarts": "Minecarts",
+  "tag.item.c.horse_armor": "Horse Armor",
+
   "upstack.configuration.stack_size": "Stack Size",
   "upstack.configuration.armor_stand": "Armor Stand",
   "upstack.configuration.banners": "Banners",
@@ -10,9 +14,11 @@
   "upstack.configuration.ender_pearl": "Ender Pearl",
   "upstack.configuration.filled_buckets": "Filled Buckets",
   "upstack.configuration.honey_bottle": "Honey Bottle",
+  "upstack.configuration.horse_armor": "Horse Armor",
   "upstack.configuration.lingering_potion": "Lingering Potion",
   "upstack.configuration.minecarts": "Minecarts",
   "upstack.configuration.potion": "Potion",
+  "upstack.configuration.saddle": "Saddle",
   "upstack.configuration.snowball": "Snowball",
   "upstack.configuration.splash_potion": "Splash Potion",
   "upstack.configuration.totem_of_undying": "Totem of Undying",

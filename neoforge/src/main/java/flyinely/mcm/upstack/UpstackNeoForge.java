@@ -21,7 +21,7 @@ public class UpstackNeoForge {
 
       // Register config w/screen
       container.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-      container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new); // nice! need translation keys TODO
+      container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
 
       Constants.LOG.info("Finished NeoForge init");
    }
