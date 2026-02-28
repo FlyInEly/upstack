@@ -97,7 +97,7 @@ public class Config {
          CAKE = BUILDER.worldRestart()
                .comment("minecraft:cake")
                .defineInRange("cake", 16, MIN, MAX); // vanilla: 1. default: parity w/default for milk buckets, for crafting QOL.
-         CHICKEN_EGGS = BUILDER.worldRestart() // TODO: chicken eggs tag
+         CHICKEN_EGGS = BUILDER.worldRestart()
                .comment("#" + MItemTags.C.CHICKEN_EGGS)
                .defineInRange("chicken_eggs", 64, MIN, MAX); // vanilla: 16. default: parity w/general items, for crafting QOL.
          ENDER_PEARL = BUILDER.worldRestart()

@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
 /**
- * Accessor for setting the components field of {@link Item}.
+ * Accessor for setting the components field of an {@link Item}.
  *
  * @see flyinely.mcm.upstack.util.ItemComponentUtil
  */
