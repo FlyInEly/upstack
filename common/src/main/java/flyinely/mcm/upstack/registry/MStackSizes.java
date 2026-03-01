@@ -39,9 +39,6 @@ public class MStackSizes {
        * - Solid buckets, e.g. powder snow
        */
 		
-		// TODO: Also archive some stuff that should not compile to final jar export because its currently unused, but keep it in
-		//		some dedicated folder, rather than just a commit you'll forget about
-		
 		// buckets
 		ItemComponentUtil.setMaxStackSize(MItemTags.C.BUCKETS, StackSize.FILLED_BUCKETS.get());
 		ItemComponentUtil.setMaxStackSize(Items.BUCKET, StackSize.BUCKET.get()); // apply after MItemTags.C.BUCKETS to override stack size for Items.BUCKET specifically
@@ -69,9 +66,9 @@ public class MStackSizes {
       ItemComponentUtil.setMaxStackSize(Items.CAKE, StackSize.CAKE.get());
       ItemComponentUtil.setMaxStackSize(ItemTags.BANNERS, StackSize.BANNERS.get());
 
-      // TESTING:
-      ItemComponentUtil.setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.HORSE_ARMOR.get()); // TODO: test in horse
-      ItemComponentUtil.setMaxStackSize(Items.SADDLE, StackSize.SADDLE.get()); // TODO: test in horse
+      // equipment
+      ItemComponentUtil.setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.HORSE_ARMOR.get());
+      ItemComponentUtil.setMaxStackSize(Items.SADDLE, StackSize.SADDLE.get());
 
    }
 
