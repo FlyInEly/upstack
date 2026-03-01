@@ -2,7 +2,6 @@ package flyinely.mcm.upstack.registry;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import org.jetbrains.annotations.NotNull;
 
 import static flyinely.mcm.upstack.util.TagUtil.item;
 

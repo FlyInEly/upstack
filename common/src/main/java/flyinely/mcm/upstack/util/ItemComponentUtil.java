@@ -40,7 +40,7 @@ public class ItemComponentUtil {
     * @implNote Replaces the item's current map with the given map.
     */
    public static void setAll(@NotNull Item item, @NotNull DataComponentMap map) {
-      LOG.info("Modifying {}", item);
+      LOG.debug("Modifying {}", item);
       ((ItemAccessor) item).setComponents(map);
    }
 

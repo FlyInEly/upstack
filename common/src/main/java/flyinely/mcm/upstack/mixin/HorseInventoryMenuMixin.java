@@ -9,11 +9,14 @@ import net.minecraft.world.inventory.HorseInventoryMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.ModifyArgs;
+import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 /**
  * Common-side mixin.
@@ -31,39 +34,61 @@ public class HorseInventoryMenuMixin {
    greater than the target slot also moves the item (less 1 count) as if the target slot were full.
    This can be seen with Carved Pumpkin to player and Carpet to llama equipping, but the brewing stand
    does NOT have this issue. Figure out what BrewingStandMenu does right by cancelling things one at a time. */
-
-   @Redirect(method = "<init>", at = @At(
-         value = "INVOKE",
-         target = "Lnet/minecraft/world/inventory/HorseInventoryMenu;addSlot(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;"))
-   private Slot withMaxStackSize(HorseInventoryMenu instance, @NotNull Slot slot, int containerId, Inventory inventory,
-                                 Container horseContainer, final AbstractHorse horse, int columns) {
-      int slotIndex = slot.getContainerSlot();
-      Constants.LOG.info("{}, {}", slot.index, slotIndex);
-
-      // Subclass the saddle slot only (slot 0)
-      // Issue: Need to detect that this is the horse, not armor, container
-      if (slotIndex == 0 && slot.container.equals(horseContainer)) {
-         slot = new Slot(slot.container, slotIndex, slot.x, slot.y) {
-            // Override max stack size
-            @Contract(pure = true)
-            @Override
-            public int getMaxStackSize() {
-               return 1;
-            }
-
-            // Hardcoded replica of original behavior (b/c anonymous subclass)
-            @Override
-            public boolean mayPlace(@NotNull ItemStack pStack) {
-               return pStack.is(Items.SADDLE) && !this.hasItem() && horse.isSaddleable();
-            }
-
-            // Hardcoded replica of original behavior (b/c anonymous subclass)
-            @Override
-            public boolean isActive() {
-               return horse.isSaddleable();
-            }
-         };
-      }
-      return ((AbstractContainerMenuInvoker) this).callAddSlot(slot);
-   }
+	
+	// Note: Striders do not need this fix.
+	// Note: This fix covers horses, donkeys, and mules.
+	
+	@Unique
+	private static final Logger upstack$LOG = LoggerFactory.getLogger(Constants.LOG.getName() + "/" + HorseInventoryMenuMixin.class.getSimpleName());
+	
+	@ModifyArgs(
+			method = "<init>",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/world/inventory/HorseInventoryMenu;addSlot(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;"
+			)
+	)
+	void modifyMaxStackSize(Args args, int containerId, Inventory inventory, Container horseContainer, final AbstractHorse horse, int columns) {
+		
+		// Safeguard against unsafe mixin
+		if (args.size() != 1) {
+			upstack$LOG.error("Failed to restrict the max stack size of horse saddle slot (index: 0, container slot: 0): unexpected argument count");
+			return;
+		}
+		
+		// Modify saddle slot only
+		//		- Index 0, container slot 0.
+		//		- Does not accept horse armor. Use "!original.mayPlace(Items.LEATHER_HORSE_ARMOR...)" rather than
+		//		  "original.mayPlace(Items.SADDLE...)" because the former depends only on ItemStack#is(), whereas the
+		//		  latter also depends on Slot#hasItem() and AbstractHorse#isSaddleable().
+		final Slot original = args.get(0);
+		if (original.index == 0 && original.getContainerSlot() == 0 && !original.mayPlace(Items.LEATHER_HORSE_ARMOR.getDefaultInstance())) {
+			args.set(0, new Slot(original.container, original.index, original.x, original.y) {
+				
+				//#region Override max stack size
+				
+				@Override
+				public int getMaxStackSize() {
+					return 1;
+				}
+				
+				//#endregion
+				
+				//#region Delegate other behaviors
+				
+				public boolean mayPlace(@NotNull ItemStack stack) {
+					return original.mayPlace(stack);
+				}
+				
+				public boolean isActive() {
+					return original.isActive();
+				}
+				
+				//#endregion
+			});
+			upstack$LOG.debug("Restricted the max stack size of horse saddle slot (index: 0, container slot: 0).");
+		}
+		
+	}
+	
 }
