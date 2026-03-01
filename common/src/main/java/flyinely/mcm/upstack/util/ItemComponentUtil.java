@@ -20,8 +20,9 @@ import org.slf4j.LoggerFactory;
  * should be made on server start and resource reload; mod initialization is too early for methods like
  * {@link #set(TagKey, DataComponentType, Object)}, which have no effect if tags are unpopulated.
  * <p>
- * Each method logs the tag and/or item(s) being modified. Due to the aforementioned expectation that
- * method calls are infrequent, the logs should be more helpful for debugging than spammy.
+ * Each tag or item modification produces an info-level or debug-level log message respectively.
+ * Due to the aforementioned expectation that method calls are infrequent, these debug messages should hopefully
+ * be more helpful than spammy.
  */
 public class ItemComponentUtil {
 
