@@ -62,6 +62,10 @@ public class MStackSizes {
 
       // misc
       ItemComponentUtil.setMaxStackSize(Items.WRITTEN_BOOK, StackSize.WRITTEN_BOOK.get());
+
+      // equipment
+      ItemComponentUtil.setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.HORSE_ARMOR.get());
+      ItemComponentUtil.setMaxStackSize(Items.SADDLE, StackSize.SADDLE.get());
       ItemComponentUtil.setMaxStackSize(Items.TOTEM_OF_UNDYING, StackSize.TOTEM_OF_UNDYING.get());
 		
 		// blocks
@@ -69,9 +73,6 @@ public class MStackSizes {
       ItemComponentUtil.setMaxStackSize(Items.CAKE, StackSize.CAKE.get());
       ItemComponentUtil.setMaxStackSize(ItemTags.BANNERS, StackSize.BANNERS.get());
 
-      // TESTING:
-      ItemComponentUtil.setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.HORSE_ARMOR.get()); // TODO: test in horse
-      ItemComponentUtil.setMaxStackSize(Items.SADDLE, StackSize.SADDLE.get()); // TODO: test in horse
 
    }
 
