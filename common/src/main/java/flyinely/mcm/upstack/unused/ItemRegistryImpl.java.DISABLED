@@ -1,6 +1,5 @@
-package flyinely.mcm.upstack.model.registry;
+package flyinely.mcm.upstack.unused;
 
-import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 

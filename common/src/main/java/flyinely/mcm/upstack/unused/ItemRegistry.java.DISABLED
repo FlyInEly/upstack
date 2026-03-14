@@ -1,4 +1,4 @@
-package flyinely.mcm.upstack.model.registry;
+package flyinely.mcm.upstack.unused;
 
 import flyinely.mcm.upstack.model.annotation.CContract;
 import net.minecraft.advancements.critereon.ItemPredicate;

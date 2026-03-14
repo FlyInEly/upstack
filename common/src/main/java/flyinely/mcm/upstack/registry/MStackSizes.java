@@ -47,9 +47,6 @@ public class MStackSizes {
        * - Use 1, 16, 64 -- the precedent set by vanilla.
        */
 
-      // TODO: Also archive some stuff that should not compile to final jar export because its currently unused, but keep it in
-      //		some dedicated folder, rather than just a commit you'll forget about
-
       // TAGS
       setMaxStackSize(ItemTags.BANNERS, StackSize.BANNERS.get());
       setMaxStackSize(ItemTags.BEDS, StackSize.BEDS.get());
