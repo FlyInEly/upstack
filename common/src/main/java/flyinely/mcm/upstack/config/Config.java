@@ -93,28 +93,28 @@ public class Config {
          public static final IntValue SHOOTING_STARS;
          public static final IntValue STRUCTURE_UPGRADES;
          // ITEMS
-//         public static final IntValue AETHER_VESTIGES;
-//         public static final IntValue BAG_OF_HOLDING;
-//         public static final IntValue CINDERHEARTH;
-//         public static final IntValue CLOTTED_CREAM;
-//         public static final IntValue COLOR_PICKER;
-//         public static final IntValue CRYSTAL_APOTHECARY;
-//         public static final IntValue CRYSTALLARIEUM;
-//         public static final IntValue DOWNSTONE_FRAGMENTS;
-//         public static final IntValue DRAGONBONE_BROTH;
-//         public static final IntValue ENCHANTER;
-//         public static final IntValue ENDER_SPLICE;
-//         public static final IntValue JADEITE_LOTUS_FLOWER;
-//         public static final IntValue MOONSTONE_CORE;
-//         public static final IntValue PALTERIA_GEM;
-//         public static final IntValue POTION_WORKSHOP;
-//         public static final IntValue RESONANCE_SHARD;
-//         public static final IntValue SPIRIT_INSTILLER;
-//         public static final IntValue STAR_FRAGMENT;
-//         public static final IntValue STARDUST_BLOCK;
-//         public static final IntValue STRATINE_GEM;
-//         public static final IntValue TRIPLE_MEAT_POT_PIE;
-//         public static final IntValue TRIPLE_MEAT_POT_STEW;
+         public static final IntValue AETHER_VESTIGES;
+         public static final IntValue BAG_OF_HOLDING;
+         public static final IntValue CINDERHEARTH;
+         public static final IntValue CLOTTED_CREAM;
+         public static final IntValue COLOR_PICKER;
+         public static final IntValue CRYSTAL_APOTHECARY;
+         public static final IntValue CRYSTALLARIEUM;
+         public static final IntValue DOWNSTONE_FRAGMENTS;
+         public static final IntValue DRAGONBONE_BROTH;
+         public static final IntValue ENCHANTER;
+         public static final IntValue ENDER_SPLICE;
+         public static final IntValue JADEITE_LOTUS_FLOWER;
+         public static final IntValue MOONSTONE_CORE;
+         public static final IntValue PALTERIA_GEM;
+         public static final IntValue POTION_WORKSHOP;
+         public static final IntValue RESONANCE_SHARD;
+         public static final IntValue SPIRIT_INSTILLER;
+         public static final IntValue STAR_FRAGMENT;
+         public static final IntValue STARDUST_BLOCK;
+         public static final IntValue STRATINE_GEM;
+         public static final IntValue TRIPLE_MEAT_POT_PIE;
+         public static final IntValue TRIPLE_MEAT_POT_STEW;
 
          @Contract
          public static void init() {}
@@ -149,28 +149,72 @@ public class Config {
                   .defineInRange("structure_upgrades", 64, MIN, MAX); // mod: 16
             BUILDER.pop();
 
-//            AETHER_VESTIGES =;
-//            BAG_OF_HOLDING;
-//            CINDERHEARTH;
-//            CLOTTED_CREAM;
-//            COLOR_PICKER;
-//            CRYSTAL_APOTHECARY;
-//            CRYSTALLARIEUM;
-//            DOWNSTONE_FRAGMENTS;
-//            DRAGONBONE_BROTH;
-//            ENCHANTER;
-//            ENDER_SPLICE;
-//            JADEITE_LOTUS_FLOWER;
-//            MOONSTONE_CORE;
-//            PALTERIA_GEM;
-//            POTION_WORKSHOP;
-//            RESONANCE_SHARD;
-//            SPIRIT_INSTILLER;
-//            STAR_FRAGMENT;
-//            STARDUST_BLOCK;
-//            STRATINE_GEM;
-//            TRIPLE_MEAT_POT_PIE;
-//            TRIPLE_MEAT_POT_STEW
+            AETHER_VESTIGES = BUILDER.worldRestart()
+                  .comment("pastel:aether_vestiges")
+                  .defineInRange("aether_vestiges", 64, MIN, MAX); // mod: 1
+            BAG_OF_HOLDING = BUILDER.worldRestart()
+                  .comment("pastel:bag_of_holding")
+                  .defineInRange("bag_of_holding", 64, MIN, MAX); // mod: 1. upstack: parity with compass
+            CINDERHEARTH = BUILDER.worldRestart()
+                  .comment("pastel:cinderhearth")
+                  .defineInRange("cinderhearth", 64, MIN, MAX); // mod: 1
+            CLOTTED_CREAM = BUILDER.worldRestart()
+                  .comment("pastel:clotted_cream (overrides #" + MItemTags.C.BUCKETS + ")")
+                  .defineInRange("clotted_cream", 64, MIN, MAX); // mod: 64
+            COLOR_PICKER = BUILDER.worldRestart()
+                  .comment("pastel:color_picker")
+                  .defineInRange("color_picker", 64, MIN, MAX); // mod: 1
+            CRYSTAL_APOTHECARY = BUILDER.worldRestart()
+                  .comment("pastel:crystal_apothecary")
+                  .defineInRange("crystal_apothecary", 64, MIN, MAX); // mod: 1
+            CRYSTALLARIEUM = BUILDER.worldRestart()
+                  .comment("pastel:crystallarieum")
+                  .defineInRange("crystallarieum", 64, MIN, MAX); // mod: 1
+            DOWNSTONE_FRAGMENTS = BUILDER.worldRestart()
+                  .comment("pastel:downstone_fragments")
+                  .defineInRange("downstone_fragments", 64, MIN, MAX); // mod: 16
+            DRAGONBONE_BROTH = BUILDER.worldRestart()
+                  .comment("pastel:dragonbone_broth")
+                  .defineInRange("dragonbone_broth", 16, MIN, MAX); // mod: 8. note: grants magic annulation. upstack: parity with farmers' delight bowl foods
+            ENCHANTER = BUILDER.worldRestart()
+                  .comment("pastel:enchanter")
+                  .defineInRange("enchanter", 64, MIN, MAX); // mod: 1
+            ENDER_SPLICE = BUILDER.worldRestart()
+                  .comment("pastel:ender_splice")
+                  .defineInRange("ender_splice", 0, MIN, MAX); // mod: 16
+            JADEITE_LOTUS_FLOWER = BUILDER.worldRestart()
+                  .comment("pastel:jadeite_lotus_flower")
+                  .defineInRange("jadeite_lotus_flower", 64, MIN, MAX); // mod: 16
+            MOONSTONE_CORE = BUILDER.worldRestart()
+                  .comment("pastel:moonstone_core")
+                  .defineInRange("moonstone_core", 64, MIN, MAX); // mod: 16
+            PALTERIA_GEM = BUILDER.worldRestart()
+                  .comment("pastel:palteria_gem")
+                  .defineInRange("palteria_gem", 0, MIN, MAX); // mod: 16
+            POTION_WORKSHOP = BUILDER.worldRestart()
+                  .comment("pastel:potion_workshop")
+                  .defineInRange("potion_workshop", 64, MIN, MAX); // mod: 1
+            RESONANCE_SHARD = BUILDER.worldRestart()
+                  .comment("pastel:resonance_shard")
+                  .defineInRange("resonance_shard", 64, MIN, MAX); // mod: 16
+            SPIRIT_INSTILLER = BUILDER.worldRestart()
+                  .comment("pastel:spirit_instiller")
+                  .defineInRange("spirit_instiller", 64, MIN, MAX); // mod: 1
+            STAR_FRAGMENT = BUILDER.worldRestart()
+                  .comment("pastel:star_fragment")
+                  .defineInRange("star_fragment", 64, MIN, MAX); // mod: 16
+            STARDUST_BLOCK = BUILDER.worldRestart()
+                  .comment("pastel:stardust_block")
+                  .defineInRange("stardust_block", 64, MIN, MAX); // mod: 1. likely a bug, since this is in #c:storage_blocks
+            STRATINE_GEM = BUILDER.worldRestart()
+                  .comment("pastel:stratine_gem")
+                  .defineInRange("stratine_gem", 0, MIN, MAX); // mod: 16
+            TRIPLE_MEAT_POT_PIE = BUILDER.worldRestart()
+                  .comment("pastel:triple_meat_pot_pie")
+                  .defineInRange("triple_meat_pot_pie", 16, MIN, MAX); // mod: 8. upstack: parity with farmers' delight bowl foods
+            TRIPLE_MEAT_POT_STEW = BUILDER.worldRestart()
+                  .comment("pastel:triple_meat_pot_stew")
+                  .defineInRange("triple_meat_pot_stew", 16, MIN, MAX); // mod: 8. upstack: parity with farmers' delight bowl foods
             BUILDER.pop();
          }
       }

@@ -1,10 +1,10 @@
 package flyinely.mcm.upstack.registry;
 
-import flyinely.mcm.upstack.util.ItemComponentUtil;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 
 import static flyinely.mcm.upstack.config.Config.*;
+import static flyinely.mcm.upstack.util.ItemComponentUtil.setMaxStackSize;
 import static flyinely.mcm.upstack.util.ResUtil.id;
 
 // Server side
@@ -38,76 +38,71 @@ public class MStackSizes {
        *
        * And needs mixins for:
        * - Solid buckets, e.g. powder snow
+       *
+       * Some principles for default stack sizes include:
+       * - If there's no balance issue caused by allowing a 64-stack size, allow it. For instance,
+       *   compasses and clocks have no utility benefit from being stacked, but their stackability
+       *   allows them to fit more in bundles, be distributed to other players, be sold to villagers,
+       *   be crafted into other things.
+       * - Use 1, 16, 64 -- the precedent set by vanilla.
        */
 
       // TODO: Also archive some stuff that should not compile to final jar export because its currently unused, but keep it in
       //		some dedicated folder, rather than just a commit you'll forget about
 
-      // buckets
-      ItemComponentUtil.setMaxStackSize(MItemTags.C.BUCKETS, StackSize.C.BUCKETS.get());
-      ItemComponentUtil.setMaxStackSize(Items.BUCKET, StackSize.BUCKET.get()); // apply after MItemTags.C.BUCKETS to override stack size for Items.BUCKET specifically
+      // TAGS
+      setMaxStackSize(ItemTags.BANNERS, StackSize.BANNERS.get());
+      setMaxStackSize(ItemTags.BEDS, StackSize.BEDS.get());
+      setMaxStackSize(ItemTags.BOATS, StackSize.BOATS.get());
+      setMaxStackSize(MItemTags.C.BUCKETS, StackSize.C.BUCKETS.get());
+      setMaxStackSize(MItemTags.C.CHICKEN_EGGS, StackSize.C.CHICKEN_EGGS.get());
+      setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.C.HORSE_ARMOR.get());
+      setMaxStackSize(MItemTags.C.MINECARTS, StackSize.C.MINECARTS.get());
+      setMaxStackSize(MItemTags.Pastel.BULBS, StackSize.Pastel.BULBS.get());
+      setMaxStackSize(MItemTags.Pastel.FUSION_SHRINES, StackSize.Pastel.FUSION_SHRINES.get());
+      setMaxStackSize(MItemTags.Pastel.ITEM_BOWLS, StackSize.Pastel.ITEM_BOWLS.get());
+      setMaxStackSize(MItemTags.Pastel.NETWORK_NODES, StackSize.Pastel.NETWORK_NODES.get());
+      setMaxStackSize(MItemTags.Pastel.PEDESTALS, StackSize.Pastel.PEDESTALS.get());
+      setMaxStackSize(MItemTags.Pastel.ROUNDELS, StackSize.Pastel.ROUNDELS.get());
+      setMaxStackSize(MItemTags.Pastel.SHOOTING_STARS, StackSize.Pastel.SHOOTING_STARS.get());
+      setMaxStackSize(MItemTags.Pastel.STRUCTURE_UPGRADES, StackSize.Pastel.STRUCTURE_UPGRADES.get());
 
-      // bottles
-      ItemComponentUtil.setMaxStackSize(Items.HONEY_BOTTLE, StackSize.HONEY_BOTTLE.get());
-      ItemComponentUtil.setMaxStackSize(Items.POTION, StackSize.POTION.get());
-      ItemComponentUtil.setMaxStackSize(Items.SPLASH_POTION, StackSize.SPLASH_POTION.get());
-      ItemComponentUtil.setMaxStackSize(Items.LINGERING_POTION, StackSize.LINGERING_POTION.get());
-
-      // entity-spawning
-      ItemComponentUtil.setMaxStackSize(ItemTags.BOATS, StackSize.BOATS.get());
-      ItemComponentUtil.setMaxStackSize(Items.ENDER_PEARL, StackSize.ENDER_PEARL.get());
-      ItemComponentUtil.setMaxStackSize(Items.SNOWBALL, StackSize.SNOWBALL.get());
-      ItemComponentUtil.setMaxStackSize(Items.ARMOR_STAND, StackSize.ARMOR_STAND.get());
-      ItemComponentUtil.setMaxStackSize(MItemTags.C.MINECARTS, StackSize.C.MINECARTS.get());
-      ItemComponentUtil.setMaxStackSize(MItemTags.C.CHICKEN_EGGS, StackSize.C.CHICKEN_EGGS.get());
-
-      // misc
-      ItemComponentUtil.setMaxStackSize(Items.WRITTEN_BOOK, StackSize.WRITTEN_BOOK.get());
-
-      // food
-      ItemComponentUtil.setMaxStackSize(id("pastel:triple_meat_pot_pie"), 16); // 8
-      ItemComponentUtil.setMaxStackSize(id("pastel:triple_meat_pot_stew"), 16); // 8
-
-      // equipment
-      ItemComponentUtil.setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.C.HORSE_ARMOR.get());
-      ItemComponentUtil.setMaxStackSize(Items.SADDLE, StackSize.SADDLE.get());
-      ItemComponentUtil.setMaxStackSize(Items.TOTEM_OF_UNDYING, StackSize.TOTEM_OF_UNDYING.get());
-
-      // blocks
-      ItemComponentUtil.setMaxStackSize(ItemTags.BEDS, StackSize.BEDS.get());
-      ItemComponentUtil.setMaxStackSize(Items.CAKE, StackSize.CAKE.get());
-      ItemComponentUtil.setMaxStackSize(ItemTags.BANNERS, StackSize.BANNERS.get());
-
-      // mod - pastel
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.BULBS, StackSize.Pastel.BULBS.get());
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.FUSION_SHRINES, StackSize.Pastel.FUSION_SHRINES.get());
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.ITEM_BOWLS, StackSize.Pastel.ITEM_BOWLS.get());
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.NETWORK_NODES, StackSize.Pastel.NETWORK_NODES.get());
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.PEDESTALS, StackSize.Pastel.PEDESTALS.get());
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.ROUNDELS, StackSize.Pastel.ROUNDELS.get());
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.SHOOTING_STARS, StackSize.Pastel.SHOOTING_STARS.get());
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.STRUCTURE_UPGRADES, StackSize.Pastel.STRUCTURE_UPGRADES.get());
-      ItemComponentUtil.setMaxStackSize(id("pastel:aether_vestiges"), 64); // 1 (test multiple to repair nectar lance in anvil!)
-      ItemComponentUtil.setMaxStackSize(id("pastel:bag_of_holding"), 0); // (1)
-      ItemComponentUtil.setMaxStackSize(id("pastel:cinderhearth"), 64); // 1
-      ItemComponentUtil.setMaxStackSize(id("pastel:clotted_cream"), 64); // 64, but in #c:buckets (why??) so needs override AFTER buckets is set
-      ItemComponentUtil.setMaxStackSize(id("pastel:color_picker"), 64); // 8
-      ItemComponentUtil.setMaxStackSize(id("pastel:crystal_apothecary"), 64); // 8
-      ItemComponentUtil.setMaxStackSize(id("pastel:crystallarieum"), 64); // 1
-      ItemComponentUtil.setMaxStackSize(id("pastel:downstone_fragments"), 64); // 16
-      ItemComponentUtil.setMaxStackSize(id("pastel:dragonbone_broth"), 16); // 8. grants magic annulation
-      ItemComponentUtil.setMaxStackSize(id("pastel:enchanter"), 64); // 1
-      ItemComponentUtil.setMaxStackSize(id("pastel:ender_splice"), 0); // (16)
-      ItemComponentUtil.setMaxStackSize(id("pastel:jadeite_lotus_flower"), 64); // 16
-      ItemComponentUtil.setMaxStackSize(id("pastel:moonstone_core"), 64); // 16
-      ItemComponentUtil.setMaxStackSize(id("pastel:palteria_gem"), 64); // 16
-      ItemComponentUtil.setMaxStackSize(id("pastel:potion_workshop"), 64); // 1
-      ItemComponentUtil.setMaxStackSize(id("pastel:resonance_shard"), 64); // 16
-      ItemComponentUtil.setMaxStackSize(id("pastel:spirit_instiller"), 64); // 1
-      ItemComponentUtil.setMaxStackSize(id("pastel:star_fragment"), 64); // 16
-      ItemComponentUtil.setMaxStackSize(id("pastel:stardust_block"), 64); // 1
-      ItemComponentUtil.setMaxStackSize(id("pastel:stratine_gem"), 64); // 16
-
+      // ITEMS - Must be listed after tags to override for individual items
+      // TODO: test aether vestiges using multiple to repair nectar lance in anvil!
+      setMaxStackSize(Items.ARMOR_STAND, StackSize.ARMOR_STAND.get());
+      setMaxStackSize(Items.BUCKET, StackSize.BUCKET.get());
+      setMaxStackSize(Items.CAKE, StackSize.CAKE.get());
+      setMaxStackSize(Items.ENDER_PEARL, StackSize.ENDER_PEARL.get());
+      setMaxStackSize(Items.HONEY_BOTTLE, StackSize.HONEY_BOTTLE.get());
+      setMaxStackSize(Items.LINGERING_POTION, StackSize.LINGERING_POTION.get());
+      setMaxStackSize(Items.POTION, StackSize.POTION.get());
+      setMaxStackSize(Items.SADDLE, StackSize.SADDLE.get());
+      setMaxStackSize(Items.SNOWBALL, StackSize.SNOWBALL.get());
+      setMaxStackSize(Items.SPLASH_POTION, StackSize.SPLASH_POTION.get());
+      setMaxStackSize(Items.TOTEM_OF_UNDYING, StackSize.TOTEM_OF_UNDYING.get());
+      setMaxStackSize(Items.WRITTEN_BOOK, StackSize.WRITTEN_BOOK.get());
+      setMaxStackSize(id("pastel:aether_vestiges"), StackSize.Pastel.AETHER_VESTIGES.get());
+      setMaxStackSize(id("pastel:bag_of_holding"), StackSize.Pastel.BAG_OF_HOLDING.get());
+      setMaxStackSize(id("pastel:cinderhearth"), StackSize.Pastel.CINDERHEARTH.get());
+      setMaxStackSize(id("pastel:clotted_cream"), StackSize.Pastel.CLOTTED_CREAM.get());
+      setMaxStackSize(id("pastel:color_picker"), StackSize.Pastel.COLOR_PICKER.get());
+      setMaxStackSize(id("pastel:crystal_apothecary"), StackSize.Pastel.CRYSTAL_APOTHECARY.get());
+      setMaxStackSize(id("pastel:crystallarieum"), StackSize.Pastel.CRYSTALLARIEUM.get());
+      setMaxStackSize(id("pastel:downstone_fragments"), StackSize.Pastel.DOWNSTONE_FRAGMENTS.get());
+      setMaxStackSize(id("pastel:dragonbone_broth"), StackSize.Pastel.DRAGONBONE_BROTH.get());
+      setMaxStackSize(id("pastel:enchanter"), StackSize.Pastel.ENCHANTER.get());
+      setMaxStackSize(id("pastel:ender_splice"), StackSize.Pastel.ENDER_SPLICE.get());
+      setMaxStackSize(id("pastel:jadeite_lotus_flower"), StackSize.Pastel.JADEITE_LOTUS_FLOWER.get());
+      setMaxStackSize(id("pastel:moonstone_core"), StackSize.Pastel.MOONSTONE_CORE.get());
+      setMaxStackSize(id("pastel:palteria_gem"), StackSize.Pastel.PALTERIA_GEM.get());
+      setMaxStackSize(id("pastel:potion_workshop"), StackSize.Pastel.POTION_WORKSHOP.get());
+      setMaxStackSize(id("pastel:resonance_shard"), StackSize.Pastel.RESONANCE_SHARD.get());
+      setMaxStackSize(id("pastel:spirit_instiller"), StackSize.Pastel.SPIRIT_INSTILLER.get());
+      setMaxStackSize(id("pastel:star_fragment"), StackSize.Pastel.STAR_FRAGMENT.get());
+      setMaxStackSize(id("pastel:stardust_block"), StackSize.Pastel.STARDUST_BLOCK.get());
+      setMaxStackSize(id("pastel:stratine_gem"), StackSize.Pastel.STRATINE_GEM.get());
+      setMaxStackSize(id("pastel:triple_meat_pot_pie"), StackSize.Pastel.TRIPLE_MEAT_POT_PIE.get());
+      setMaxStackSize(id("pastel:triple_meat_pot_stew"), StackSize.Pastel.TRIPLE_MEAT_POT_STEW.get());
 
    }
 
