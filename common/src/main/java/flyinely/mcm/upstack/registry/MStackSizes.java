@@ -1,6 +1,7 @@
 package flyinely.mcm.upstack.registry;
 
 import flyinely.mcm.upstack.util.ItemComponentUtil;
+import flyinely.mcm.upstack.util.ResUtil;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 
@@ -73,7 +74,9 @@ public class MStackSizes {
       ItemComponentUtil.setMaxStackSize(Items.CAKE, StackSize.CAKE.get());
       ItemComponentUtil.setMaxStackSize(ItemTags.BANNERS, StackSize.BANNERS.get());
 
-
+      // testing
+      // warning: may currently be the default item
+      ItemComponentUtil.setMaxStackSize(ResUtil.id("pastel:resonance_shard"), 16);
    }
 
 }

@@ -7,6 +7,7 @@ import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.ApiStatus;
@@ -72,7 +73,6 @@ public class ItemComponentUtil {
    }
 
    // TODO NEXT: Hook UpstackStackSizes.register() to resource reload
-   // TODO NEXT: Make other setters support item holders or some other abstraction that allows for modifying modded items
 
    /**
     * Sets the component to the given value, on all items in the given tag.
@@ -105,6 +105,18 @@ public class ItemComponentUtil {
       if (value >= ABSOLUTE_MIN_STACK_SIZE && value <= ABSOLUTE_MAX_STACK_SIZE) {
          set(item, DataComponents.MAX_STACK_SIZE, value);
       }
+   }
+
+   /**
+    * Sets the {@link DataComponents#MAX_STACK_SIZE} component to the given value on the
+    * item with the given ID, if the value is within [1, {@link Item#ABSOLUTE_MAX_STACK_SIZE}]
+    * and the item is registered.
+    *
+    * @param id    the id of the target item
+    * @param value the max stack size value
+    */
+   public static void setMaxStackSize(@NotNull ResourceLocation id, int value) {
+      ItemUtil.fromId(id).ifPresent(item -> setMaxStackSize(item, value));
    }
 
    /**
