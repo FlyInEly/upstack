@@ -6,7 +6,9 @@
   "compatibilityLevel": "JAVA_18",
   "mixins": [
     "HorseInventoryMenuMixin",
+    "LingeringPotionItemMixin",
     "SolidBucketItemMixin",
+    "SplashPotionItemMixin",
     "registry.ItemAccessor"
   ],
   "client": [],
