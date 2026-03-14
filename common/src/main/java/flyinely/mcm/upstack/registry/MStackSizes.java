@@ -68,7 +68,6 @@ public class MStackSizes {
       setMaxStackSize(MItemTags.Pastel.STRUCTURE_UPGRADES, StackSize.Pastel.STRUCTURE_UPGRADES.get());
 
       // ITEMS - Must be listed after tags to override for individual items
-      // TODO: test aether vestiges using multiple to repair nectar lance in anvil!
       setMaxStackSize(Items.ARMOR_STAND, StackSize.ARMOR_STAND.get());
       setMaxStackSize(Items.BUCKET, StackSize.BUCKET.get());
       setMaxStackSize(Items.CAKE, StackSize.CAKE.get());

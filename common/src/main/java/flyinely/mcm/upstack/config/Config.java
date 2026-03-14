@@ -239,6 +239,7 @@ public class Config {
          BUILDER.push("stack_size");
 
          C.init();
+         Pastel.init();
 
          BUILDER.push("tags");
          BANNERS = BUILDER.worldRestart()
