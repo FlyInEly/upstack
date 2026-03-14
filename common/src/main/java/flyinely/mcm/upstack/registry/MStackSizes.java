@@ -76,7 +76,7 @@ public class MStackSizes {
 
       // testing
       // warning: may currently be the default item
-      ItemComponentUtil.setMaxStackSize(ResUtil.id("pastel:resonance_shard"), 16);
+      ItemComponentUtil.setMaxStackSize(ResUtil.id("pastel:resonance_shard"), 64);
    }
 
 }

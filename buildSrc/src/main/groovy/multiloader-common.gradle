@@ -53,6 +53,18 @@ repositories {
         name = "Terraformers"
         url = "https://maven.terraformersmc.com/"
     }
+
+    // pastel (neoforge)
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = "https://cursemaven.com/"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 // Declare capabilities on the outgoing configurations.
@@ -113,7 +125,10 @@ processResources {
                        'ponder_version'               : ponder_version,
                        'create_version'               : create_version,
                        'flywheel_version'             : flywheel_version,
-                       'registrate_version'           : registrate_version]
+                       'registrate_version'           : registrate_version,
+                       'architectury_version'         : architectury_version,
+                       'curios_version'               : curios_version,
+                       'cloth_config_version'         : cloth_config_version]
 
     filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
         expand expandProps

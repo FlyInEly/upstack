@@ -41,6 +41,49 @@ repositories {
     // create
     maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
     maven { url = "https://maven.ithundxr.dev/snapshots" } // Registrate
+
+    // pastel
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = "https://maven.crystaelix.com/releases/"
+            }
+        }
+        filter {
+            includeGroup "thelm.jeidrawables"
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = "https://maven.architectury.dev/"
+            }
+        }
+        filter {
+            includeGroup "dev.architectury"
+            includeGroup "me.shedaniel.cloth"
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = "https://dl.cloudsmith.io/public/klikli-dev/mods/maven/"
+            }
+        }
+        filter {
+            includeGroup "com.klikli_dev"
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = "https://maven.theillusivec4.top/"
+            }
+        }
+        filter {
+            includeGroup "top.theillusivec4.curios"
+        }
+    }
 }
 
 
@@ -48,12 +91,22 @@ dependencies {
     // emi
     runtimeOnly "dev.emi:emi-neoforge:${emi_version}"
 
-    // create
+    // create (optional test)
     implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
     implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
     compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
     runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
     implementation("com.tterrag.registrate:Registrate:${registrate_version}")
+
+    // pastel (optional test)
+    implementation "curse.maven:databank-1181408:7316426"
+    implementation "curse.maven:exclusions-lib-1108052:7502579"
+    implementation "dev.architectury:architectury-neoforge:${architectury_version}"
+    implementation "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
+    implementation("com.klikli_dev:modonomicon-1.21.1-neoforge:1.117.4") {transitive = false}
+    implementation "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+    implementation "curse.maven:yeetusexperimentus-635427:5444189"
+    implementation "curse.maven:pastel-1264556:7578007"
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
