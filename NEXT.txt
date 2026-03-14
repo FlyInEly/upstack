@@ -1,0 +1,6 @@
+- Implement potion cooldowns
+- Implement music disc stacking and Jukebox fix
+- Implement bowl food stacking (yield to Farmer's Delight)
+- Implement any other vanilla stack size configs (see previous mod)
+- Initial release?
+- Implement Farmer's Delight stack size configs
