@@ -76,7 +76,7 @@ public class MStackSizes {
       ItemComponentUtil.setMaxStackSize(Items.CAKE, StackSize.CAKE.get());
       ItemComponentUtil.setMaxStackSize(ItemTags.BANNERS, StackSize.BANNERS.get());
 
-      // testing
+      // mod - pastel
       ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.BULBS,64); // 16
       ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.FUSION_SHRINES,64); // 1
       ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.ITEM_BOWLS,64); // 16 (enlightenment: 64)
@@ -100,6 +100,7 @@ public class MStackSizes {
       ItemComponentUtil.setMaxStackSize(id("pastel:lucky_roll"), 0); // (16)
       ItemComponentUtil.setMaxStackSize(id("pastel:moonstone_core"), 64); // 16
       ItemComponentUtil.setMaxStackSize(id("pastel:palteria_gem"), 64); // 16
+      ItemComponentUtil.setMaxStackSize(id("pastel:potion_workshop"), 64); // 1
       ItemComponentUtil.setMaxStackSize(id("pastel:resonance_shard"), 64); // 16
       ItemComponentUtil.setMaxStackSize(id("pastel:spirit_instiller"), 64); // 1
       ItemComponentUtil.setMaxStackSize(id("pastel:star_fragment"), 64); // 16
