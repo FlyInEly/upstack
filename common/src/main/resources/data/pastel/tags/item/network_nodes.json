@@ -1,0 +1,29 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "pastel:connection_node",
+      "required": false
+    },
+    {
+      "id": "pastel:provider_node",
+      "required": false
+    },
+    {
+      "id": "pastel:sender_node",
+      "required": false
+    },
+    {
+      "id": "pastel:storage_node",
+      "required": false
+    },
+    {
+      "id": "pastel:buffer_node",
+      "required": false
+    },
+    {
+      "id": "pastel:gather_node",
+      "required": false
+    }
+  ]
+}

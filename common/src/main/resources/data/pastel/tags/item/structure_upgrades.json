@@ -1,0 +1,41 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "pastel:upgrade_speed",
+      "required": false
+    },
+    {
+      "id": "pastel:upgrade_speed2",
+      "required": false
+    },
+    {
+      "id": "pastel:upgrade_speed3",
+      "required": false
+    },
+    {
+      "id": "pastel:upgrade_efficiency",
+      "required": false
+    },
+    {
+      "id": "pastel:upgrade_efficiency2",
+      "required": false
+    },
+    {
+      "id": "pastel:upgrade_yield",
+      "required": false
+    },
+    {
+      "id": "pastel:upgrade_yield2",
+      "required": false
+    },
+    {
+      "id": "pastel:upgrade_experience",
+      "required": false
+    },
+    {
+      "id": "pastel:upgrade_experience2",
+      "required": false
+    }
+  ]
+}

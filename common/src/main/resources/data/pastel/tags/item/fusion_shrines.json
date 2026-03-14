@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "pastel:fusion_shrine_calcite",
+      "required": false
+    },
+    {
+      "id": "pastel:fusion_shrine_basalt",
+      "required": false
+    }
+  ]
+}
