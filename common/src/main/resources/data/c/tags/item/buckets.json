@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "pastel:liquid_crystal_bucket",
+      "required": false
+    },
+    {
+      "id": "pastel:bucket_of_eraser",
+      "required": false
+    },
+    {
+      "id": "pastel:humus_bucket",
+      "required": false
+    },
+    {
+      "id": "pastel:midnight_solution_bucket",
+      "required": false
+    },
+    {
+      "id": "pastel:dragonrot_bucket",
+      "required": false
+    }
+  ]
+}
