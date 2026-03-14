@@ -1,8 +1,6 @@
 package flyinely.mcm.upstack.registry;
 
 import flyinely.mcm.upstack.util.ItemComponentUtil;
-import flyinely.mcm.upstack.util.ResUtil;
-import flyinely.mcm.upstack.util.TagUtil;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 
@@ -46,7 +44,7 @@ public class MStackSizes {
 		//		some dedicated folder, rather than just a commit you'll forget about
 		
 		// buckets
-		ItemComponentUtil.setMaxStackSize(MItemTags.C.BUCKETS, StackSize.FILLED_BUCKETS.get());
+		ItemComponentUtil.setMaxStackSize(MItemTags.C.BUCKETS, StackSize.C.BUCKETS.get());
 		ItemComponentUtil.setMaxStackSize(Items.BUCKET, StackSize.BUCKET.get()); // apply after MItemTags.C.BUCKETS to override stack size for Items.BUCKET specifically
 		
 		// bottles
@@ -60,14 +58,18 @@ public class MStackSizes {
       ItemComponentUtil.setMaxStackSize(Items.ENDER_PEARL, StackSize.ENDER_PEARL.get());
       ItemComponentUtil.setMaxStackSize(Items.SNOWBALL, StackSize.SNOWBALL.get());
       ItemComponentUtil.setMaxStackSize(Items.ARMOR_STAND, StackSize.ARMOR_STAND.get());
-      ItemComponentUtil.setMaxStackSize(MItemTags.C.MINECARTS, StackSize.MINECARTS.get());
-      ItemComponentUtil.setMaxStackSize(MItemTags.C.CHICKEN_EGGS, StackSize.CHICKEN_EGGS.get());
+      ItemComponentUtil.setMaxStackSize(MItemTags.C.MINECARTS, StackSize.C.MINECARTS.get());
+      ItemComponentUtil.setMaxStackSize(MItemTags.C.CHICKEN_EGGS, StackSize.C.CHICKEN_EGGS.get());
 
       // misc
       ItemComponentUtil.setMaxStackSize(Items.WRITTEN_BOOK, StackSize.WRITTEN_BOOK.get());
 
+      // food
+      ItemComponentUtil.setMaxStackSize(id("pastel:triple_meat_pot_pie"), 16); // 8
+      ItemComponentUtil.setMaxStackSize(id("pastel:triple_meat_pot_stew"), 16); // 8
+
       // equipment
-      ItemComponentUtil.setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.HORSE_ARMOR.get());
+      ItemComponentUtil.setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.C.HORSE_ARMOR.get());
       ItemComponentUtil.setMaxStackSize(Items.SADDLE, StackSize.SADDLE.get());
       ItemComponentUtil.setMaxStackSize(Items.TOTEM_OF_UNDYING, StackSize.TOTEM_OF_UNDYING.get());
 		
@@ -106,8 +108,7 @@ public class MStackSizes {
       ItemComponentUtil.setMaxStackSize(id("pastel:star_fragment"), 64); // 16
       ItemComponentUtil.setMaxStackSize(id("pastel:stardust_block"), 64); // 1
       ItemComponentUtil.setMaxStackSize(id("pastel:stratine_gem"), 64); // 16
-      ItemComponentUtil.setMaxStackSize(id("pastel:triple_meat_pot_pie"), 16); // 8
-      ItemComponentUtil.setMaxStackSize(id("pastel:triple_meat_pot_stew"), 16); // 8
+
 
 
    }

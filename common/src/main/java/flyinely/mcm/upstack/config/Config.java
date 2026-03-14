@@ -1,6 +1,5 @@
 package flyinely.mcm.upstack.config;
 
-import com.mojang.text2speech.OperatingSystem;
 import flyinely.mcm.upstack.registry.MItemTags;
 import flyinely.mcm.upstack.util.ItemComponentUtil;
 import net.minecraft.tags.ItemTags;
@@ -56,19 +55,42 @@ public class Config {
       private static final int MIN = ItemComponentUtil.ABSOLUTE_MIN_STACK_SIZE - 1;
       private static final int MAX = ItemComponentUtil.ABSOLUTE_MAX_STACK_SIZE;
 
+      public static class C {
+         public static final IntValue CHICKEN_EGGS;
+         public static final IntValue BUCKETS;
+         public static final IntValue HORSE_ARMOR;
+         public static final IntValue MINECARTS;
+
+         @Contract
+         public static void init() {}
+
+         static {
+            BUILDER.push("tags");
+            CHICKEN_EGGS = BUILDER.worldRestart()
+                  .comment("#" + MItemTags.C.CHICKEN_EGGS)
+                  .defineInRange("c.chicken_eggs", 64, MIN, MAX); // vanilla: 16. default: parity w/general items, for crafting QOL.
+            BUCKETS = BUILDER.worldRestart()
+                  .comment("#" + MItemTags.C.BUCKETS)
+                  .defineInRange("c.buckets", 16, MIN, MAX); // vanilla: 1. default: parity w/honey bottles.
+            HORSE_ARMOR = BUILDER.worldRestart()
+                  .comment("#" + MItemTags.C.HORSE_ARMOR)
+                  .defineInRange("c.horse_armor", 16, MIN, MAX); // vanilla: 1. default: not lower due to lack of durability and foreseen balance issues.
+            MINECARTS = BUILDER.worldRestart()
+                  .comment("#c:minecarts")
+                  .defineInRange("c.minecarts", 16, MIN, MAX); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
+            BUILDER.pop();
+         }
+      }
+
       public static final IntValue ARMOR_STAND;
       public static final IntValue BANNERS;
       public static final IntValue BEDS;
       public static final IntValue BOATS;
       public static final IntValue BUCKET;
       public static final IntValue CAKE;
-      public static final IntValue CHICKEN_EGGS;
       public static final IntValue ENDER_PEARL;
-      public static final IntValue FILLED_BUCKETS;
       public static final IntValue HONEY_BOTTLE;
-      public static final IntValue HORSE_ARMOR;
       public static final IntValue LINGERING_POTION;
-      public static final IntValue MINECARTS;
       public static final IntValue POTION;
       public static final IntValue SADDLE;
       public static final IntValue SNOWBALL;
@@ -79,9 +101,9 @@ public class Config {
       static {
          BUILDER.push("stack_size");
 
-         ARMOR_STAND = BUILDER.worldRestart()
-               .comment("minecraft:armor_stand")
-               .defineInRange("armor_stand", 64, MIN, MAX); // vanilla: 16. default: parity w/general items.
+         C.init();
+
+         BUILDER.push("tags");
          BANNERS = BUILDER.worldRestart()
                .comment("#" + ItemTags.BANNERS)
                .defineInRange("banners", 64, MIN, MAX); // vanilla: 16. default: parity w/general items.
@@ -91,33 +113,26 @@ public class Config {
          BOATS = BUILDER.worldRestart()
                .comment("#" + ItemTags.BOATS)
                .defineInRange("boats", 16, MIN, MAX); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
+         BUILDER.pop();
+
+         ARMOR_STAND = BUILDER.worldRestart()
+               .comment("minecraft:armor_stand")
+               .defineInRange("armor_stand", 64, MIN, MAX); // vanilla: 16. default: parity w/general items.
          BUCKET = BUILDER.worldRestart()
                .comment("minecraft:bucket (overrides #" + MItemTags.C.BUCKETS + ")")
                .defineInRange("bucket", 64, MIN, MAX); // vanilla: 16. default: parity w/empty bottles.
          CAKE = BUILDER.worldRestart()
                .comment("minecraft:cake")
                .defineInRange("cake", 16, MIN, MAX); // vanilla: 1. default: parity w/default for milk buckets, for crafting QOL.
-         CHICKEN_EGGS = BUILDER.worldRestart()
-               .comment("#" + MItemTags.C.CHICKEN_EGGS)
-               .defineInRange("chicken_eggs", 64, MIN, MAX); // vanilla: 16. default: parity w/general items, for crafting QOL.
          ENDER_PEARL = BUILDER.worldRestart()
                .comment("minecraft:ender_pearl")
                .defineInRange("ender_pearl", 0, MIN, MAX); // default: unchanged.
-         FILLED_BUCKETS = BUILDER.worldRestart()
-               .comment("#" + MItemTags.C.BUCKETS)
-               .defineInRange("filled_buckets", 16, MIN, MAX); // vanilla: 1. default: parity w/honey bottles.
          HONEY_BOTTLE = BUILDER.worldRestart()
                .comment("minecraft:honey_bottle")
                .defineInRange("honey_bottle", 0, MIN, MAX); // default: unchanged.
-         HORSE_ARMOR = BUILDER.worldRestart()
-               .comment("#" + MItemTags.C.HORSE_ARMOR)
-               .defineInRange("horse_armor", 16, MIN, MAX); // vanilla: 1. default: not lower due to lack of durability and foreseen balance issues.
          LINGERING_POTION = BUILDER.worldRestart()
                .comment("minecraft:lingering_potion")
                .defineInRange("lingering_potion", 16, MIN, MAX); // vanilla: 1. default: parity w/ender pearls.
-         MINECARTS = BUILDER.worldRestart()
-               .comment("#c:minecarts")
-               .defineInRange("minecarts", 16, MIN, MAX); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
          POTION = BUILDER.worldRestart()
                .comment("minecraft:potion")
                .defineInRange("potion", 16, MIN, MAX); // vanilla: 1. default: parity w/honey bottles.
