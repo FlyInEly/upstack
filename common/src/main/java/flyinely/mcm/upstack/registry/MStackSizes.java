@@ -39,22 +39,22 @@ public class MStackSizes {
        * And needs mixins for:
        * - Solid buckets, e.g. powder snow
        */
-		
-		// TODO: Also archive some stuff that should not compile to final jar export because its currently unused, but keep it in
-		//		some dedicated folder, rather than just a commit you'll forget about
-		
-		// buckets
-		ItemComponentUtil.setMaxStackSize(MItemTags.C.BUCKETS, StackSize.C.BUCKETS.get());
-		ItemComponentUtil.setMaxStackSize(Items.BUCKET, StackSize.BUCKET.get()); // apply after MItemTags.C.BUCKETS to override stack size for Items.BUCKET specifically
-		
-		// bottles
-		ItemComponentUtil.setMaxStackSize(Items.HONEY_BOTTLE, StackSize.HONEY_BOTTLE.get());
-		ItemComponentUtil.setMaxStackSize(Items.POTION, StackSize.POTION.get());
-		ItemComponentUtil.setMaxStackSize(Items.SPLASH_POTION, StackSize.SPLASH_POTION.get());
-		ItemComponentUtil.setMaxStackSize(Items.LINGERING_POTION, StackSize.LINGERING_POTION.get());
+
+      // TODO: Also archive some stuff that should not compile to final jar export because its currently unused, but keep it in
+      //		some dedicated folder, rather than just a commit you'll forget about
+
+      // buckets
+      ItemComponentUtil.setMaxStackSize(MItemTags.C.BUCKETS, StackSize.C.BUCKETS.get());
+      ItemComponentUtil.setMaxStackSize(Items.BUCKET, StackSize.BUCKET.get()); // apply after MItemTags.C.BUCKETS to override stack size for Items.BUCKET specifically
+
+      // bottles
+      ItemComponentUtil.setMaxStackSize(Items.HONEY_BOTTLE, StackSize.HONEY_BOTTLE.get());
+      ItemComponentUtil.setMaxStackSize(Items.POTION, StackSize.POTION.get());
+      ItemComponentUtil.setMaxStackSize(Items.SPLASH_POTION, StackSize.SPLASH_POTION.get());
+      ItemComponentUtil.setMaxStackSize(Items.LINGERING_POTION, StackSize.LINGERING_POTION.get());
 
       // entity-spawning
-		ItemComponentUtil.setMaxStackSize(ItemTags.BOATS, StackSize.BOATS.get());
+      ItemComponentUtil.setMaxStackSize(ItemTags.BOATS, StackSize.BOATS.get());
       ItemComponentUtil.setMaxStackSize(Items.ENDER_PEARL, StackSize.ENDER_PEARL.get());
       ItemComponentUtil.setMaxStackSize(Items.SNOWBALL, StackSize.SNOWBALL.get());
       ItemComponentUtil.setMaxStackSize(Items.ARMOR_STAND, StackSize.ARMOR_STAND.get());
@@ -72,22 +72,22 @@ public class MStackSizes {
       ItemComponentUtil.setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.C.HORSE_ARMOR.get());
       ItemComponentUtil.setMaxStackSize(Items.SADDLE, StackSize.SADDLE.get());
       ItemComponentUtil.setMaxStackSize(Items.TOTEM_OF_UNDYING, StackSize.TOTEM_OF_UNDYING.get());
-		
-		// blocks
-		ItemComponentUtil.setMaxStackSize(ItemTags.BEDS, StackSize.BEDS.get());
+
+      // blocks
+      ItemComponentUtil.setMaxStackSize(ItemTags.BEDS, StackSize.BEDS.get());
       ItemComponentUtil.setMaxStackSize(Items.CAKE, StackSize.CAKE.get());
       ItemComponentUtil.setMaxStackSize(ItemTags.BANNERS, StackSize.BANNERS.get());
 
       // mod - pastel
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.BULBS,64); // 16
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.FUSION_SHRINES,64); // 1
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.ITEM_BOWLS,64); // 16 (enlightenment: 64)
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.NETWORK_NODES,64); // 16
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.PEDESTALS,64); // 1
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.ROUNDELS,64); // 16 (preservation: 64)
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.SHOOTING_STARS,16); // 1; spawns entity
-      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.STRUCTURE_UPGRADES,64); // 16
-      ItemComponentUtil.setMaxStackSize(id("pastel:aether_vestiges"),64); // 1 (test multiple to repair nectar lance in anvil!)
+      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.BULBS, StackSize.Pastel.BULBS.get());
+      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.FUSION_SHRINES, StackSize.Pastel.FUSION_SHRINES.get());
+      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.ITEM_BOWLS, StackSize.Pastel.ITEM_BOWLS.get());
+      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.NETWORK_NODES, StackSize.Pastel.NETWORK_NODES.get());
+      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.PEDESTALS, StackSize.Pastel.PEDESTALS.get());
+      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.ROUNDELS, StackSize.Pastel.ROUNDELS.get());
+      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.SHOOTING_STARS, StackSize.Pastel.SHOOTING_STARS.get());
+      ItemComponentUtil.setMaxStackSize(MItemTags.Pastel.STRUCTURE_UPGRADES, StackSize.Pastel.STRUCTURE_UPGRADES.get());
+      ItemComponentUtil.setMaxStackSize(id("pastel:aether_vestiges"), 64); // 1 (test multiple to repair nectar lance in anvil!)
       ItemComponentUtil.setMaxStackSize(id("pastel:bag_of_holding"), 0); // (1)
       ItemComponentUtil.setMaxStackSize(id("pastel:cinderhearth"), 64); // 1
       ItemComponentUtil.setMaxStackSize(id("pastel:clotted_cream"), 64); // 64, but in #c:buckets (why??) so needs override AFTER buckets is set
@@ -99,7 +99,6 @@ public class MStackSizes {
       ItemComponentUtil.setMaxStackSize(id("pastel:enchanter"), 64); // 1
       ItemComponentUtil.setMaxStackSize(id("pastel:ender_splice"), 0); // (16)
       ItemComponentUtil.setMaxStackSize(id("pastel:jadeite_lotus_flower"), 64); // 16
-      ItemComponentUtil.setMaxStackSize(id("pastel:lucky_roll"), 0); // (16)
       ItemComponentUtil.setMaxStackSize(id("pastel:moonstone_core"), 64); // 16
       ItemComponentUtil.setMaxStackSize(id("pastel:palteria_gem"), 64); // 16
       ItemComponentUtil.setMaxStackSize(id("pastel:potion_workshop"), 64); // 1
@@ -108,7 +107,6 @@ public class MStackSizes {
       ItemComponentUtil.setMaxStackSize(id("pastel:star_fragment"), 64); // 16
       ItemComponentUtil.setMaxStackSize(id("pastel:stardust_block"), 64); // 1
       ItemComponentUtil.setMaxStackSize(id("pastel:stratine_gem"), 64); // 16
-
 
 
    }

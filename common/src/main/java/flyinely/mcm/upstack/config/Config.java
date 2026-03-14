@@ -82,6 +82,99 @@ public class Config {
          }
       }
 
+      public static class Pastel {
+         // TAGS
+         public static final IntValue BULBS;
+         public static final IntValue FUSION_SHRINES;
+         public static final IntValue ITEM_BOWLS;
+         public static final IntValue NETWORK_NODES;
+         public static final IntValue PEDESTALS;
+         public static final IntValue ROUNDELS;
+         public static final IntValue SHOOTING_STARS;
+         public static final IntValue STRUCTURE_UPGRADES;
+         // ITEMS
+//         public static final IntValue AETHER_VESTIGES;
+//         public static final IntValue BAG_OF_HOLDING;
+//         public static final IntValue CINDERHEARTH;
+//         public static final IntValue CLOTTED_CREAM;
+//         public static final IntValue COLOR_PICKER;
+//         public static final IntValue CRYSTAL_APOTHECARY;
+//         public static final IntValue CRYSTALLARIEUM;
+//         public static final IntValue DOWNSTONE_FRAGMENTS;
+//         public static final IntValue DRAGONBONE_BROTH;
+//         public static final IntValue ENCHANTER;
+//         public static final IntValue ENDER_SPLICE;
+//         public static final IntValue JADEITE_LOTUS_FLOWER;
+//         public static final IntValue MOONSTONE_CORE;
+//         public static final IntValue PALTERIA_GEM;
+//         public static final IntValue POTION_WORKSHOP;
+//         public static final IntValue RESONANCE_SHARD;
+//         public static final IntValue SPIRIT_INSTILLER;
+//         public static final IntValue STAR_FRAGMENT;
+//         public static final IntValue STARDUST_BLOCK;
+//         public static final IntValue STRATINE_GEM;
+//         public static final IntValue TRIPLE_MEAT_POT_PIE;
+//         public static final IntValue TRIPLE_MEAT_POT_STEW;
+
+         @Contract
+         public static void init() {}
+
+         static {
+            BUILDER.push("pastel");
+
+            BUILDER.push("tags");
+            BULBS = BUILDER.worldRestart()
+                  .comment("#" + MItemTags.Pastel.BULBS)
+                  .defineInRange("bulbs", 64, MIN, MAX); // mod: 16
+            FUSION_SHRINES = BUILDER.worldRestart()
+                  .comment("#" + MItemTags.Pastel.FUSION_SHRINES)
+                  .defineInRange("fusion_shrines", 64, MIN, MAX); // mod: 1
+            ITEM_BOWLS = BUILDER.worldRestart()
+                  .comment("#" + MItemTags.Pastel.ITEM_BOWLS)
+                  .defineInRange("item_bowls", 64, MIN, MAX); // mod: 16 (exc. enlightenment bowl: 64)
+            NETWORK_NODES = BUILDER.worldRestart()
+                  .comment("#" + MItemTags.Pastel.NETWORK_NODES)
+                  .defineInRange("network_nodes", 64, MIN, MAX); // mod: 16
+            PEDESTALS = BUILDER.worldRestart()
+                  .comment("#" + MItemTags.Pastel.PEDESTALS)
+                  .defineInRange("pedestals", 64, MIN, MAX); // mod: 1
+            ROUNDELS = BUILDER.worldRestart()
+                  .comment("#" + MItemTags.Pastel.ROUNDELS)
+                  .defineInRange("roundels", 64, MIN, MAX); // mod: 16 (exc. preservation roundel: 64)
+            SHOOTING_STARS = BUILDER.worldRestart()
+                  .comment("#" + MItemTags.Pastel.SHOOTING_STARS)
+                  .defineInRange("shooting_star", 16, MIN, MAX); // mod: 1. entity-spawning
+            STRUCTURE_UPGRADES = BUILDER.worldRestart()
+                  .comment("#" + MItemTags.Pastel.STRUCTURE_UPGRADES)
+                  .defineInRange("structure_upgrades", 64, MIN, MAX); // mod: 16
+            BUILDER.pop();
+
+//            AETHER_VESTIGES =;
+//            BAG_OF_HOLDING;
+//            CINDERHEARTH;
+//            CLOTTED_CREAM;
+//            COLOR_PICKER;
+//            CRYSTAL_APOTHECARY;
+//            CRYSTALLARIEUM;
+//            DOWNSTONE_FRAGMENTS;
+//            DRAGONBONE_BROTH;
+//            ENCHANTER;
+//            ENDER_SPLICE;
+//            JADEITE_LOTUS_FLOWER;
+//            MOONSTONE_CORE;
+//            PALTERIA_GEM;
+//            POTION_WORKSHOP;
+//            RESONANCE_SHARD;
+//            SPIRIT_INSTILLER;
+//            STAR_FRAGMENT;
+//            STARDUST_BLOCK;
+//            STRATINE_GEM;
+//            TRIPLE_MEAT_POT_PIE;
+//            TRIPLE_MEAT_POT_STEW
+            BUILDER.pop();
+         }
+      }
+
       public static final IntValue ARMOR_STAND;
       public static final IntValue BANNERS;
       public static final IntValue BEDS;
