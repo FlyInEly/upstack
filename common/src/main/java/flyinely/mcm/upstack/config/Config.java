@@ -65,19 +65,19 @@ public class Config {
          public static void init() {}
 
          static {
-            BUILDER.push("tags");
+            BUILDER.push("c.tags");
             CHICKEN_EGGS = BUILDER.worldRestart()
                   .comment("#" + MItemTags.C.CHICKEN_EGGS)
-                  .defineInRange("c.chicken_eggs", 64, MIN, MAX); // vanilla: 16. default: parity w/general items, for crafting QOL.
+                  .defineInRange("chicken_eggs", 64, MIN, MAX); // vanilla: 16. default: parity w/general items, for crafting QOL.
             BUCKETS = BUILDER.worldRestart()
                   .comment("#" + MItemTags.C.BUCKETS)
-                  .defineInRange("c.buckets", 16, MIN, MAX); // vanilla: 1. default: parity w/honey bottles.
+                  .defineInRange("buckets", 16, MIN, MAX); // vanilla: 1. default: parity w/honey bottles.
             HORSE_ARMOR = BUILDER.worldRestart()
                   .comment("#" + MItemTags.C.HORSE_ARMOR)
-                  .defineInRange("c.horse_armor", 16, MIN, MAX); // vanilla: 1. default: not lower due to lack of durability and foreseen balance issues.
+                  .defineInRange("horse_armor", 16, MIN, MAX); // vanilla: 1. default: not lower due to lack of durability and foreseen balance issues.
             MINECARTS = BUILDER.worldRestart()
                   .comment("#c:minecarts")
-                  .defineInRange("c.minecarts", 16, MIN, MAX); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
+                  .defineInRange("minecarts", 16, MIN, MAX); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
             BUILDER.pop();
          }
       }
