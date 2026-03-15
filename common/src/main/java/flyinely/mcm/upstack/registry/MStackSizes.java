@@ -9,16 +9,6 @@ import static flyinely.mcm.upstack.util.ResUtil.id;
 
 // Server side
 public class MStackSizes {
-	
-	/*
-		Notes on approach for item component modification.
-		
-		Decided not to use NeoForge's ModifyDefaultComponentsEvent because it fires before item tag data is loaded,
-		and so we can't modify the stack sizes of all items belonging to a given tag. Moreover, using our own system
-		allows us to update stack sizes on config reload, though we will need to minimize breaking side effects of both
-		increasing and decreasing stack size settings in an existing world. Finally, Fabric and NeoForge both support our
-		custom system, which simply works with Vanilla's tools.
-	 */
 
    /**
     * Set max stack sizes for the mod.
@@ -48,13 +38,16 @@ public class MStackSizes {
        */
 
       // TAGS
+		
       setMaxStackSize(ItemTags.BANNERS, StackSize.BANNERS.get());
       setMaxStackSize(ItemTags.BEDS, StackSize.BEDS.get());
       setMaxStackSize(ItemTags.BOATS, StackSize.BOATS.get());
+		
       setMaxStackSize(MItemTags.C.BUCKETS, StackSize.C.BUCKETS.get());
       setMaxStackSize(MItemTags.C.CHICKEN_EGGS, StackSize.C.CHICKEN_EGGS.get());
       setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.C.HORSE_ARMOR.get());
       setMaxStackSize(MItemTags.C.MINECARTS, StackSize.C.MINECARTS.get());
+		
       setMaxStackSize(MItemTags.Pastel.BULBS, StackSize.Pastel.BULBS.get());
       setMaxStackSize(MItemTags.Pastel.FUSION_SHRINES, StackSize.Pastel.FUSION_SHRINES.get());
       setMaxStackSize(MItemTags.Pastel.ITEM_BOWLS, StackSize.Pastel.ITEM_BOWLS.get());
@@ -65,6 +58,7 @@ public class MStackSizes {
       setMaxStackSize(MItemTags.Pastel.STRUCTURE_UPGRADES, StackSize.Pastel.STRUCTURE_UPGRADES.get());
 
       // ITEMS - Must be listed after tags to override for individual items
+		
       setMaxStackSize(Items.ARMOR_STAND, StackSize.ARMOR_STAND.get());
       setMaxStackSize(Items.BUCKET, StackSize.BUCKET.get());
       setMaxStackSize(Items.CAKE, StackSize.CAKE.get());
@@ -77,6 +71,7 @@ public class MStackSizes {
       setMaxStackSize(Items.SPLASH_POTION, StackSize.SPLASH_POTION.get());
       setMaxStackSize(Items.TOTEM_OF_UNDYING, StackSize.TOTEM_OF_UNDYING.get());
       setMaxStackSize(Items.WRITTEN_BOOK, StackSize.WRITTEN_BOOK.get());
+		
       setMaxStackSize(id("pastel:aether_vestiges"), StackSize.Pastel.AETHER_VESTIGES.get());
       setMaxStackSize(id("pastel:bag_of_holding"), StackSize.Pastel.BAG_OF_HOLDING.get());
       setMaxStackSize(id("pastel:cinderhearth"), StackSize.Pastel.CINDERHEARTH.get());
