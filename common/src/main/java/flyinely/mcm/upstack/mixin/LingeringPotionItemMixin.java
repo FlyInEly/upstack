@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.Mixin;
  * Common-side mixin.
  * <p>
  * Attempts to fix balance issues due to the vanilla assumption that {@link LingeringPotionItem} is not stackable
- * by adding a joint cooldown for {@link ThrowablePotionItem}.
+ * by adding a joint cooldown for {@link LingeringPotionItem} and {@link net.minecraft.world.item.SplashPotionItem}.
  */
 @Mixin(LingeringPotionItem.class)
 public final class LingeringPotionItemMixin extends ThrowablePotionItemMixin {

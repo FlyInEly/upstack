@@ -11,14 +11,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 /**
- * TODO: Fix these temporary docs
- * Sets and enforces a joint use cooldown for {@link Items#SPLASH_POTION} and {@link Items#LINGERING_POTION}
- * using the cooldown duration (in ticks) supplied by {@link Config.Cooldowns#POTION_THROW_COOLDOWN}, if greater
- * than zero.
- *
- * @implNote For optimization and safety, it is assumed that the used item is either a {@link Items#SPLASH_POTION}
- * or {@link Items#LINGERING_POTION}, and that its cooldown thus reflects the joint cooldown. The {@link Items#SPLASH_POTION}
- * and {@link Items#LINGERING_POTION} cooldowns are set, and the used item's cooldown is enforced.
+ * Common-side abstract mixin.
+ * <p>
+ * Attempts to fix balance issues due to the vanilla assumption that {@link LingeringPotionItem} and {@link SplashPotionItem} are
+ * not stackable by adding a joint cooldown for them.
  */
 @Mixin(ThrowablePotionItem.class)
 abstract class ThrowablePotionItemMixin {
@@ -34,8 +30,8 @@ abstract class ThrowablePotionItemMixin {
     */
    @Unique
 	protected InteractionResultHolder<ItemStack> upstack$useWithCooldown(Level level, Player player, InteractionHand hand, Operation<InteractionResultHolder<ItemStack>> original) {
-      int cooldownTicks = Config.Cooldowns.POTION_THROW_COOLDOWN.getAsInt();
-      if (cooldownTicks > 0) {
+      int duration = Config.Cooldowns.POTION_THROW_COOLDOWN.getAsInt();
+      if (duration > 0) {
             ItemStack stack = player.getItemInHand(hand);
             ItemCooldowns cooldowns = player.getCooldowns();
             // Get only this item's cooldown (optimization, safety)
@@ -44,8 +40,8 @@ abstract class ThrowablePotionItemMixin {
                return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
             }
             // Set both items' cooldown
-            cooldowns.addCooldown(Items.SPLASH_POTION, cooldownTicks);
-            cooldowns.addCooldown(Items.LINGERING_POTION, cooldownTicks);
+            cooldowns.addCooldown(Items.SPLASH_POTION, duration);
+            cooldowns.addCooldown(Items.LINGERING_POTION, duration);
       }
       // Call the original behavior (not currently on cooldown)
       return original.call(level, player, hand);

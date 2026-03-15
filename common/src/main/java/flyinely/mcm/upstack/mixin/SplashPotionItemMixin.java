@@ -6,6 +6,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.LingeringPotionItem;
 import net.minecraft.world.item.SplashPotionItem;
 import net.minecraft.world.item.ThrowablePotionItem;
 import net.minecraft.world.level.Level;
@@ -16,7 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
  * Common-side mixin.
  * <p>
  * Attempts to fix balance issues due to the vanilla assumption that {@link SplashPotionItem} is not stackable
- * by adding a joint cooldown for {@link ThrowablePotionItem}.
+ * by adding a joint cooldown for {@link LingeringPotionItem} and {@link net.minecraft.world.item.SplashPotionItem}.
  */
 @Mixin(SplashPotionItem.class)
 public final class SplashPotionItemMixin extends ThrowablePotionItemMixin {
