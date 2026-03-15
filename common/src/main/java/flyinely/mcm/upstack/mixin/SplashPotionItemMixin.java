@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.Mixin;
  * by adding a joint cooldown for {@link LingeringPotionItem} and {@link net.minecraft.world.item.SplashPotionItem}.
  */
 @Mixin(SplashPotionItem.class)
-public final class SplashPotionItemMixin extends ThrowablePotionItemMixin {
+public abstract class SplashPotionItemMixin extends ThrowablePotionItemMixin {
 	
    @Contract(pure = true)
    @WrapMethod(method = "use")

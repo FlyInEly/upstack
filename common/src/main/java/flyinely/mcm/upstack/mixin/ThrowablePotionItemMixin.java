@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Unique;
  * not stackable by adding a joint cooldown for them.
  */
 @Mixin(ThrowablePotionItem.class)
-abstract class ThrowablePotionItemMixin {
+public abstract class ThrowablePotionItemMixin {
 
    /**
     * Sets and enforces a joint use cooldown for {@link Items#SPLASH_POTION} and {@link Items#LINGERING_POTION}

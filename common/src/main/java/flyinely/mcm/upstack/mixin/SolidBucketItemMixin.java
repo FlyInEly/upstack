@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
  * Fixes issues due to the vanilla assumption that {@link SolidBucketItem} is not stackable.
  */
 @Mixin(SolidBucketItem.class)
-public class SolidBucketItemMixin {
+public abstract class SolidBucketItemMixin {
 
    /**
     * When placing a {@link SolidBucketItem} without infinite materials:

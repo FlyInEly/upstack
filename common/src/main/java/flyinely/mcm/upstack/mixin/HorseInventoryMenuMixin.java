@@ -29,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
  * </ul>
  */
 @Mixin(HorseInventoryMenu.class)
-public class HorseInventoryMenuMixin {
+public abstract class HorseInventoryMenuMixin {
 
    /* LATER: Trying to find how to solve the general vanilla bug that shift-clicking to equip an item with MSS
    greater than the target slot also moves the item (less 1 count) as if the target slot were full.
