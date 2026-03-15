@@ -34,8 +34,6 @@ public class Config {
       static {
          BUILDER.push("cooldowns");
 
-         // TODO: Implement egg and snowball throw cooldowns
-
          POTION_THROW_COOLDOWN = BUILDER
                .comment("Cooldown, in ticks, of throwable potions. Set 0 to disable.")
                .defineInRange("potion_throw_cooldown", 10, MIN, MAX); // default: half of ender pearls. not lower due to combat balance implications, but not higher to cause less friction.
@@ -44,7 +42,7 @@ public class Config {
                .defineInRange("egg_throw_cooldown", 0, MIN, MAX); // default: unchanged.
          SNOWBALL_THROW_COOLDOWN = BUILDER
                .comment("Cooldown, in ticks, of snowballs. Set 0 to disable.")
-               .defineInRange("snowball_throw_cooldown", 10, MIN, MAX); // default: half of ender pearls. not lower due to cheap projectile.
+               .defineInRange("snowball_throw_cooldown", 5, MIN, MAX); // default: quarter of ender pearls. not lower due to cheap projectile, esp. on blazes.
 
          BUILDER.pop();
       }
