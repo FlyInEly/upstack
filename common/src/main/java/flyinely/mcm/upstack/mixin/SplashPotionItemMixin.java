@@ -8,7 +8,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.LingeringPotionItem;
 import net.minecraft.world.item.SplashPotionItem;
-import net.minecraft.world.item.ThrowablePotionItem;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Contract;
 import org.spongepowered.asm.mixin.Mixin;
