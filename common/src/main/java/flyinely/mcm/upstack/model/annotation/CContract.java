@@ -12,6 +12,7 @@ public class CContract {
     */
    @Retention(RetentionPolicy.SOURCE)
    @Target({ElementType.METHOD})
+   @SuppressWarnings("unused") // api
    public @interface ConstantReturn {
 
    }

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "pastel:item_roundel",
+      "required": false
+    },
+    {
+      "id": "pastel:preservation_roundel",
+      "required": false
+    }
+  ]
+}

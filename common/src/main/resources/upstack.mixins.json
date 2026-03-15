@@ -5,9 +5,10 @@
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_18",
   "mixins": [
-    "AbstractContainerMenuInvoker",
     "HorseInventoryMenuMixin",
+    "LingeringPotionItemMixin",
     "SolidBucketItemMixin",
+    "SplashPotionItemMixin",
     "registry.ItemAccessor"
   ],
   "client": [],

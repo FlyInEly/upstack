@@ -1,7 +1,5 @@
-package flyinely.mcm.upstack.registry;
+package flyinely.mcm.upstack.unused;
 
-import flyinely.mcm.upstack.model.registry.ItemRegistry;
-import flyinely.mcm.upstack.model.registry.ItemRegistryImpl;
 import flyinely.mcm.upstack.util.ItemComponentUtil;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;

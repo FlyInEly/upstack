@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "pastel:item_bowl_basalt",
+      "required": false
+    },
+    {
+      "id": "pastel:item_bowl_calcite",
+      "required": false
+    },
+    {
+      "id": "pastel:item_bowl_enlightenment",
+      "required": false
+    }
+  ]
+}
