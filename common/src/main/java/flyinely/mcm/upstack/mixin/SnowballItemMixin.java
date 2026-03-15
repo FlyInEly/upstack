@@ -1,0 +1,39 @@
+package flyinely.mcm.upstack.mixin;
+
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import flyinely.mcm.upstack.config.Config;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemCooldowns;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SnowballItem;
+import net.minecraft.world.level.Level;
+import org.spongepowered.asm.mixin.Mixin;
+
+@Mixin(SnowballItem.class)
+public abstract class SnowballItemMixin {
+	
+	/**
+	 * Sets and enforces a use cooldown for {@link Items#SNOWBALL} using the cooldown duration (in ticks) supplied by
+	 * {@link Config.Cooldowns#SNOWBALL_THROW_COOLDOWN}, if greater than zero.
+	 */
+	@WrapMethod(method = "use")
+	protected InteractionResultHolder<ItemStack> useWithCooldown(Level level, Player player, InteractionHand hand, Operation<InteractionResultHolder<ItemStack>> original) {
+		int duration = Config.Cooldowns.SNOWBALL_THROW_COOLDOWN.getAsInt();
+		if (duration > 0) {
+			ItemStack stack = player.getItemInHand(hand);
+			ItemCooldowns cooldowns = player.getCooldowns();
+			if (cooldowns.isOnCooldown(stack.getItem())) {
+				// Exit early if currently on cooldown
+				return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
+			}
+			cooldowns.addCooldown(Items.SNOWBALL, duration);
+		}
+		// Call the original behavior (not currently on cooldown)
+		return original.call(level, player, hand);
+	}
+
+}
