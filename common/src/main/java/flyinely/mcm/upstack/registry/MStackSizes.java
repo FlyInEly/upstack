@@ -39,14 +39,14 @@ public class MStackSizes {
 
       // TAGS
 		
-      setMaxStackSize(ItemTags.BANNERS, StackSize.BANNERS.get());
-      setMaxStackSize(ItemTags.BEDS, StackSize.BEDS.get());
-      setMaxStackSize(ItemTags.BOATS, StackSize.BOATS.get());
+      setMaxStackSize(ItemTags.BANNERS, StackSize.Common.BANNERS.get());
+      setMaxStackSize(ItemTags.BEDS, StackSize.Common.BEDS.get());
+      setMaxStackSize(ItemTags.BOATS, StackSize.Common.BOATS.get());
 		
-      setMaxStackSize(MItemTags.C.BUCKETS, StackSize.C.BUCKETS.get());
-      setMaxStackSize(MItemTags.C.CHICKEN_EGGS, StackSize.C.CHICKEN_EGGS.get());
-      setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.C.HORSE_ARMOR.get());
-      setMaxStackSize(MItemTags.C.MINECARTS, StackSize.C.MINECARTS.get());
+      setMaxStackSize(MItemTags.C.BUCKETS, StackSize.Common.BUCKETS.get());
+      setMaxStackSize(MItemTags.C.CHICKEN_EGGS, StackSize.Common.CHICKEN_EGGS.get());
+      setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.Common.HORSE_ARMOR.get());
+      setMaxStackSize(MItemTags.C.MINECARTS, StackSize.Common.MINECARTS.get());
 		
       setMaxStackSize(MItemTags.Pastel.BULBS, StackSize.Pastel.BULBS.get());
       setMaxStackSize(MItemTags.Pastel.FUSION_SHRINES, StackSize.Pastel.FUSION_SHRINES.get());
@@ -59,18 +59,18 @@ public class MStackSizes {
 
       // ITEMS - Must be listed after tags to override for individual items
 		
-      setMaxStackSize(Items.ARMOR_STAND, StackSize.ARMOR_STAND.get());
-      setMaxStackSize(Items.BUCKET, StackSize.BUCKET.get());
-      setMaxStackSize(Items.CAKE, StackSize.CAKE.get());
-      setMaxStackSize(Items.ENDER_PEARL, StackSize.ENDER_PEARL.get());
-      setMaxStackSize(Items.HONEY_BOTTLE, StackSize.HONEY_BOTTLE.get());
-      setMaxStackSize(Items.LINGERING_POTION, StackSize.LINGERING_POTION.get());
-      setMaxStackSize(Items.POTION, StackSize.POTION.get());
-      setMaxStackSize(Items.SADDLE, StackSize.SADDLE.get());
-      setMaxStackSize(Items.SNOWBALL, StackSize.SNOWBALL.get());
-      setMaxStackSize(Items.SPLASH_POTION, StackSize.SPLASH_POTION.get());
-      setMaxStackSize(Items.TOTEM_OF_UNDYING, StackSize.TOTEM_OF_UNDYING.get());
-      setMaxStackSize(Items.WRITTEN_BOOK, StackSize.WRITTEN_BOOK.get());
+      setMaxStackSize(Items.ARMOR_STAND, StackSize.Common.ARMOR_STAND.get());
+      setMaxStackSize(Items.BUCKET, StackSize.Common.BUCKET.get());
+      setMaxStackSize(Items.CAKE, StackSize.Common.CAKE.get());
+      setMaxStackSize(Items.ENDER_PEARL, StackSize.Common.ENDER_PEARL.get());
+      setMaxStackSize(Items.HONEY_BOTTLE, StackSize.Common.HONEY_BOTTLE.get());
+      setMaxStackSize(Items.LINGERING_POTION, StackSize.Common.LINGERING_POTION.get());
+      setMaxStackSize(Items.POTION, StackSize.Common.POTION.get());
+      setMaxStackSize(Items.SADDLE, StackSize.Common.SADDLE.get());
+      setMaxStackSize(Items.SNOWBALL, StackSize.Common.SNOWBALL.get());
+      setMaxStackSize(Items.SPLASH_POTION, StackSize.Common.SPLASH_POTION.get());
+      setMaxStackSize(Items.TOTEM_OF_UNDYING, StackSize.Common.TOTEM_OF_UNDYING.get());
+      setMaxStackSize(Items.WRITTEN_BOOK, StackSize.Common.WRITTEN_BOOK.get());
 		
       setMaxStackSize(id("pastel:aether_vestiges"), StackSize.Pastel.AETHER_VESTIGES.get());
       setMaxStackSize(id("pastel:bag_of_holding"), StackSize.Pastel.BAG_OF_HOLDING.get());
