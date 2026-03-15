@@ -2,7 +2,6 @@ package flyinely.mcm.upstack.config;
 
 import flyinely.mcm.upstack.registry.MItemTags;
 import flyinely.mcm.upstack.util.ItemComponentUtil;
-import flyinely.mcm.upstack.util.TagUtil;
 import net.minecraft.tags.ItemTags;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
@@ -47,7 +46,7 @@ public class Config {
 					.comment("Cooldown, in ticks, of throwing snowballs. Set 0 to disable.")
 					.defineInRange("snowball", 5, MIN, MAX); // default: quarter of ender pearls. not lower due to cheap projectile, esp. on blazes.
 			
-			BUILDER.pop();
+			BUILDER.pop(); // cooldowns
 		}
 		
 	}
@@ -243,7 +242,7 @@ public class Config {
 						.comment(tagString(MItemTags.C.HORSE_ARMOR))
 						.defineInRange("horse_armor", 16, MIN, MAX); // vanilla: 1. default: not lower due to lack of durability and foreseen balance issues.
 				MINECARTS = BUILDER.worldRestart()
-						.comment("#c:minecarts")
+						.comment(tagString(MItemTags.C.MINECARTS))
 						.defineInRange("minecarts", 16, MIN, MAX); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
 				BUILDER.pop(); // tags
 				
@@ -293,14 +292,14 @@ public class Config {
 		
 		static {
 			BUILDER.push("stack_size");
+			
 			Common.init();
 			Pastel.init();
+			
 			BUILDER.pop(); // stack size
 		}
 		
-		/**
-		 * Dummy method to trigger the static initializer.
-		 */
+		/** Dummy method to trigger the static initializer. */
 		@Contract
 		static void init() {}
 		

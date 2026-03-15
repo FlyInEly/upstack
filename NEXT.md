@@ -1,5 +1,3 @@
-- Implement potion cooldowns  // FIX Crash
-- Implement other cooldowns // Use a common helper?
 - Implement music disc stacking and Jukebox fix
 - Implement bowl food stacking (yield to Farmer's Delight)
 - Implement any other vanilla stack size configs (see previous mod)
