@@ -19,10 +19,12 @@ import org.spongepowered.asm.mixin.Mixin;
  * by adding a joint cooldown for {@link ThrowablePotionItem}.
  */
 @Mixin(SplashPotionItem.class)
-public final class SplashPotionItemMixin {
+public final class SplashPotionItemMixin extends ThrowablePotionItemMixin {
+	
    @Contract(pure = true)
    @WrapMethod(method = "use")
    private InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand, Operation<InteractionResultHolder<ItemStack>> original) {
-      return ThrowablePotionItemMixinUtil.useWithCooldown(level, player, hand, original);
+      return upstack$useWithCooldown(level, player, hand, original);
    }
+	
 }

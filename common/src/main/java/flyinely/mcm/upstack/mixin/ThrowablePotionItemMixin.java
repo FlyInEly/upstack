@@ -7,6 +7,8 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 /**
  * TODO: Fix these temporary docs
@@ -18,7 +20,8 @@ import net.minecraft.world.level.Level;
  * or {@link Items#LINGERING_POTION}, and that its cooldown thus reflects the joint cooldown. The {@link Items#SPLASH_POTION}
  * and {@link Items#LINGERING_POTION} cooldowns are set, and the used item's cooldown is enforced.
  */
-class ThrowablePotionItemMixinUtil {
+@Mixin(ThrowablePotionItem.class)
+abstract class ThrowablePotionItemMixin {
 
    /**
     * Sets and enforces a joint use cooldown for {@link Items#SPLASH_POTION} and {@link Items#LINGERING_POTION}
@@ -29,7 +32,8 @@ class ThrowablePotionItemMixinUtil {
     * or {@link Items#LINGERING_POTION}, and that its cooldown thus reflects the joint cooldown. The {@link Items#SPLASH_POTION}
     * and {@link Items#LINGERING_POTION} cooldowns are set, and the used item's cooldown is enforced.
     */
-   static InteractionResultHolder<ItemStack> useWithCooldown(Level level, Player player, InteractionHand hand, Operation<InteractionResultHolder<ItemStack>> original) {
+   @Unique
+	protected InteractionResultHolder<ItemStack> upstack$useWithCooldown(Level level, Player player, InteractionHand hand, Operation<InteractionResultHolder<ItemStack>> original) {
       int cooldownTicks = Config.Cooldowns.POTION_THROW_COOLDOWN.getAsInt();
       if (cooldownTicks > 0) {
             ItemStack stack = player.getItemInHand(hand);

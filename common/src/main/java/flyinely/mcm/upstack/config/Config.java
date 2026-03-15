@@ -14,6 +14,7 @@ public class Config {
 
    static {
       StackSize.init();
+		Cooldowns.init();
 
       SPEC = BUILDER.build();
    }
@@ -26,16 +27,18 @@ public class Config {
       public static final IntValue POTION_THROW_COOLDOWN;
       public static final IntValue EGG_THROW_COOLDOWN;
       public static final IntValue SNOWBALL_THROW_COOLDOWN;
-
+		
+		@Contract
+		public static void init() {}
 
       static {
          BUILDER.push("cooldowns");
 
-         // TODO: Implement all cooldowns
+         // TODO: Implement egg and snowball throw cooldowns
 
          POTION_THROW_COOLDOWN = BUILDER
                .comment("Cooldown, in ticks, of throwable potions. Set 0 to disable.")
-               .defineInRange("potion_throw_cooldown", 20, MIN, MAX); // default: parity w/ender pearls.
+               .defineInRange("potion_throw_cooldown", 15, MIN, MAX); // default: not lower due to combat balance implications, but not higher to cause less friction.
          EGG_THROW_COOLDOWN = BUILDER
                .comment("Cooldown, in ticks, of throwable eggs. Set 0 to disable.")
                .defineInRange("egg_throw_cooldown", 0, MIN, MAX); // default: unchanged.
@@ -78,7 +81,7 @@ public class Config {
             MINECARTS = BUILDER.worldRestart()
                   .comment("#c:minecarts")
                   .defineInRange("minecarts", 16, MIN, MAX); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
-            BUILDER.pop();
+            BUILDER.pop(2); // c.tags
          }
       }
 
@@ -147,7 +150,7 @@ public class Config {
             STRUCTURE_UPGRADES = BUILDER.worldRestart()
                   .comment("#" + MItemTags.Pastel.STRUCTURE_UPGRADES)
                   .defineInRange("structure_upgrades", 64, MIN, MAX); // mod: 16
-            BUILDER.pop();
+            BUILDER.pop(); // tags
 
             AETHER_VESTIGES = BUILDER.worldRestart()
                   .comment("pastel:aether_vestiges")
@@ -215,7 +218,7 @@ public class Config {
             TRIPLE_MEAT_POT_STEW = BUILDER.worldRestart()
                   .comment("pastel:triple_meat_pot_stew")
                   .defineInRange("triple_meat_pot_stew", 16, MIN, MAX); // mod: 8. upstack: parity with farmers' delight bowl foods
-            BUILDER.pop();
+            BUILDER.pop(); // pastel
          }
       }
 
@@ -251,7 +254,7 @@ public class Config {
          BOATS = BUILDER.worldRestart()
                .comment("#" + ItemTags.BOATS)
                .defineInRange("boats", 16, MIN, MAX); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
-         BUILDER.pop();
+         BUILDER.pop(); // tags
 
          ARMOR_STAND = BUILDER.worldRestart()
                .comment("minecraft:armor_stand")
@@ -290,7 +293,7 @@ public class Config {
                .comment("minecraft:written_book")
                .defineInRange("written_book", 64, MIN, MAX); // vanilla: 16. default: parity w/general items.
 
-         BUILDER.pop();
+         BUILDER.pop(); // stack sizes
       }
 
       /**
