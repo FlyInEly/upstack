@@ -38,7 +38,7 @@ public class Config {
 
          POTION_THROW_COOLDOWN = BUILDER
                .comment("Cooldown, in ticks, of throwable potions. Set 0 to disable.")
-               .defineInRange("potion_throw_cooldown", 15, MIN, MAX); // default: not lower due to combat balance implications, but not higher to cause less friction.
+               .defineInRange("potion_throw_cooldown", 10, MIN, MAX); // default: half of ender pearls. not lower due to combat balance implications, but not higher to cause less friction.
          EGG_THROW_COOLDOWN = BUILDER
                .comment("Cooldown, in ticks, of throwable eggs. Set 0 to disable.")
                .defineInRange("egg_throw_cooldown", 0, MIN, MAX); // default: unchanged.
