@@ -16,18 +16,14 @@ public class MStackSizes {
    public static void apply() {
       /*
        * 1.21.1 works out of the box for:
-       * - Fluid buckets, e.g. water, tadpole
-       * - Milk buckets
-       * - Potions
-       * - Boats
-       * - Honey bottles
-       * - Blocks
-       * - Armor stands
-       * - Throwables
-       * - Totems
+       * - Potions, boats, honey bottles, blocks, armor stands, throwables, totems
+       * - Fluid buckets (including mob buckets), milk buckets (not the case in 1.20.1)
+       * - Music discs (including placement into jukeboxes) (not the case in 1.20.1)
+       * - Compasses, clocks
        *
        * And needs mixins for:
        * - Solid buckets, e.g. powder snow
+       * - Saddles and horse armor
        *
        * Some principles for default stack sizes include:
        * - If there's no balance issue caused by allowing a 64-stack size, allow it. For instance,
@@ -47,6 +43,7 @@ public class MStackSizes {
       setMaxStackSize(MItemTags.C.CHICKEN_EGGS, StackSize.Common.CHICKEN_EGGS.get());
       setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.Common.HORSE_ARMOR.get());
       setMaxStackSize(MItemTags.C.MINECARTS, StackSize.Common.MINECARTS.get());
+		setMaxStackSize(MItemTags.C.MUSIC_DISCS, StackSize.Common.MUSIC_DISCS.get());
 		
       setMaxStackSize(MItemTags.Pastel.BULBS, StackSize.Pastel.BULBS.get());
       setMaxStackSize(MItemTags.Pastel.FUSION_SHRINES, StackSize.Pastel.FUSION_SHRINES.get());
@@ -57,7 +54,7 @@ public class MStackSizes {
       setMaxStackSize(MItemTags.Pastel.SHOOTING_STARS, StackSize.Pastel.SHOOTING_STARS.get());
       setMaxStackSize(MItemTags.Pastel.STRUCTURE_UPGRADES, StackSize.Pastel.STRUCTURE_UPGRADES.get());
 
-      // ITEMS - Must be listed after tags to override for individual items
+      // ITEMS - Must be listed after TAGS to override stack sizes of items in those tags, like Items.BUCKET.
 		
       setMaxStackSize(Items.ARMOR_STAND, StackSize.Common.ARMOR_STAND.get());
       setMaxStackSize(Items.BUCKET, StackSize.Common.BUCKET.get());

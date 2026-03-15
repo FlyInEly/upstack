@@ -218,6 +218,7 @@ public class Config {
 			public static final IntValue SPLASH_POTION;
 			public static final IntValue TOTEM_OF_UNDYING;
 			public static final IntValue WRITTEN_BOOK;
+			public static final IntValue MUSIC_DISCS;
 			
 			static {
 				BUILDER.push("_common");
@@ -244,6 +245,9 @@ public class Config {
 				MINECARTS = BUILDER.worldRestart()
 						.comment(tagString(MItemTags.C.MINECARTS))
 						.defineInRange("minecarts", 16, MIN, MAX); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
+				MUSIC_DISCS = BUILDER.worldRestart()
+						.comment(tagString(MItemTags.C.MUSIC_DISCS))
+						.defineInRange("music_discs", 64, MIN, MAX); // vanilla: 1.
 				BUILDER.pop(); // tags
 				
 				ARMOR_STAND = BUILDER.worldRestart()

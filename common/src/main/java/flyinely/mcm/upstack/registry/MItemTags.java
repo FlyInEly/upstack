@@ -3,6 +3,7 @@ package flyinely.mcm.upstack.registry;
 import flyinely.mcm.upstack.util.TagUtil;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import org.jetbrains.annotations.NotNull;
 
 import static flyinely.mcm.upstack.util.TagUtil.item;
 
@@ -21,7 +22,8 @@ public class MItemTags {
       public static final TagKey<Item> CHICKEN_EGGS = item("c:chicken_eggs");                   // upstack-populated
       public static final TagKey<Item> MINECARTS = item("c:minecarts");                         // upstack-populated
       public static final TagKey<Item> HORSE_ARMOR = item("c:horse_armor");                     // upstack-populated
-   }
+		public static final TagKey<Item> MUSIC_DISCS = item("c:music_discs");							  // loader-populated
+	}
 
    public static class Pastel {
       public static final TagKey<Item> PEDESTALS = item("pastel:pedestals");                    // mod-populated

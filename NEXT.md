@@ -1,4 +1,3 @@
-- Implement music disc stacking and Jukebox fix
 - Implement bowl food stacking (yield to Farmer's Delight)
 - Implement any other vanilla stack size configs (see previous mod)
 - Ensure all configs and tags are translated
