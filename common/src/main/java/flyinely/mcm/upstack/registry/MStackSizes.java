@@ -15,15 +15,6 @@ public class MStackSizes {
     */
    public static void apply() {
       /*
-       * 1.21.1 works out of the box for:
-       * - Potions, boats, honey bottles, blocks, armor stands, throwables, totems
-       * - Fluid buckets (including mob buckets), milk buckets (not the case in 1.20.1)
-       * - Music discs (including placement into jukeboxes) (not the case in 1.20.1)
-       * - Compasses, clocks
-       *
-       * And needs mixins for:
-       * - Solid buckets, e.g. powder snow
-       * - Saddles and horse armor
        *
        * Some principles for default stack sizes include:
        * - If there's no balance issue caused by allowing a 64-stack size, allow it. For instance,

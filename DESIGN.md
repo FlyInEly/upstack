@@ -14,3 +14,25 @@ and so we can't modify the stack sizes of all items belonging to a given tag. Mo
 allows us to update stack sizes on config reload, though we will need to minimize breaking side effects of both	
 increasing and decreasing stack size settings in an existing world. Finally, Fabric and NeoForge both support our	
 custom system, which simply works with Vanilla's tools.
+
+### Tests show that these work in vanilla 1.21.1.
+## Consumable
+- Potions
+- Bowl foods (1.20.1: needed BowlFoodItemMixin, SuspiciousStewItemMixin to patch item loss)
+- Milk bucket (1.20.1: needed MilkBucketItemMixin to patch item loss)
+- Totems
+## Entity-spawning
+- Splash potions, lingering potions
+- Boats, minecarts, armor stands
+## Other
+- Fluid/mob buckets (1.20.1: needed BucketItemMixin to patch item loss)
+- Music discs (1.20.1: needed RecordItemMixin to patch a duplication glitch)
+
+### Tests show that these need fixes to support arbitrary stack sizes in 1.21.1.
+- Solid buckets (e.g. powder snow) -> SolidBucketItemMixin to patch item loss
+- Saddles, horse armor -> HorseInventoryMenuMixin to prevent redundant equipping
+
+### Configurable cooldowns were added to balance increased stack sizes for
+- Eggs -> EggItemMixin
+- Throwable potions -> ThrowablePotionItemMixin, SplashPotionItemMixin, LingeringPotionItemMixin
+- Snowballs -> SnowballItemMixin
