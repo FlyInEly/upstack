@@ -44,6 +44,7 @@ public class MStackSizes {
       setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.Common.HORSE_ARMOR.get());
       setMaxStackSize(MItemTags.C.MINECARTS, StackSize.Common.MINECARTS.get());
 		setMaxStackSize(MItemTags.C.MUSIC_DISCS, StackSize.Common.MUSIC_DISCS.get());
+      setMaxStackSize(MItemTags.C.SOUPS, StackSize.Common.SOUPS.get());
 		
       setMaxStackSize(MItemTags.Pastel.BULBS, StackSize.Pastel.BULBS.get());
       setMaxStackSize(MItemTags.Pastel.FUSION_SHRINES, StackSize.Pastel.FUSION_SHRINES.get());

@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:beetroot_soup",
+    "minecraft:mushroom_stew",
+    "minecraft:rabbit_stew",
+    "minecraft:suspicious_stew",
+    {
+      "id": "pastel:triple_meat_pot_stew",
+      "required": false
+    },
+    {
+      "id": "pastel:dragonbone_broth",
+      "required": false
+    }
+  ]
+}

@@ -150,7 +150,7 @@ public class Config {
 						.comment("pastel:downstone_fragments")
 						.defineInRange("downstone_fragments", 64, MIN, MAX); // mod: 16
 				DRAGONBONE_BROTH = BUILDER.worldRestart()
-						.comment("pastel:dragonbone_broth")
+						.comment("pastel:dragonbone_broth (overrides #c:soups)")
 						.defineInRange("dragonbone_broth", 16, MIN, MAX); // mod: 8. note: grants magic annulation. upstack: parity with farmers' delight bowl foods
 				ENCHANTER = BUILDER.worldRestart()
 						.comment("pastel:enchanter")
@@ -189,7 +189,7 @@ public class Config {
 						.comment("pastel:triple_meat_pot_pie")
 						.defineInRange("triple_meat_pot_pie", 16, MIN, MAX); // mod: 8. upstack: parity with farmers' delight bowl foods
 				TRIPLE_MEAT_POT_STEW = BUILDER.worldRestart()
-						.comment("pastel:triple_meat_pot_stew")
+						.comment("pastel:triple_meat_pot_stew (overrides #c:soups)")
 						.defineInRange("triple_meat_pot_stew", 16, MIN, MAX); // mod: 8. upstack: parity with farmers' delight bowl foods
 				BUILDER.pop(); // pastel
 			}
@@ -219,8 +219,9 @@ public class Config {
 			public static final IntValue TOTEM_OF_UNDYING;
 			public static final IntValue WRITTEN_BOOK;
 			public static final IntValue MUSIC_DISCS;
-			
-			static {
+         public static final IntValue SOUPS;
+
+         static {
 				BUILDER.push("_common");
 				
 				BUILDER.push("tags");
@@ -248,6 +249,9 @@ public class Config {
 				MUSIC_DISCS = BUILDER.worldRestart()
 						.comment(tagString(MItemTags.C.MUSIC_DISCS))
 						.defineInRange("music_discs", 64, MIN, MAX); // vanilla: 1.
+            SOUPS = BUILDER.worldRestart()
+                  .comment(tagString(MItemTags.C.SOUPS))
+                  .defineInRange("soups", 16, MIN, MAX); // vanilla: 1. default: parity w/farmersdelight; makes soups actually viable food
 				BUILDER.pop(); // tags
 				
 				ARMOR_STAND = BUILDER.worldRestart()
