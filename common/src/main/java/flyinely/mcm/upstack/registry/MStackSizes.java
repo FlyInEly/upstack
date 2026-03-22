@@ -30,6 +30,7 @@ public class MStackSizes {
       setMaxStackSize(ItemTags.BEDS, StackSize.Common.BEDS.get());
       setMaxStackSize(ItemTags.BOATS, StackSize.Common.BOATS.get());
 		
+		setMaxStackSize(MItemTags.C.BANNER_PATTERNS, StackSize.Common.BANNER_PATTERNS.get());
       setMaxStackSize(MItemTags.C.BUCKETS, StackSize.Common.BUCKETS.get());
       setMaxStackSize(MItemTags.C.CHICKEN_EGGS, StackSize.Common.CHICKEN_EGGS.get());
       setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.Common.HORSE_ARMOR.get());

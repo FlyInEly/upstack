@@ -19,13 +19,14 @@ public class MItemTags {
     * @see <a href="https://docs.neoforged.net/docs/resources/server/tags/">Common tags - NeoForge</a>
     */
    public static class C {
+		public static final TagKey<Item> BANNER_PATTERNS = item("c:banner_patterns");				  // upstack-populated
       public static final TagKey<Item> BUCKETS = item("c:buckets");                             // loader-populated
       public static final TagKey<Item> CHICKEN_EGGS = item("c:chicken_eggs");                   // upstack-populated
       public static final TagKey<Item> MINECARTS = item("c:minecarts");                         // upstack-populated
       public static final TagKey<Item> HORSE_ARMOR = item("c:horse_armor");                     // upstack-populated
 		public static final TagKey<Item> MUSIC_DISCS = item("c:music_discs");							  // loader-populated
       public static final TagKey<Item> SOUPS = item("c:soups");                                 // neoforge-populated
-         // let us define soups as liquid bowl foods, especially if soup or stew is in the name.
+		// let us define soups as liquid bowl foods, especially if soup or stew is in the name.
    }
 
    public static class Pastel {

@@ -8,6 +8,7 @@
     "EggItemMixin",
     "HorseInventoryMenuMixin",
     "LingeringPotionItemMixin",
+    "LoomMenuMixin",
     "SnowballItemMixin",
     "SolidBucketItemMixin",
     "SplashPotionItemMixin",

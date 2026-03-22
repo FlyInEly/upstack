@@ -1,5 +1,6 @@
 package flyinely.mcm.upstack.config;
 
+import ca.weblite.objc.Proxy;
 import flyinely.mcm.upstack.registry.MItemTags;
 import flyinely.mcm.upstack.util.ItemComponentUtil;
 import net.minecraft.tags.ItemTags;
@@ -221,6 +222,7 @@ public class Config {
 			public static final IntValue MUSIC_DISCS;
          public static final IntValue SOUPS;
 			public static final IntValue WRITABLE_BOOK;
+			public static final IntValue BANNER_PATTERNS;
 			
 			static {
 				BUILDER.push("_common");
@@ -238,6 +240,10 @@ public class Config {
 				CHICKEN_EGGS = BUILDER.worldRestart()
 						.comment(tagString(MItemTags.C.CHICKEN_EGGS))
 						.defineInRange("chicken_eggs", 64, MIN, MAX); // vanilla: 16. default: parity w/general items, for crafting QOL.
+				BANNER_PATTERNS = BUILDER.worldRestart()
+						.comment(tagString(MItemTags.C.BANNER_PATTERNS))
+						.defineInRange("banner_patterns", 64, MIN, MAX); // vanilla: 1. default: parity w/general items, for carrying QOL. they are dupable and aren't
+																												// consumed on use, so it would be nice to make the loom slot reflect that and only allow 1. TODO
 				BUCKETS = BUILDER.worldRestart()
 						.comment(tagString(MItemTags.C.BUCKETS))
 						.defineInRange("buckets", 16, MIN, MAX); // vanilla: 1. default: parity w/honey bottles.
