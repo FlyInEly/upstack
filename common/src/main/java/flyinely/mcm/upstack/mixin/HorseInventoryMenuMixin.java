@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 /**
  * Common-side mixin.
  * Fixes issues due to the vanilla assumption that {@link net.minecraft.world.item.SaddleItem} is not stackable.
- * Affects horses, mules, and donkeys. As a side note, striders do not require this fix.
+ * Affects horses, mules, and donkeys (but not striders).
  * <ul>
  * <li>Slot 0 holds up to 64 saddles. Issue: Equipping >1 saddle is redundant.</li>
  * <li>Slot 1 holds up to 1 horse armor. No issue.</li>
@@ -61,30 +61,22 @@ public abstract class HorseInventoryMenuMixin {
 		//		  latter also depends on Slot#hasItem() and AbstractHorse#isSaddleable().
 		final Slot original = args.get(0);
 		if (original.index == 0 && original.getContainerSlot() == 0 && !original.mayPlace(Items.LEATHER_HORSE_ARMOR.getDefaultInstance())) {
-			args.set(0, new Slot(original.container, original.index, original.x, original.y) {
+			upstack$LOG.debug("Restricting the max stack size of the horse saddle slot (index: 0, container slot: 0).");
+			args.set(0, new Slot(original.container, original.getContainerSlot(), original.x, original.y) {
 				
-				//#region Override max stack size
+				// Override max stack size
 				
 				@Override
-				public int getMaxStackSize() {
-					return 1;
-				}
+				public int getMaxStackSize() { return 1; }
 				
-				//#endregion
+				// Delegate other behavior(s)
 				
-				//#region Delegate other behaviors
+				@Override
+				public boolean mayPlace(@NotNull ItemStack stack) { return original.mayPlace(stack); }
 				
-				public boolean mayPlace(@NotNull ItemStack stack) {
-					return original.mayPlace(stack);
-				}
-				
-				public boolean isActive() {
-					return original.isActive();
-				}
-				
-				//#endregion
+				@Override
+				public boolean isActive() { return original.isActive(); }
 			});
-			upstack$LOG.debug("Restricted the max stack size of horse saddle slot (index: 0, container slot: 0).");
 		}
 		
 	}
