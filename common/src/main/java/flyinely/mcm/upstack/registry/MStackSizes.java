@@ -52,6 +52,7 @@ public class MStackSizes {
       setMaxStackSize(Items.ARMOR_STAND, StackSize.Common.ARMOR_STAND.get());
       setMaxStackSize(Items.BUCKET, StackSize.Common.BUCKET.get());
       setMaxStackSize(Items.CAKE, StackSize.Common.CAKE.get());
+		setMaxStackSize(Items.ENCHANTED_BOOK, StackSize.Common.ENCHANTED_BOOK.get());
       setMaxStackSize(Items.ENDER_PEARL, StackSize.Common.ENDER_PEARL.get());
       setMaxStackSize(Items.HONEY_BOTTLE, StackSize.Common.HONEY_BOTTLE.get());
       setMaxStackSize(Items.LINGERING_POTION, StackSize.Common.LINGERING_POTION.get());

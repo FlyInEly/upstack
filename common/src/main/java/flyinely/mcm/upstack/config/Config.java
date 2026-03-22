@@ -223,6 +223,7 @@ public class Config {
          public static final IntValue SOUPS;
 			public static final IntValue WRITABLE_BOOK;
 			public static final IntValue BANNER_PATTERNS;
+			public static final IntValue ENCHANTED_BOOK;
 			
 			static {
 				BUILDER.push("_common");
@@ -273,6 +274,9 @@ public class Config {
 				ENDER_PEARL = BUILDER.worldRestart()
 						.comment("minecraft:ender_pearl")
 						.defineInRange("ender_pearl", 0, MIN, MAX); // default: unchanged.
+				ENCHANTED_BOOK = BUILDER.worldRestart()
+						.comment("minecraft:enchanted_book")
+						.defineInRange("enchanted_book", 64, MIN, MAX); // vanilla: 1. default: parity w/general items
 				HONEY_BOTTLE = BUILDER.worldRestart()
 						.comment("minecraft:honey_bottle")
 						.defineInRange("honey_bottle", 0, MIN, MAX); // default: unchanged.

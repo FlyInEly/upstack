@@ -42,3 +42,18 @@ Use Survival mode.
 3. Apply 1 "thing" banner pattern to 64 red banners using 64 white dye in the loom, which should:
    1. Consume 1 banner and 1 dye.
    2. Produce 1 appropriately patterned banner.
+
+### AnvilMenuMixin, BedrockAnvilScreenHandlerMixin
+Configure the max stack size of minecraft:enchanted_book to 64.
+Do not modify the max stack size of minecraft:leather (64).
+Test separately in minecraft:anvil and pastel:bedrock_anvil (NeoForge)
+Use Survival mode.
+1. Combining a leather helmet at near 50% durability with a full leather stack should fully repair
+the helmet and consume 2 leather.
+2. Combining two leather helmets at near 50% durability should fully repair the first helmet and consume the second.
+3. Combining a leather helmet at near 0% durability with a full leather stack should fully repair
+the helmet and consume 4 leather.
+4. Combining a leather helmet with a full stack of Protection IV enchanted books should apply the enchantment
+and consume 1 book.
+5. Combining the leather helmet from (3) with a 1-stack of Aqua Affinity enchanted books should apply the
+enchantment and consume the book.
