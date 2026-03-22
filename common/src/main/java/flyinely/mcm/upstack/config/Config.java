@@ -220,8 +220,9 @@ public class Config {
 			public static final IntValue WRITTEN_BOOK;
 			public static final IntValue MUSIC_DISCS;
          public static final IntValue SOUPS;
-
-         static {
+			public static final IntValue WRITABLE_BOOK;
+			
+			static {
 				BUILDER.push("_common");
 				
 				BUILDER.push("tags");
@@ -287,6 +288,9 @@ public class Config {
 				TOTEM_OF_UNDYING = BUILDER.worldRestart()
 						.comment("minecraft:totem_of_undying")
 						.defineInRange("totem_of_undying", 0, MIN, MAX); // default: unchanged.
+				WRITABLE_BOOK = BUILDER.worldRestart()
+						.comment("minecraft:writable_book")
+						.defineInRange("writable_book", 64, MIN, MAX); // vanilla: 1. default: fixes undefined behavior when writing to a stack of more than one
 				WRITTEN_BOOK = BUILDER.worldRestart()
 						.comment("minecraft:written_book")
 						.defineInRange("written_book", 64, MIN, MAX); // vanilla: 16. default: parity w/general items.

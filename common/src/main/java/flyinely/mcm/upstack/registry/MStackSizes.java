@@ -59,6 +59,7 @@ public class MStackSizes {
       setMaxStackSize(Items.SNOWBALL, StackSize.Common.SNOWBALL.get());
       setMaxStackSize(Items.SPLASH_POTION, StackSize.Common.SPLASH_POTION.get());
       setMaxStackSize(Items.TOTEM_OF_UNDYING, StackSize.Common.TOTEM_OF_UNDYING.get());
+		setMaxStackSize(Items.WRITABLE_BOOK, StackSize.Common.WRITABLE_BOOK.get());
       setMaxStackSize(Items.WRITTEN_BOOK, StackSize.Common.WRITTEN_BOOK.get());
 		
       setMaxStackSize(id("pastel:aether_vestiges"), StackSize.Pastel.AETHER_VESTIGES.get());

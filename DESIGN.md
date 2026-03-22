@@ -21,6 +21,7 @@ custom system, which simply works with Vanilla's tools.
 - Bowl foods (1.20.1: needed BowlFoodItemMixin, SuspiciousStewItemMixin to patch item loss)
 - Milk bucket (1.20.1: needed MilkBucketItemMixin to patch item loss)
 - Totems
+- Written books (1.20.1: needed ServerGamePacketListenerImplMixin to patch item loss)
 ## Entity-spawning
 - Splash potions, lingering potions
 - Boats, minecarts, armor stands
