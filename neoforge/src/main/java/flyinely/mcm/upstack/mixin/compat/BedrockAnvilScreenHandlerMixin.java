@@ -15,6 +15,9 @@ import org.spongepowered.asm.mixin.injection.At;
  * Common-side compat mixin for Pastel.
  * Fixes issues caused by the Pastel assumption that {@link net.minecraft.world.item.Items#ENCHANTED_BOOK} is not stackable,
  * which appears to originate from the mod's replication of vanilla {@link AnvilMenu} code.
+ * <p>
+ * Not fixing the bedrock anvil not allowing combination of enchanted books, which is Pastel's responsibility. If that is implemented
+ * similar to vanilla logic, compat fixes will be needed.
  * @see AnvilMenuMixin
  */
 @Mixin(BedrockAnvilScreenHandler.class)

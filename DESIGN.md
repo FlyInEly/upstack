@@ -32,7 +32,7 @@ custom system, which simply works with Vanilla's tools.
 ### Tests show that these need fixes to support arbitrary stack sizes in 1.21.1.
 - Solid buckets (e.g. powder snow) -> SolidBucketItemMixin to patch item loss
 - Saddles, horse armor -> HorseInventoryMenuMixin to prevent redundant equipping
-- Enchanted books -> AnvilMenuMixin, BedrockAnvilScreenHandlerMixin to patch item loss
+- Enchanted books -> AnvilMenuMixin, BedrockAnvilScreenHandlerMixin to patch item loss/duplication
 
 ### Configurable cooldowns were added to balance increased stack sizes for
 - Eggs -> EggItemMixin
