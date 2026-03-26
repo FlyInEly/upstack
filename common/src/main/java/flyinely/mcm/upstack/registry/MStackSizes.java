@@ -87,6 +87,7 @@ public class MStackSizes {
       setMaxStackSize(id("pastel:triple_meat_pot_pie"), StackSize.Pastel.TRIPLE_MEAT_POT_PIE.get());
       setMaxStackSize(id("pastel:triple_meat_pot_stew"), StackSize.Pastel.TRIPLE_MEAT_POT_STEW.get());
 
+		setMaxStackSize(id("farmersdelight:cooking_pot"), StackSize.Farmersdelight.COOKING_POT.get());
    }
 
 }

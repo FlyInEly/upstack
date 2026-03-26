@@ -196,6 +196,22 @@ public class Config {
 			}
 		}
 		
+		public static class Farmersdelight {
+			// ITEMS
+			public static final IntValue COOKING_POT;
+			
+			@Contract
+			public static void init() {}
+			
+			static {
+				BUILDER.push("farmersdelight");
+				COOKING_POT = BUILDER.worldRestart()
+						.comment("farmersdelight:cooking_pot")
+						.defineInRange("cooking_pot", 16, MIN, MAX); // mod: 1. upstack: moderate QOL on par with filled bucket, especially for crafting/moving empty pots
+				BUILDER.pop(); // farmersdelight
+			}
+		}
+		
 		// Include minecraft: and c: here
 		public static class Common {
 			// TAGS
@@ -220,7 +236,7 @@ public class Config {
 			public static final IntValue TOTEM_OF_UNDYING;
 			public static final IntValue WRITTEN_BOOK;
 			public static final IntValue MUSIC_DISCS;
-         public static final IntValue SOUPS;
+			public static final IntValue SOUPS;
 			public static final IntValue WRITABLE_BOOK;
 			public static final IntValue BANNER_PATTERNS;
 			public static final IntValue ENCHANTED_BOOK;
@@ -244,7 +260,7 @@ public class Config {
 				BANNER_PATTERNS = BUILDER.worldRestart()
 						.comment(tagString(MItemTags.C.BANNER_PATTERNS))
 						.defineInRange("banner_patterns", 64, MIN, MAX); // vanilla: 1. default: parity w/general items, for carrying QOL. they are dupable and aren't
-																												// consumed on use, so it would be nice to make the loom slot reflect that and only allow 1. TODO
+				// consumed on use, so it would be nice to make the loom slot reflect that and only allow 1. TODO
 				BUCKETS = BUILDER.worldRestart()
 						.comment(tagString(MItemTags.C.BUCKETS))
 						.defineInRange("buckets", 16, MIN, MAX); // vanilla: 1. default: parity w/honey bottles.
@@ -257,9 +273,9 @@ public class Config {
 				MUSIC_DISCS = BUILDER.worldRestart()
 						.comment(tagString(MItemTags.C.MUSIC_DISCS))
 						.defineInRange("music_discs", 64, MIN, MAX); // vanilla: 1.
-            SOUPS = BUILDER.worldRestart()
-                  .comment(tagString(MItemTags.C.SOUPS))
-                  .defineInRange("soups", 16, MIN, MAX); // vanilla: 1. default: parity w/farmersdelight; makes soups actually viable food
+				SOUPS = BUILDER.worldRestart()
+						.comment(tagString(MItemTags.C.SOUPS))
+						.defineInRange("soups", 16, MIN, MAX); // vanilla: 1. default: parity w/farmersdelight; makes soups actually viable food
 				BUILDER.pop(); // tags
 				
 				ARMOR_STAND = BUILDER.worldRestart()
@@ -317,8 +333,9 @@ public class Config {
 			
 			Common.init();
 			Pastel.init();
+			Farmersdelight.init();
 			
-			BUILDER.pop(); // stack size
+			BUILDER.pop(); // stack_size
 		}
 		
 		/** Dummy method to trigger the static initializer. */
