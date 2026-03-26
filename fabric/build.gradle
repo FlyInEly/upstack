@@ -16,8 +16,10 @@ dependencies {
     // modmenu
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 
-    // emi
+    // emi w/addons
     modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
+    modLocalRuntime "maven.modrinth:emi-enchanting:${emi_enchanting_version}"
+    modLocalRuntime "maven.modrinth:extra-mod-integrations:${emi_integrations_version}.fabric"
 
     // forgeconfigapiport
     modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${fcapiport_version}"

@@ -90,6 +90,8 @@ repositories {
 dependencies {
     // emi
     runtimeOnly "dev.emi:emi-neoforge:${emi_version}"
+    runtimeOnly "maven.modrinth:emi-enchanting:${emi_enchanting_version}+neoforge"
+    runtimeOnly "maven.modrinth:extra-mod-integrations:${emi_integrations_version}.neoforge"
 
     // create (optional test)
     implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
@@ -103,10 +105,13 @@ dependencies {
     implementation "curse.maven:exclusions-lib-1108052:7502579"
     implementation "dev.architectury:architectury-neoforge:${architectury_version}"
     implementation "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
-    implementation("com.klikli_dev:modonomicon-1.21.1-neoforge:1.117.4") {transitive = false}
+    implementation("com.klikli_dev:modonomicon-1.21.1-neoforge:1.117.4") { transitive = false }
     implementation "top.theillusivec4.curios:curios-neoforge:${curios_version}"
     implementation "curse.maven:yeetusexperimentus-635427:5444189"
     implementation "curse.maven:pastel-1264556:7578007"
+
+    // farmersdelight (optional test)
+    implementation "maven.modrinth:farmers-delight:${farmersdelight_version}"
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
