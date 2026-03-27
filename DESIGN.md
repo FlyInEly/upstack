@@ -38,3 +38,10 @@ custom system, which simply works with Vanilla's tools.
 - Eggs -> EggItemMixin
 - Throwable potions -> ThrowablePotionItemMixin, SplashPotionItemMixin, LingeringPotionItemMixin
 - Snowballs -> SnowballItemMixin
+
+### Some principles for default stack sizes include:
+- If there's no balance issue caused by allowing a 64-stack size, allow it. For instance,
+compasses and clocks have no utility benefit from being stacked, but their stackability
+allows them to fit more in bundles, be distributed to other players, be sold to villagers,
+be crafted into other things.
+- Use 1, 16, 64 -- the precedent set by vanilla.

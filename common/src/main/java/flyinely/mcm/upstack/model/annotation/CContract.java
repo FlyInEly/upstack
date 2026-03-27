@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-public class CContract {
+public abstract class CContract {
 
    /**
     * Indicates that the method promises to return the same value throughout runtime.

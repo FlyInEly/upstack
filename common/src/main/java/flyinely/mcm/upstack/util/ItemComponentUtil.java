@@ -2,6 +2,7 @@ package flyinely.mcm.upstack.util;
 
 import flyinely.mcm.upstack.Constants;
 import flyinely.mcm.upstack.mixin.registry.ItemAccessor;
+import flyinely.mcm.upstack.model.annotation.SoftSided;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponentType;
@@ -25,6 +26,7 @@ import org.slf4j.LoggerFactory;
  * Due to the aforementioned expectation that method calls are infrequent, these debug messages should hopefully
  * be more helpful than spammy.
  */
+@SoftSided.Server
 public class ItemComponentUtil {
 
    public static final int ABSOLUTE_MIN_STACK_SIZE = 1; // hardcoded: value copied from DataComponents.MAX_STACK_SIZE
@@ -41,6 +43,7 @@ public class ItemComponentUtil {
     * @param map  the component map
     * @implNote Replaces the item's current map with the given map.
     */
+	@SoftSided.Server
    public static void setAll(@NotNull Item item, @NotNull DataComponentMap map) {
       LOG.debug("Modifying {}", item);
       ((ItemAccessor) item).setComponents(map);
@@ -54,6 +57,7 @@ public class ItemComponentUtil {
     * @implNote Replaces the item's current map with a modified copy: the given map composed onto the current map.
     * @see DataComponentMap#composite(DataComponentMap, DataComponentMap)
     */
+	@SoftSided.Server
    @ApiStatus.Experimental // Currently unused, and quick to replicate. Documentation is good though.
    public static void setAllNonNull(@NotNull Item item, @NotNull DataComponentMap map) {
       setAll(item, DataComponentMap.composite(item.components(), map));
@@ -68,6 +72,7 @@ public class ItemComponentUtil {
     * @param <T>       of the component value
     * @implNote Replaces the item's current map with a modified copy: the current map with the given modification.
     */
+	@SoftSided.Server
    public static <T> void set(@NotNull Item item, @NotNull DataComponentType<T> component, @Nullable T value) {
       setAll(item, DataComponentMap.builder().addAll(item.components()).set(component, value).build());
    }
@@ -83,6 +88,7 @@ public class ItemComponentUtil {
     * @param <T>       of the component value
     * @see #set(Item, DataComponentType, Object)
     */
+	@SoftSided.Server
    public static <T> void set(@NotNull TagKey<Item> tag, @NotNull DataComponentType<T> component, @Nullable T value) {
       if (BuiltInRegistries.ITEM.getTag(tag).isEmpty()) {
          LOG.warn("Tried to modify {} of all items in #{}, but the tag is empty. Was modification attempted too early?", component, tag.location());
@@ -101,6 +107,7 @@ public class ItemComponentUtil {
     * @param item  the target item
     * @param value the max stack size value
     */
+	@SoftSided.Server
    public static void setMaxStackSize(@NotNull Item item, int value) {
       if (value >= ABSOLUTE_MIN_STACK_SIZE && value <= ABSOLUTE_MAX_STACK_SIZE) {
          set(item, DataComponents.MAX_STACK_SIZE, value);
@@ -115,6 +122,7 @@ public class ItemComponentUtil {
     * @param id    the id of the target item
     * @param value the max stack size value
     */
+	@SoftSided.Server
    public static void setMaxStackSize(@NotNull ResourceLocation id, int value) {
       ItemUtil.fromId(id).ifPresent(item -> setMaxStackSize(item, value));
    }
@@ -126,6 +134,7 @@ public class ItemComponentUtil {
     * @param tag   the target tag
     * @param value the max stack size value
     */
+	@SoftSided.Server
    public static void setMaxStackSize(@NotNull TagKey<Item> tag, int value) {
       if (value >= ABSOLUTE_MIN_STACK_SIZE && value <= ABSOLUTE_MAX_STACK_SIZE) {
          set(tag, DataComponents.MAX_STACK_SIZE, value);
