@@ -2,6 +2,9 @@
   "tag.item.c.chicken_eggs": "Chicken Eggs",
   "tag.item.c.minecarts": "Minecarts",
   "tag.item.c.horse_armor": "Horse Armor",
+  "tag,item.c.soups": "Soups",
+  "tag,item.c.milk_bottles": "Milk Bottles",
+  "tag,item.c.banner_patterns": "Banner Patterns",
   "tag.item.pastel.bulbs": "Bulbs",
   "tag.item.pastel.item_bowls": "Item Bowls",
   "tag.item.pastel.network_nodes": "Network Nodes",
@@ -19,11 +22,15 @@
 
   "upstack.configuration._common": "Common",
   "upstack.configuration.banners": "Banners",
+  "upstack.configuration.banner_patterns": "Banner Patterns",
   "upstack.configuration.beds": "Beds",
   "upstack.configuration.boats": "Boats",
   "upstack.configuration.buckets": "Buckets",
   "upstack.configuration.chicken_eggs": "Chicken Eggs",
+  "upstack.configuration.enchanted_book": "Enchanted Book",
+  "upstack.configuration.milk_bottles": "Milk Bottles",
   "upstack.configuration.minecarts": "Minecarts",
+  "upstack.configuration.music_discs": "Music Discs",
   "upstack.configuration.horse_armor": "Horse Armor",
   "upstack.configuration.armor_stand": "Armor Stand",
   "upstack.configuration.bucket": "Bucket",
@@ -33,8 +40,10 @@
   "upstack.configuration.lingering_potion": "Lingering Potion",
   "upstack.configuration.potion": "Potion",
   "upstack.configuration.saddle": "Saddle",
+  "upstack.configuration.soups": "Soups",
   "upstack.configuration.splash_potion": "Splash Potion",
   "upstack.configuration.totem_of_undying": "Totem of Undying",
+  "upstack.configuration.writable_book": "Writable Book",
   "upstack.configuration.written_book": "Written Book",
 
   "upstack.configuration.pastel": "Pastel",
@@ -67,5 +76,9 @@
   "upstack.configuration.stardust_block": "Stardust Block",
   "upstack.configuration.stratine_gem": "Stratine Gem",
   "upstack.configuration.triple_meat_pot_pie": "Triple Meat Pot Pie",
-  "upstack.configuration.triple_meat_pot_stew": "Triple Meat Pot Stew"
+  "upstack.configuration.triple_meat_pot_stew": "Triple Meat Pot Stew",
+
+  "upstack.configuration.farmersdelight": "Farmer's Delight",
+  "upstack.configuration.cooking_pot": "Cooking Pot",
+  "upstack.configuration.feasts": "Feasts"
 }

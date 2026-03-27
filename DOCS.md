@@ -4,4 +4,4 @@
 - 🪲 Bugfix
 - ⚙️ Infrastructure (Backend)
 - ✒️ Documentation
-- 🧹 Code Cleanup
+- 🧹 Code Cleanup / Chore

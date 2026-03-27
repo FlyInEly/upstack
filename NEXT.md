@@ -1,3 +1,2 @@
-- Ensure all configs and tags are translated
 - Initial release?
 - Make vanilla/integration bugfixes toggleable, in case they conflict with other mods' behavior
