@@ -1,6 +1,5 @@
 package flyinely.mcm.upstack.config;
 
-import ca.weblite.objc.Proxy;
 import flyinely.mcm.upstack.registry.MItemTags;
 import flyinely.mcm.upstack.util.ItemComponentUtil;
 import net.minecraft.tags.ItemTags;
