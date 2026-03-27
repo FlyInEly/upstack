@@ -34,6 +34,7 @@ public class MStackSizes {
       setMaxStackSize(MItemTags.C.BUCKETS, StackSize.Common.BUCKETS.get());
       setMaxStackSize(MItemTags.C.CHICKEN_EGGS, StackSize.Common.CHICKEN_EGGS.get());
       setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.Common.HORSE_ARMOR.get());
+		setMaxStackSize(MItemTags.C.MILK_BOTTLES, StackSize.Common.MILK_BOTTLES.get());
       setMaxStackSize(MItemTags.C.MINECARTS, StackSize.Common.MINECARTS.get());
 		setMaxStackSize(MItemTags.C.MUSIC_DISCS, StackSize.Common.MUSIC_DISCS.get());
       setMaxStackSize(MItemTags.C.SOUPS, StackSize.Common.SOUPS.get());
@@ -46,6 +47,8 @@ public class MStackSizes {
       setMaxStackSize(MItemTags.Pastel.ROUNDELS, StackSize.Pastel.ROUNDELS.get());
       setMaxStackSize(MItemTags.Pastel.SHOOTING_STARS, StackSize.Pastel.SHOOTING_STARS.get());
       setMaxStackSize(MItemTags.Pastel.STRUCTURE_UPGRADES, StackSize.Pastel.STRUCTURE_UPGRADES.get());
+		
+		setMaxStackSize(MItemTags.Farmersdelight.FEASTS, StackSize.Farmersdelight.FEASTS.get());
 
       // ITEMS - Must be listed after TAGS to override stack sizes of items in those tags, like Items.BUCKET.
 		

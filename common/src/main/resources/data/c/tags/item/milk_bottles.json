@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "farmersdelight:milk_bottle",
+      "required": false
+    },
+    {
+      "id": "vegandelight:soymilk_bottle",
+      "required": false
+    },
+    {
+      "id": "cobblemon:moomoo_milk",
+      "required": false
+    }
+  ]
+}

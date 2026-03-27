@@ -196,6 +196,9 @@ public class Config {
 		}
 		
 		public static class Farmersdelight {
+			// TAGS
+			public static final IntValue FEASTS;
+			
 			// ITEMS
 			public static final IntValue COOKING_POT;
 			
@@ -204,15 +207,24 @@ public class Config {
 			
 			static {
 				BUILDER.push("farmersdelight");
+				
+				BUILDER.push("tags");
+				FEASTS = BUILDER.worldRestart()
+						.comment(tagString(MItemTags.Farmersdelight.FEASTS))
+						.defineInRange("feasts", 16, MIN, MAX); // mod: 1. upstack: parity with bowl foods. feasts contain many serves, but aren't directly edible anyway
+				BUILDER.pop(); // tags
+				
 				COOKING_POT = BUILDER.worldRestart()
 						.comment("farmersdelight:cooking_pot")
 						.defineInRange("cooking_pot", 16, MIN, MAX); // mod: 1. upstack: moderate QOL on par with filled bucket, especially for crafting/moving empty pots
+				
 				BUILDER.pop(); // farmersdelight
 			}
 		}
 		
 		// Include minecraft: and c: here
 		public static class Common {
+			
 			// TAGS
 			public static final IntValue BANNERS;
 			public static final IntValue BEDS;
@@ -221,6 +233,7 @@ public class Config {
 			public static final IntValue CHICKEN_EGGS;
 			public static final IntValue HORSE_ARMOR;
 			public static final IntValue MINECARTS;
+			
 			// ITEMS
 			public static final IntValue ARMOR_STAND;
 			public static final IntValue BUCKET;
@@ -239,6 +252,7 @@ public class Config {
 			public static final IntValue WRITABLE_BOOK;
 			public static final IntValue BANNER_PATTERNS;
 			public static final IntValue ENCHANTED_BOOK;
+			public static final IntValue MILK_BOTTLES;
 			
 			static {
 				BUILDER.push("_common");
@@ -259,13 +273,15 @@ public class Config {
 				BANNER_PATTERNS = BUILDER.worldRestart()
 						.comment(tagString(MItemTags.C.BANNER_PATTERNS))
 						.defineInRange("banner_patterns", 64, MIN, MAX); // vanilla: 1. default: parity w/general items, for carrying QOL. they are dupable and aren't
-				// consumed on use, so it would be nice to make the loom slot reflect that and only allow 1. TODO
 				BUCKETS = BUILDER.worldRestart()
 						.comment(tagString(MItemTags.C.BUCKETS))
 						.defineInRange("buckets", 16, MIN, MAX); // vanilla: 1. default: parity w/honey bottles.
 				HORSE_ARMOR = BUILDER.worldRestart()
 						.comment(tagString(MItemTags.C.HORSE_ARMOR))
 						.defineInRange("horse_armor", 16, MIN, MAX); // vanilla: 1. default: not lower due to lack of durability and foreseen balance issues.
+				MILK_BOTTLES = BUILDER.worldRestart()
+						.comment(tagString(MItemTags.C.MILK_BOTTLES))
+						.defineInRange("milk_bottles", 0, MIN, MAX); // usually 16. included for configurability.
 				MINECARTS = BUILDER.worldRestart()
 						.comment(tagString(MItemTags.C.MINECARTS))
 						.defineInRange("minecarts", 16, MIN, MAX); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
