@@ -13,16 +13,24 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 
+    // forgeconfigapiport
+    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${fcapiport_version}"
+
+    // DEV UTILS
+
     // modmenu
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 
-    // emi w/addons
+    // emi (w/addons)
+    // no extra-mod-integrations on fabric (no benefit)
     modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
     modLocalRuntime "maven.modrinth:emi-enchanting:${emi_enchanting_version}"
-    modLocalRuntime "maven.modrinth:extra-mod-integrations:${emi_integrations_version}.fabric"
 
-    // forgeconfigapiport
-    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${fcapiport_version}"
+    // inventory_essentials
+    modLocalRuntime "maven.modrinth:inventory-essentials:${inventory_essentials_version}+fabric-${minecraft_version}"
+    modLocalRuntime("net.blay09.mods:balm-fabric:${balm_version}") {
+        changing = balm_version.contains('SNAPSHOT')
+    }
 }
 
 loom {

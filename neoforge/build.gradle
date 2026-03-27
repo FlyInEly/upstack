@@ -84,14 +84,6 @@ repositories {
             includeGroup "top.theillusivec4.curios"
         }
     }
-
-    // balm -> inventory essentials
-    maven {
-        url = 'https://maven.twelveiterations.com/repository/maven-public/'
-        content {
-            includeGroup 'net.blay09.mods'
-        }
-    }
 }
 
 
