@@ -54,7 +54,7 @@ repositories {
         url = "https://maven.terraformersmc.com/"
     }
 
-    // curse maven - pastel (neoforge)
+    // curse maven-> dev util and test mods
     exclusiveContent {
         forRepository {
             maven {
@@ -66,7 +66,7 @@ repositories {
         }
     }
 
-    // modrinth maven - farmersdelight (neoforge), emi enchanting
+    // modrinth maven -> dev util and test mods
     exclusiveContent {
         forRepository {
             maven {
@@ -144,8 +144,10 @@ processResources {
                        'cloth_config_version'         : cloth_config_version,
                        'farmersdelight_version'       : farmersdelight_version,
                        'emi_enchanting_version'       : emi_enchanting_version,
-                       'emi_integrations_version'     : emi_integrations_version]
-    // How is emi_version getting passed w/o an expandprops entry?
+                       'emi_integrations_version'     : emi_integrations_version,
+                       'emi_version'                  : emi_version,
+                       'inventory_essentials_version' : inventory_essentials_version
+    ]
 
     filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
         expand expandProps

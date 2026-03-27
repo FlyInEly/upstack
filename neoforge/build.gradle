@@ -84,23 +84,42 @@ repositories {
             includeGroup "top.theillusivec4.curios"
         }
     }
+
+    // balm -> inventory essentials
+    maven {
+        url = 'https://maven.twelveiterations.com/repository/maven-public/'
+        content {
+            includeGroup 'net.blay09.mods'
+        }
+    }
 }
 
 
 dependencies {
-    // emi
+
+    // DEV UTILS
+
+    // emi (w/addons)
     runtimeOnly "dev.emi:emi-neoforge:${emi_version}"
     runtimeOnly "maven.modrinth:emi-enchanting:${emi_enchanting_version}+neoforge"
     runtimeOnly "maven.modrinth:extra-mod-integrations:${emi_integrations_version}.neoforge"
 
-    // create (optional test)
+    // inventory essentials
+    runtimeOnly "maven.modrinth:inventory-essentials:${inventory_essentials_version}+neoforge-${minecraft_version}"
+    runtimeOnly("net.blay09.mods:balm-neoforge:${balm_version}") {
+        changing = balm_version.contains('SNAPSHOT')
+    }
+
+    // OPTIONAL INTEGRATIONS
+
+    // create
     implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
     implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
     compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
     runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
     implementation("com.tterrag.registrate:Registrate:${registrate_version}")
 
-    // pastel (optional test)
+    // pastel
     implementation "curse.maven:databank-1181408:7316426"
     implementation "curse.maven:exclusions-lib-1108052:7502579"
     implementation "dev.architectury:architectury-neoforge:${architectury_version}"
@@ -110,7 +129,7 @@ dependencies {
     implementation "curse.maven:yeetusexperimentus-635427:5444189"
     implementation "curse.maven:pastel-1264556:7578007"
 
-    // farmersdelight (optional test)
+    // farmersdelight
     implementation "maven.modrinth:farmers-delight:${farmersdelight_version}"
 }
 
