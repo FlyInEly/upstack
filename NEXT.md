@@ -1,4 +1,3 @@
 - Ensure all configs and tags are translated
 - Initial release?
-- Implement Farmer's Delight stack size configs
 - Make vanilla/integration bugfixes toggleable, in case they conflict with other mods' behavior
