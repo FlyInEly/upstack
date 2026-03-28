@@ -1,2 +1,3 @@
-- Initial release?
-- Make vanilla/integration bugfixes toggleable, in case they conflict with other mods' behavior
+- Complete README
+- Test in full modpack environment
+- Initial release
