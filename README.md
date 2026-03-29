@@ -17,11 +17,17 @@ Feedback is welcome, as are feature requests (without expectations).
 | Required    | None     | [Fabric API](https://modrinth.com/mod/fabric-api)<br/>[Forge Config API Port](https://modrinth.com/mod/forge-config-api-port) |
 | Recommended | None     | [Mod Menu](https://modrinth.com/mod/modmenu) (for in-game configuration)                                                      |
 
-## Versions
+## Compatibility
 
+### Version Support
 | MC     | NeoForge | Fabric |
 |--------|----------|--------|
 | 1.21.1 | ✅        | ✅      |
+
+### Mod Integration
+* Vanilla Backport
+* Pastel
+* Farmer's Delight
 
 ## Configuration
 
@@ -51,7 +57,7 @@ Changes apply immediately.
 The default configuration adds modest cooldowns to snowballs (5 ticks) and throwable potions (10 ticks) to balance
 their increased stack sizes. Set an item's use cooldown to 0 to remove its cooldown completely.
 
-## How It Works
+## How does Upstack work?
 
 On server startup, Upstack modifies the max stack size component of each configured item. Items set to values outside
 \[1, 99] are not modified.
@@ -80,8 +86,6 @@ Upstack injects the following patches to address these issues:
     2. Consume only 1 enchanted book at a time.
     3. Cost the experience of enchanting one item.
 5. Add optional, configurable cooldowns to splash potions, lingering potions, eggs, and snowballs.
-
-## Compatibility
 
 ## Planned Features
 
