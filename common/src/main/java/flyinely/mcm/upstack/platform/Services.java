@@ -6,7 +6,6 @@ import org.jetbrains.annotations.Contract;
 
 import java.util.ServiceLoader;
 
-
 public class Services {
 
    @Contract(pure = true)

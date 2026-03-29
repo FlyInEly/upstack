@@ -1,7 +1,6 @@
 package flyinely.mcm.upstack.util;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 

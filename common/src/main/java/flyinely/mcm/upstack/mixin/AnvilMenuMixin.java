@@ -1,6 +1,5 @@
 package flyinely.mcm.upstack.mixin;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.world.Container;
@@ -27,7 +26,7 @@ public class AnvilMenuMixin {
 	@Shadow
 	private int repairItemCountCost;
 	
-	// TODO: Remove extraneous logic. Clean (succinct) docs. Also apply this to the Bedrock Anvil
+	// TODO: Remove extraneous logic. Clean (succinct) docs.
 	
 	/**
 	 * Pretends that there's only one item in the input slot so that the game's logic doesn't auto-set

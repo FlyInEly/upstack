@@ -41,7 +41,7 @@ public abstract class HorseInventoryMenuMixin {
 					target = "Lnet/minecraft/world/inventory/HorseInventoryMenu;addSlot(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;"
 			)
 	)
-	Slot modifyMaxStackSize(Slot original) {
+	Slot modifyMaxStackSize(@NotNull Slot original) {
 		
 		// Modify saddle slot only
 		if (original.getContainerSlot() == 0) {

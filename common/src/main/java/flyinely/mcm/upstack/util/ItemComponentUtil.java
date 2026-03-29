@@ -57,7 +57,8 @@ public class ItemComponentUtil {
     * @implNote Replaces the item's current map with a modified copy: the given map composed onto the current map.
     * @see DataComponentMap#composite(DataComponentMap, DataComponentMap)
     */
-	@SoftSided.Server
+	@SuppressWarnings("unused")
+   @SoftSided.Server
    @ApiStatus.Experimental // Currently unused, and quick to replicate. Documentation is good though.
    public static void setAllNonNull(@NotNull Item item, @NotNull DataComponentMap map) {
       setAll(item, DataComponentMap.composite(item.components(), map));
@@ -76,8 +77,6 @@ public class ItemComponentUtil {
    public static <T> void set(@NotNull Item item, @NotNull DataComponentType<T> component, @Nullable T value) {
       setAll(item, DataComponentMap.builder().addAll(item.components()).set(component, value).build());
    }
-
-   // TODO NEXT: Hook UpstackStackSizes.register() to resource reload
 
    /**
     * Sets the component to the given value, on all items in the given tag.

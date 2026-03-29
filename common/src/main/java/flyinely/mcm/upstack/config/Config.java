@@ -20,7 +20,8 @@ public class Config {
 		
 		SPEC = BUILDER.build();
 	}
-	
+
+   @SuppressWarnings("EmptyMethod") // They are dummy methods to trigger static init
 	public static class Cooldowns {
 		
 		private static final int MIN = 0;
@@ -50,15 +51,16 @@ public class Config {
 		}
 		
 	}
-	
+
+   @SuppressWarnings("EmptyMethod") // They are dummy methods to trigger static init
 	public static class StackSize {
 		
 		
 		// A value of MIN_STACK_SIZE - 1 indicates that the item(s)' stack size should be left unmodified.
 		private static final int MIN = ItemComponentUtil.ABSOLUTE_MIN_STACK_SIZE - 1;
 		private static final int MAX = ItemComponentUtil.ABSOLUTE_MAX_STACK_SIZE;
-		
-		public static class Pastel {
+
+      public static class Pastel {
 			// TAGS
 			public static final IntValue BULBS;
 			public static final IntValue FUSION_SHRINES;
@@ -358,12 +360,5 @@ public class Config {
 		static void init() {}
 		
 	}
-	
-	// LATER: Fully customizable stack sizes by item/tag id. Or data-driven.
-	//   public static final ListValueSpec STACK_SIZES;
-	//
-	//   public static final List<String> DEFAULT_STACK_SIZES = List.of(
-	//         "minecraft:bucket,64"
-	//   );
 	
 }
