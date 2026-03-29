@@ -1,4 +1,3 @@
-- Add reccomended mods to neoforge's mods.toml and fabric equivalent
 - Test in full modpack environment
 - Initial release (gradle.properties version bump)
 - Move non-essential README to Wiki pages

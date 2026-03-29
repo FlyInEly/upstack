@@ -30,7 +30,7 @@
     "java": ">=${java_version}",
     "forgeconfigapiport": ">=${fcapiport_version}"
   },
-  "suggests": {
-    "another-mod": "*"
+  "recommends": {
+    "modmenu": "*"
   }
 }
