@@ -9,7 +9,7 @@ This mod is a passion project. Support for particular versions and features is n
 
 ## How It Works
 
-To work, Upstack must be installed on _both the server and the client_. (Stack size modification is purely server-side,
+To work, Upstack must be installed on **both the server and the client**. (Stack size modification is purely server-side,
 but bug fixes are dual-side.)
 
 On server startup, Upstack modifies the max stack size component of each configured item. Items set to values outside
