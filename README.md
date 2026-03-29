@@ -8,8 +8,6 @@ It also patches Vanilla issues that occur when some items are made stackable.
 This mod is a passion project. Support for particular versions and features is not guaranteed.
 Feedback is welcome, as are feature requests (without expectations).
 
-### Table of Contents
-[[_TOC_]]
 
 ## Dependencies
 
@@ -89,7 +87,7 @@ Upstack injects the following patches to address these issues:
     3. Cost the experience of enchanting one item.
 5. Add optional, configurable cooldowns to splash potions, lingering potions, eggs, and snowballs.
 
-## Planned Features
+## Feature Roadmap
 
 ### Planned
 
