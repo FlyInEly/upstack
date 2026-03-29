@@ -29,6 +29,7 @@ Feedback is welcome, as are feature requests (without expectations).
 * Vanilla Backport
 * Pastel
 * Farmer's Delight
+* Cobblemon
 
 ## Configuration
 
