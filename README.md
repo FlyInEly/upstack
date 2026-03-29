@@ -6,19 +6,52 @@ It also patches Vanilla issues that occur when some items are made stackable.
 ### Disclaimer
 
 This mod is a passion project. Support for particular versions and features is not guaranteed.
-Feedback and feature requests (without expectation) are welcome!
+Feedback is welcome, as are feature requests (without expectations).
 
-## Version Support
+### Table of Contents
+
+## Dependencies
+
+|             | NeoForge | Fabric                                                                                                                        |
+|-------------|----------|-------------------------------------------------------------------------------------------------------------------------------|
+| Required    | None     | [Fabric API](https://modrinth.com/mod/fabric-api)<br/>[Forge Config API Port](https://modrinth.com/mod/forge-config-api-port) |
+| Recommended | None     | [Mod Menu](https://modrinth.com/mod/modmenu) (for in-game configuration)                                                      |
+
+## Versions
 
 | MC     | NeoForge | Fabric |
 |--------|----------|--------|
 | 1.21.1 | ✅        | ✅      |
 
-## How does Upstack work?
+## Configuration
 
-To work, Upstack must be installed on **both the server and the client**. (Stack size modification is purely
-server-side,
-but bug fixes are dual-side.)
+Upstack can be configured in-game through the mods button (requires [Mod Menu](https://modrinth.com/mod/modmenu) on
+Fabric)
+or by manually editing `config/upstack-common.toml`.
+
+### Max Stack Size
+
+Max stack sizes can be configured for items and item tags listed in the config.
+Changes do not apply until the server is restarted.
+
+The default configuration increases the max stack size of several commonly desired items, including water buckets
+(1 → 16) and music discs (1 → 64). Set an item's max stack size to 0 to preserve its original value.
+
+The value set for an individual item overrides the value set for any of its tags.
+For instance, the stack size of item `minecraft:bucket` (default: `64`) overrides the value of its tag `#c:buckets`
+(default: `16`).
+If one item is included in two different-valued tags using a datapack, one of the values will take precedence,
+but which one does so is undefined.
+
+### Use Cooldown
+
+Use cooldowns can be configured for items listed in the config.
+Changes apply immediately.
+
+The default configuration adds modest cooldowns to snowballs (5 ticks) and throwable potions (10 ticks) to balance
+their increased stack sizes. Set an item's use cooldown to 0 to remove its cooldown completely.
+
+## How It Works
 
 On server startup, Upstack modifies the max stack size component of each configured item. Items set to values outside
 \[1, 99] are not modified.
@@ -48,6 +81,8 @@ Upstack injects the following patches to address these issues:
     3. Cost the experience of enchanting one item.
 5. Add optional, configurable cooldowns to splash potions, lingering potions, eggs, and snowballs.
 
+## Compatibility
+
 ## Planned Features
 
 ### Planned
@@ -63,4 +98,4 @@ Upstack injects the following patches to address these issues:
 ### Not Planned
 
 * Make max stack sizes able to exceed 99 (the Vanilla limit). Increasing Vanilla's max stack size limit and resolving
-  consequent bugs and mod conflicts is out of the scope of this mod. 
+  consequent bugs and mod conflicts is out of the scope of this mod.

@@ -1,3 +1,4 @@
 - Complete README
+- Add reccomended mods (Forge, Fabric)
 - Test in full modpack environment
 - Initial release
