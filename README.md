@@ -9,6 +9,7 @@ This mod is a passion project. Support for particular versions and features is n
 Feedback is welcome, as are feature requests (without expectations).
 
 ### Table of Contents
+[[_TOC_]]
 
 ## Dependencies
 
