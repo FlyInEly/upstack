@@ -1,29 +1,28 @@
 # Upstack
 
-Upstack is an open-source mod which allows the max stack size of common items to be configured between 1 and 99.
-It also patches Vanilla issues that occur when some items are made stackable.
+An open-source mod which makes the max stack size of common items configurable.
+Patches bugs that occur when some items are made stackable.
 
-### Disclaimer
+**Disclaimer:** This mod is a passion project, so support for any particular version or feature
+is not guaranteed. Feedback and feature requests (without expectation) are welcome.
 
-This mod is a passion project. Support for particular versions and features is not guaranteed.
-Feedback is welcome, as are feature requests (without expectations).
+## Compatibility
 
+### Version Support
 
-## Dependencies
+| MC     | NeoForge | Fabric |
+|--------|----------|--------|
+| 1.21.1 | ✅        | ✅      |
+
+### Dependencies
 
 |             | NeoForge | Fabric                                                                                                                        |
 |-------------|----------|-------------------------------------------------------------------------------------------------------------------------------|
 | Required    | None     | [Fabric API](https://modrinth.com/mod/fabric-api)<br/>[Forge Config API Port](https://modrinth.com/mod/forge-config-api-port) |
 | Recommended | None     | [Mod Menu](https://modrinth.com/mod/modmenu) (for in-game configuration)                                                      |
 
-## Compatibility
-
-### Version Support
-| MC     | NeoForge | Fabric |
-|--------|----------|--------|
-| 1.21.1 | ✅        | ✅      |
-
 ### Mod Integration
+
 * Vanilla Backport
 * Pastel
 * Farmer's Delight
@@ -32,8 +31,7 @@ Feedback is welcome, as are feature requests (without expectations).
 ## Configuration
 
 Upstack can be configured in-game through the mods button (requires [Mod Menu](https://modrinth.com/mod/modmenu) on
-Fabric)
-or by manually editing `config/upstack-common.toml`.
+Fabric) or by manually editing `config/upstack-common.toml`.
 
 ### Max Stack Size
 
