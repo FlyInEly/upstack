@@ -8,6 +8,8 @@ is not guaranteed. Feedback and feature requests (without expectation) are welco
 
 ## Compatibility
 
+Upstack must be installed on _both the client and the server_ to function properly (its patches are dual-side).
+
 ### Version Support
 
 | MC     | NeoForge | Fabric |
