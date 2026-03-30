@@ -90,6 +90,8 @@ Upstack injects the following patches to address these issues:
 ### Planned
 
 * Make max stack size bug fixes toggleable, in case of unforeseen conflicts with other mods.
+* Disable mod features when not also installed on the server.
+* Ensure mod configs are synced down from the server, especially cooldowns.
 * Make max stack size modification data-driven, while retaining the ability to modify common items/tags through the
   config.
 
