@@ -18,10 +18,10 @@ Upstack must be installed on _both the client and the server_ to function proper
 
 ### Dependencies
 
-|             | NeoForge | Fabric                                                                                                                        |
-|-------------|----------|-------------------------------------------------------------------------------------------------------------------------------|
-| Required    | None     | [Fabric API](https://modrinth.com/mod/fabric-api)<br/>[Forge Config API Port](https://modrinth.com/mod/forge-config-api-port) |
-| Recommended | None     | [Mod Menu](https://modrinth.com/mod/modmenu) (for in-game configuration)                                                      |
+|             | NeoForge | Fabric                                                                                                                                  |
+|-------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| Required    | None     | [Fabric API](https://modrinth.com/mod/fabric-api)<br/>[Forge Config API Port](https://modrinth.com/mod/forge-config-api-port) (21.1.6+) |
+| Recommended | None     | [Mod Menu](https://modrinth.com/mod/modmenu) (for in-game configuration)                                                                |
 
 ### Mod Integration
 
