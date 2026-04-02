@@ -3,3 +3,4 @@
 - Initial release (gradle.properties version bump)
 - Establish release workflow, including project errors check
 - Move non-essential README to Wiki pages
+- Remove unused library functions and move to Upstream

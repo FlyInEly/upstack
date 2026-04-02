@@ -16,4 +16,12 @@ public abstract class CContract {
    public @interface ConstantReturn {
 
    }
+
+   /**
+    * Indicates that the method promises that it is empty, and is used to trigger the class's static initializer block.
+    */
+   @Retention(RetentionPolicy.SOURCE)
+   @Target({ElementType.METHOD})
+   public @interface StaticInit {
+   }
 }
