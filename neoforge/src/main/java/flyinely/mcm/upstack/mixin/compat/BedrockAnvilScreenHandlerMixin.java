@@ -11,6 +11,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
+// FIXME: Does this cause issues if Pastel is not loaded on NeoForge? No error should be printed in that situation.
+
 /**
  * Common-side compat mixin for Pastel.
  * Fixes issues caused by the Pastel assumption that {@link net.minecraft.world.item.Items#ENCHANTED_BOOK} is not stackable,
