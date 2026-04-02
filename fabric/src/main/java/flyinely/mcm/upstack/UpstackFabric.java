@@ -1,6 +1,5 @@
 package flyinely.mcm.upstack;
 
-import flyinely.mcm.upstack.config.Config;
 import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeConfigRegistry;
 import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.client.ConfigScreenFactoryRegistry;
 import net.fabricmc.api.ModInitializer;

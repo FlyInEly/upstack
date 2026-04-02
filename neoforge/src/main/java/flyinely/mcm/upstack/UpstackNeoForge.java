@@ -1,6 +1,5 @@
 package flyinely.mcm.upstack;
 
-import flyinely.mcm.upstack.config.Config;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;

@@ -1,4 +1,4 @@
-package flyinely.mcm.upstack.model.annotation;
+package flyinely.mcm.upstack.annotation;
 
 import org.jetbrains.annotations.Contract;
 

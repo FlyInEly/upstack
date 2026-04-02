@@ -1,8 +1,8 @@
 package flyinely.mcm.upstack.util;
 
 import flyinely.mcm.upstack.Constants;
+import flyinely.mcm.upstack.annotation.SoftSided;
 import flyinely.mcm.upstack.mixin.registry.ItemAccessor;
-import flyinely.mcm.upstack.model.annotation.SoftSided;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponentType;
