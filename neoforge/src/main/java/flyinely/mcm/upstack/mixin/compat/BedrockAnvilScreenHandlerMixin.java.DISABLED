@@ -7,9 +7,13 @@ import flyinely.mcm.upstack.mixin.AnvilMenuMixin;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.AnvilMenu;
 import net.minecraft.world.item.ItemStack;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+
+// FIXME: Causes issues if Pastel is not loaded on NeoForge. No error should be printed in that situation. Might need a library to add conditional mixins.
 
 /**
  * Common-side compat mixin for Pastel.
@@ -20,20 +24,26 @@ import org.spongepowered.asm.mixin.injection.At;
  * similar to vanilla logic, compat fixes will be needed.
  * @see AnvilMenuMixin
  */
+@Pseudo
 @Mixin(BedrockAnvilScreenHandler.class)
 public class BedrockAnvilScreenHandlerMixin {
 	
 	@Shadow
 	private int repairItemCount;
-	
-	/**
+
+   // Must shadow, since the class to import may not exist at runtime.
+   @Shadow
+   @Final
+   public static int SECOND_INPUT_SLOT_INDEX;
+
+   /**
 	 * When taking a stack from the result slot, decrement the stack in the additional slot instead of clearing it.
 	 */
 	@WrapOperation(method = "onTake", at = @At(
 			value = "INVOKE", target = "Lnet/minecraft/world/Container;setItem(ILnet/minecraft/world/item/ItemStack;)V"))
 	void shrinkAdditionalStack(Container instance, int pSlot, ItemStack pStack, Operation<Void> original) {
-		if (pSlot == BedrockAnvilScreenHandler.SECOND_INPUT_SLOT_INDEX && this.repairItemCount == 0 && pStack.isEmpty()) {
-			ItemStack additionalStack = instance.getItem(BedrockAnvilScreenHandler.SECOND_INPUT_SLOT_INDEX);
+		if (pSlot == SECOND_INPUT_SLOT_INDEX && this.repairItemCount == 0 && pStack.isEmpty()) {
+			ItemStack additionalStack = instance.getItem(SECOND_INPUT_SLOT_INDEX);
 			original.call(instance, pSlot, additionalStack.copyWithCount(additionalStack.getCount() - 1));
 		} else {
 			original.call(instance, pSlot, pStack);
