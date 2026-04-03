@@ -1,3 +1,6 @@
+# v1.0.0-rc.2
+* Fix unintended mandatory dependency on Pastel in NeoForge by removing patches to Pastel's bedrock anvil for now 
+
 # v1.0.0-rc.1
 * Make stack sizes configurable for common items and tags in vanilla, Pastel, Farmer's Delight, Cobblemon, and Vanilla
   Backport
