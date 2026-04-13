@@ -123,7 +123,7 @@ public class ItemComponentUtil {
     */
 	@SoftSided.Server
    public static void setMaxStackSize(@NotNull ResourceLocation id, int value) {
-      ItemUtil.fromId(id).ifPresent(item -> setMaxStackSize(item, value));
+      BuiltInRegistries.ITEM.getOptional(id).ifPresent(item -> setMaxStackSize(item, value));
    }
 
    /**
