@@ -1,7 +1,7 @@
 package flyinely.mcm.upstack.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import flyinely.mcm.upstack.Config;
+import flyinely.mcm.upstack.registry.ModConfig;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -21,7 +21,7 @@ public abstract class ThrowablePotionItemMixin {
 
    /**
     * Sets and enforces a joint use cooldown for {@link Items#SPLASH_POTION} and {@link Items#LINGERING_POTION}
-    * using the cooldown duration (in ticks) supplied by {@link Config.Cooldowns#POTION_THROW_COOLDOWN}, if greater
+    * using the cooldown duration (in ticks) supplied by {@link ModConfig.Cooldowns#POTION_THROW_COOLDOWN}, if greater
     * than zero.
     *
     * @implNote For optimization and safety, it is assumed that the used item is either a {@link Items#SPLASH_POTION}
@@ -30,7 +30,7 @@ public abstract class ThrowablePotionItemMixin {
     */
    @Unique
 	protected InteractionResultHolder<ItemStack> upstack$useWithCooldown(Level level, Player player, InteractionHand hand, Operation<InteractionResultHolder<ItemStack>> original) {
-      int duration = Config.Cooldowns.POTION_THROW_COOLDOWN.getAsInt();
+      int duration = ModConfig.Cooldowns.POTION_THROW_COOLDOWN.getAsInt();
       if (duration > 0) {
             ItemStack stack = player.getItemInHand(hand);
             ItemCooldowns cooldowns = player.getCooldowns();

@@ -1,6 +1,6 @@
 package flyinely.mcm.upstack;
 
-import flyinely.mcm.upstack.registry.ModStackSizes;
+import flyinely.mcm.upstack.init.ModStackSizes;
 
 public class UpstackCommon {
    

@@ -1,9 +1,9 @@
 package flyinely.mcm.upstack;
 
+import flyinely.mcm.upstack.registry.ModConfig;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.javafmlmod.FMLModContainer;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
@@ -19,7 +19,7 @@ public class UpstackNeoForge {
       UpstackCommon.init();
 
       // Register config w/screen
-      container.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+      container.registerConfig(net.neoforged.fml.config.ModConfig.Type.COMMON, ModConfig.SPEC);
       container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
 
       Constants.LOG.info("Finished NeoForge init");

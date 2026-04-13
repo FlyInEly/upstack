@@ -27,7 +27,8 @@ public abstract class CContract {
 
    /**
     * Indicates that the class promises that all public members are {@code static final}, and there
-    * are no public methods.
+    * are no public methods not annotated {@link StaticInit}. If this class is a nested class,
+    * it must be static. Public nested classes inside this class must also be {@link StaticRegistry}.
     */
    @Retention(RetentionPolicy.SOURCE)
    @Target({ElementType.TYPE})

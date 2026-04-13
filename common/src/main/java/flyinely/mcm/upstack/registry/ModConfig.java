@@ -1,7 +1,7 @@
-package flyinely.mcm.upstack;
+package flyinely.mcm.upstack.registry;
 
-import flyinely.mcm.upstack.annotation.CContract;
-import flyinely.mcm.upstack.registry.ModItemTags;
+import flyinely.mcm.upstack.annotation.CContract.StaticInit;
+import flyinely.mcm.upstack.annotation.CContract.StaticRegistry;
 import flyinely.mcm.upstack.util.ItemComponentUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -9,13 +9,16 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import static flyinely.mcm.upstack.util.ResUtil.id;
 import static flyinely.mcm.upstack.util.TagUtil.tagString;
 
-public class Config {
+@ApiStatus.Internal
+@StaticRegistry
+public class ModConfig {
 
    public static final ModConfigSpec SPEC;
    public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
@@ -27,6 +30,7 @@ public class Config {
       SPEC = BUILDER.build();
    }
 
+   @StaticRegistry
    @SuppressWarnings("EmptyMethod") // They are dummy methods to trigger static init
    public static class Cooldowns {
 
@@ -38,7 +42,7 @@ public class Config {
       public static final IntValue SNOWBALL_THROW_COOLDOWN;
 
       @Contract
-      @CContract.StaticInit
+      @StaticInit
       public static void init() {}
 
       static {
@@ -75,6 +79,7 @@ public class Config {
          return BUILDER.worldRestart().comment(id.toString()).defineInRange(id.getPath(), defaultValue, MIN, MAX);
       }
 
+      @StaticRegistry
       public static class Pastel {
          // TAGS
          public static final IntValue BULBS;
@@ -110,7 +115,7 @@ public class Config {
          public static final IntValue TRIPLE_MEAT_POT_STEW;
 
          @Contract
-         @CContract.StaticInit
+         @StaticInit
          public static void init() {}
 
          static {
@@ -153,6 +158,7 @@ public class Config {
          }
       }
 
+      @StaticRegistry
       public static class Farmersdelight {
          // TAGS
          public static final IntValue FEASTS;
@@ -161,7 +167,7 @@ public class Config {
          public static final IntValue COOKING_POT;
 
          @Contract
-         @CContract.StaticInit
+         @StaticInit
          public static void init() {}
 
          static {
@@ -178,6 +184,7 @@ public class Config {
       }
 
       // Include minecraft: and c: here
+      @StaticRegistry
       public static class Common {
 
          // TAGS
@@ -259,7 +266,7 @@ public class Config {
       }
 
       @Contract
-      @CContract.StaticInit
+      @StaticInit
       static void init() {}
 
    }

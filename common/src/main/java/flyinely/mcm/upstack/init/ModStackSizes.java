@@ -1,11 +1,13 @@
-package flyinely.mcm.upstack.registry;
+package flyinely.mcm.upstack.init;
 
 import flyinely.mcm.upstack.annotation.SoftSided;
+import flyinely.mcm.upstack.registry.ModItemTags;
+import flyinely.mcm.upstack.util.ItemComponentUtil;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.ApiStatus;
 
-import static flyinely.mcm.upstack.Config.StackSize;
+import static flyinely.mcm.upstack.registry.ModConfig.StackSize;
 import static flyinely.mcm.upstack.util.ItemComponentUtil.setMaxStackSize;
 import static flyinely.mcm.upstack.util.ResUtil.id;
 
@@ -34,7 +36,7 @@ public final class ModStackSizes {
 		setMaxStackSize(ItemTags.BOATS, StackSize.Common.BOATS.get());
 		
 		// c
-		setMaxStackSize(ModItemTags.C.BANNER_PATTERNS, StackSize.Common.BANNER_PATTERNS.get());
+		ItemComponentUtil.setMaxStackSize(ModItemTags.C.BANNER_PATTERNS, StackSize.Common.BANNER_PATTERNS.get());
 		setMaxStackSize(ModItemTags.C.BUCKETS, StackSize.Common.BUCKETS.get());
 		setMaxStackSize(ModItemTags.C.CHICKEN_EGGS, StackSize.Common.CHICKEN_EGGS.get());
 		setMaxStackSize(ModItemTags.C.HORSE_ARMOR, StackSize.Common.HORSE_ARMOR.get());

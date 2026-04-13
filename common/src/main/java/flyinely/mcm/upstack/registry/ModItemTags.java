@@ -26,7 +26,8 @@ public class ModItemTags {
 	 * @see <a href="https://wiki.fabricmc.net/community:common_tags">Common tags - Fabric</a>
 	 * @see <a href="https://docs.neoforged.net/docs/resources/server/tags/">Common tags - NeoForge</a>
 	 */
-	public static class C {
+	@StaticRegistry
+   public static class C {
 
       // --- Populated by NeoForge and Fabric
 
@@ -50,7 +51,8 @@ public class ModItemTags {
    }
 
    /** Item tags in the {@code pastel} namespace used by Upstack. */
-	public static class Pastel {
+	@StaticRegistry
+   public static class Pastel {
 
       // --- Populated by pastel
 
@@ -68,7 +70,8 @@ public class ModItemTags {
 	}
 
    /** Item tags in the {@code farmersdelight} namespace used by Upstack. */
-	public static class Farmersdelight {
+	@StaticRegistry
+   public static class Farmersdelight {
 
       // --- Populated by farmersdelight
 

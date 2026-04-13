@@ -2,7 +2,7 @@ package flyinely.mcm.upstack.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import flyinely.mcm.upstack.Config;
+import flyinely.mcm.upstack.registry.ModConfig;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -18,11 +18,11 @@ public class EggItemMixin {
 	
 	/**
 	 * Sets and enforces a use cooldown for {@link Items#SNOWBALL} using the cooldown duration (in ticks) supplied by
-	 * {@link Config.Cooldowns#SNOWBALL_THROW_COOLDOWN}, if greater than zero.
+	 * {@link ModConfig.Cooldowns#SNOWBALL_THROW_COOLDOWN}, if greater than zero.
 	 */
 	@WrapMethod(method = "use")
 	protected InteractionResultHolder<ItemStack> useWithCooldown(Level level, Player player, InteractionHand hand, Operation<InteractionResultHolder<ItemStack>> original) {
-		int duration = Config.Cooldowns.EGG_THROW_COOLDOWN.getAsInt();
+		int duration = ModConfig.Cooldowns.EGG_THROW_COOLDOWN.getAsInt();
 		if (duration > 0) {
 			ItemStack stack = player.getItemInHand(hand);
 			ItemCooldowns cooldowns = player.getCooldowns();
