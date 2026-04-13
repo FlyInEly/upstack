@@ -3,6 +3,7 @@ package flyinely.mcm.upstack.registry;
 import flyinely.mcm.upstack.annotation.SoftSided;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import org.jetbrains.annotations.ApiStatus;
 
 import static flyinely.mcm.upstack.Config.StackSize;
 import static flyinely.mcm.upstack.util.ItemComponentUtil.setMaxStackSize;
@@ -10,10 +11,10 @@ import static flyinely.mcm.upstack.util.ResUtil.id;
 
 /**
  * Set max stack sizes according to the mod's config.
- * @see #apply()
  */
+@ApiStatus.Internal
 @SoftSided.Server
-public final class MStackSizes {
+public final class ModStackSizes {
 
    /**
 	 * Set max stack sizes by tag, then by item, according to the mod's config.

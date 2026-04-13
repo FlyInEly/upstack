@@ -1,6 +1,6 @@
 package flyinely.mcm.upstack;
 
-import flyinely.mcm.upstack.registry.MStackSizes;
+import flyinely.mcm.upstack.registry.ModStackSizes;
 
 public class UpstackCommon {
    
@@ -10,7 +10,7 @@ public class UpstackCommon {
 
    public static void onServerStarting() {
       Constants.LOG.info("Applying max stack size modifications...");
-      MStackSizes.apply();
+      ModStackSizes.apply();
 		Constants.LOG.info("Done applying max stack size modifications.");
    }
 }
