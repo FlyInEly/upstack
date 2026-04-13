@@ -24,4 +24,13 @@ public abstract class CContract {
    @Target({ElementType.METHOD})
    public @interface StaticInit {
    }
+
+   /**
+    * Indicates that the class promises that all public members are {@code static final}, and there
+    * are no public methods.
+    */
+   @Retention(RetentionPolicy.SOURCE)
+   @Target({ElementType.TYPE})
+   public @interface StaticRegistry {
+   }
 }

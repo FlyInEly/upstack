@@ -1,7 +1,7 @@
 package flyinely.mcm.upstack;
 
 import flyinely.mcm.upstack.annotation.CContract;
-import flyinely.mcm.upstack.registry.MItemTags;
+import flyinely.mcm.upstack.registry.ModItemTags;
 import flyinely.mcm.upstack.util.ItemComponentUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -117,14 +117,14 @@ public class Config {
             BUILDER.push("pastel");
 
             BUILDER.push("tags");
-            BULBS = tag(MItemTags.Pastel.BULBS, 64); // mod: 16
-            FUSION_SHRINES = tag(MItemTags.Pastel.FUSION_SHRINES, 64); // mod: 1
-            ITEM_BOWLS = tag(MItemTags.Pastel.ITEM_BOWLS, 64); // mod: 16 (exc. enlightenment bowl: 64)
-            NETWORK_NODES = tag(MItemTags.Pastel.NETWORK_NODES, 64); // mod: 16
-            PEDESTALS = tag(MItemTags.Pastel.PEDESTALS, 64); // mod: 1
-            ROUNDELS = tag(MItemTags.Pastel.ROUNDELS, 64); // mod: 16 (exc. preservation roundel: 64)
-            SHOOTING_STARS = tag(MItemTags.Pastel.SHOOTING_STARS, 16); // mod: 1. entity-spawning
-            STRUCTURE_UPGRADES = tag(MItemTags.Pastel.STRUCTURE_UPGRADES, 64); // mod: 16
+            BULBS = tag(ModItemTags.Pastel.BULBS, 64); // mod: 16
+            FUSION_SHRINES = tag(ModItemTags.Pastel.FUSION_SHRINES, 64); // mod: 1
+            ITEM_BOWLS = tag(ModItemTags.Pastel.ITEM_BOWLS, 64); // mod: 16 (exc. enlightenment bowl: 64)
+            NETWORK_NODES = tag(ModItemTags.Pastel.NETWORK_NODES, 64); // mod: 16
+            PEDESTALS = tag(ModItemTags.Pastel.PEDESTALS, 64); // mod: 1
+            ROUNDELS = tag(ModItemTags.Pastel.ROUNDELS, 64); // mod: 16 (exc. preservation roundel: 64)
+            SHOOTING_STARS = tag(ModItemTags.Pastel.SHOOTING_STARS, 16); // mod: 1. entity-spawning
+            STRUCTURE_UPGRADES = tag(ModItemTags.Pastel.STRUCTURE_UPGRADES, 64); // mod: 16
             BUILDER.pop(); // tags
 
             AETHER_VESTIGES = item(id("pastel", "aether_vestiges"), 64); // mod: 1
@@ -168,7 +168,7 @@ public class Config {
             BUILDER.push("farmersdelight");
 
             BUILDER.push("tags");
-            FEASTS = tag(MItemTags.Farmersdelight.FEASTS, 16); // mod: 1. upstack: parity with bowl foods. feasts contain many serves, but aren't directly edible anyway
+            FEASTS = tag(ModItemTags.Farmersdelight.FEASTS, 16); // mod: 1. upstack: parity with bowl foods. feasts contain many serves, but aren't directly edible anyway
             BUILDER.pop(); // tags
 
             COOKING_POT = item(id("farmersdelight", "cooking_pot"), 16); // mod: 1. upstack: moderate QOL on par with filled bucket, especially for crafting/moving empty pots
@@ -216,14 +216,14 @@ public class Config {
             BANNERS = tag(ItemTags.BANNERS, 64); // vanilla: 16. default: parity w/general items.
             BEDS = tag(ItemTags.BEDS, 16); // vanilla: 1. default: not higher due to cheap explosive power.
             BOATS = tag(ItemTags.BOATS, 16); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
-            CHICKEN_EGGS = tag(MItemTags.C.CHICKEN_EGGS, 64); // vanilla: 16. default: parity w/general items, for crafting QOL.
-            BANNER_PATTERNS = tag(MItemTags.C.BANNER_PATTERNS, 64); // vanilla: 1. default: parity w/general items, for carrying QOL. they are dupable and aren't
-            BUCKETS = tag(MItemTags.C.BUCKETS, 16); // vanilla: 1. default: parity w/honey bottles.
-            HORSE_ARMOR = tag(MItemTags.C.HORSE_ARMOR, 16); // vanilla: 1. default: not lower due to lack of durability and foreseen balance issues.
-            MILK_BOTTLES = tag(MItemTags.C.MILK_BOTTLES, 0); // usually 16. included for configurability.
-            MINECARTS = tag(MItemTags.C.MINECARTS, 16); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
-            MUSIC_DISCS = tag(MItemTags.C.MUSIC_DISCS, 64); // vanilla: 1.
-            SOUPS = tag(MItemTags.C.SOUPS, 16); // vanilla: 1. default: parity w/farmersdelight; makes soups actually viable food
+            CHICKEN_EGGS = tag(ModItemTags.C.CHICKEN_EGGS, 64); // vanilla: 16. default: parity w/general items, for crafting QOL.
+            BANNER_PATTERNS = tag(ModItemTags.C.BANNER_PATTERNS, 64); // vanilla: 1. default: parity w/general items, for carrying QOL. they are dupable and aren't
+            BUCKETS = tag(ModItemTags.C.BUCKETS, 16); // vanilla: 1. default: parity w/honey bottles.
+            HORSE_ARMOR = tag(ModItemTags.C.HORSE_ARMOR, 16); // vanilla: 1. default: not lower due to lack of durability and foreseen balance issues.
+            MILK_BOTTLES = tag(ModItemTags.C.MILK_BOTTLES, 0); // usually 16. included for configurability.
+            MINECARTS = tag(ModItemTags.C.MINECARTS, 16); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
+            MUSIC_DISCS = tag(ModItemTags.C.MUSIC_DISCS, 64); // vanilla: 1.
+            SOUPS = tag(ModItemTags.C.SOUPS, 16); // vanilla: 1. default: parity w/farmersdelight; makes soups actually viable food
             BUILDER.pop(); // tags
 
             ARMOR_STAND = item(id("minecraft", "armor_stand"), 64); // vanilla: 16. default: parity w/general items.

@@ -33,27 +33,27 @@ public final class MStackSizes {
 		setMaxStackSize(ItemTags.BOATS, StackSize.Common.BOATS.get());
 		
 		// c
-		setMaxStackSize(MItemTags.C.BANNER_PATTERNS, StackSize.Common.BANNER_PATTERNS.get());
-		setMaxStackSize(MItemTags.C.BUCKETS, StackSize.Common.BUCKETS.get());
-		setMaxStackSize(MItemTags.C.CHICKEN_EGGS, StackSize.Common.CHICKEN_EGGS.get());
-		setMaxStackSize(MItemTags.C.HORSE_ARMOR, StackSize.Common.HORSE_ARMOR.get());
-		setMaxStackSize(MItemTags.C.MILK_BOTTLES, StackSize.Common.MILK_BOTTLES.get());
-		setMaxStackSize(MItemTags.C.MINECARTS, StackSize.Common.MINECARTS.get());
-		setMaxStackSize(MItemTags.C.MUSIC_DISCS, StackSize.Common.MUSIC_DISCS.get());
-		setMaxStackSize(MItemTags.C.SOUPS, StackSize.Common.SOUPS.get());
+		setMaxStackSize(ModItemTags.C.BANNER_PATTERNS, StackSize.Common.BANNER_PATTERNS.get());
+		setMaxStackSize(ModItemTags.C.BUCKETS, StackSize.Common.BUCKETS.get());
+		setMaxStackSize(ModItemTags.C.CHICKEN_EGGS, StackSize.Common.CHICKEN_EGGS.get());
+		setMaxStackSize(ModItemTags.C.HORSE_ARMOR, StackSize.Common.HORSE_ARMOR.get());
+		setMaxStackSize(ModItemTags.C.MILK_BOTTLES, StackSize.Common.MILK_BOTTLES.get());
+		setMaxStackSize(ModItemTags.C.MINECARTS, StackSize.Common.MINECARTS.get());
+		setMaxStackSize(ModItemTags.C.MUSIC_DISCS, StackSize.Common.MUSIC_DISCS.get());
+		setMaxStackSize(ModItemTags.C.SOUPS, StackSize.Common.SOUPS.get());
 		
 		// pastel
-		setMaxStackSize(MItemTags.Pastel.BULBS, StackSize.Pastel.BULBS.get());
-		setMaxStackSize(MItemTags.Pastel.FUSION_SHRINES, StackSize.Pastel.FUSION_SHRINES.get());
-		setMaxStackSize(MItemTags.Pastel.ITEM_BOWLS, StackSize.Pastel.ITEM_BOWLS.get());
-		setMaxStackSize(MItemTags.Pastel.NETWORK_NODES, StackSize.Pastel.NETWORK_NODES.get());
-		setMaxStackSize(MItemTags.Pastel.PEDESTALS, StackSize.Pastel.PEDESTALS.get());
-		setMaxStackSize(MItemTags.Pastel.ROUNDELS, StackSize.Pastel.ROUNDELS.get());
-		setMaxStackSize(MItemTags.Pastel.SHOOTING_STARS, StackSize.Pastel.SHOOTING_STARS.get());
-		setMaxStackSize(MItemTags.Pastel.STRUCTURE_UPGRADES, StackSize.Pastel.STRUCTURE_UPGRADES.get());
+		setMaxStackSize(ModItemTags.Pastel.BULBS, StackSize.Pastel.BULBS.get());
+		setMaxStackSize(ModItemTags.Pastel.FUSION_SHRINES, StackSize.Pastel.FUSION_SHRINES.get());
+		setMaxStackSize(ModItemTags.Pastel.ITEM_BOWLS, StackSize.Pastel.ITEM_BOWLS.get());
+		setMaxStackSize(ModItemTags.Pastel.NETWORK_NODES, StackSize.Pastel.NETWORK_NODES.get());
+		setMaxStackSize(ModItemTags.Pastel.PEDESTALS, StackSize.Pastel.PEDESTALS.get());
+		setMaxStackSize(ModItemTags.Pastel.ROUNDELS, StackSize.Pastel.ROUNDELS.get());
+		setMaxStackSize(ModItemTags.Pastel.SHOOTING_STARS, StackSize.Pastel.SHOOTING_STARS.get());
+		setMaxStackSize(ModItemTags.Pastel.STRUCTURE_UPGRADES, StackSize.Pastel.STRUCTURE_UPGRADES.get());
 		
 		// farmersdelight
-		setMaxStackSize(MItemTags.Farmersdelight.FEASTS, StackSize.Farmersdelight.FEASTS.get());
+		setMaxStackSize(ModItemTags.Farmersdelight.FEASTS, StackSize.Farmersdelight.FEASTS.get());
 	}
 	
 	private static void items() {
