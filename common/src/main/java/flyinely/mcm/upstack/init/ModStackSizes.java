@@ -56,8 +56,12 @@ public final class ModStackSizes {
     * followed by the stack size it represents (an unsigned integer). This method
     * does not verify that the represented stack size is in-range, to avoid redundancy
     * when called with {@link flyinely.mcm.upstack.util.ItemComponentUtil#setMaxStackSize(TagKey, int)}.
-    * @param
-    * @return
+    * <p>
+    * In the future, upgrade this system to use custom JSON. Using tags means that a given item can be
+    * tagged with multiple different stack sizes, with no control over precedence.
+    *
+    * @param tag the item tag
+    * @return an optional containing the stack size represented by the item tag, if applicable, or {@link Optional#empty()}.
     */
    private static Optional<Integer> parseStackSize(@NotNull TagKey<Item> tag) {
       String id = tag.location().toString();
