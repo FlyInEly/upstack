@@ -129,7 +129,7 @@ public final class ModStackSizes {
     */
    private static Optional<Integer> toValue(@NotNull TagKey<Item> key) {
       String id = key.location().toString();
-      if (!id.startsWith(TAG_PREFIX)) {
+      if (id.startsWith(TAG_PREFIX)) {
          try {
             return Optional.of(Integer.parseUnsignedInt(id.replaceFirst(TAG_PREFIX, "")));
          } catch (NumberFormatException ignored) {
