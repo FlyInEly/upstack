@@ -2,7 +2,6 @@ package flyinely.mcm.upstack.init;
 
 import flyinely.mcm.upstack.annotation.SoftSided;
 import flyinely.mcm.upstack.registry.ModItemTags;
-import flyinely.mcm.upstack.util.ItemComponentUtil;
 import flyinely.mcm.upstack.util.TagUtil;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.ItemTags;
@@ -26,7 +25,7 @@ import static flyinely.mcm.upstack.util.ResUtil.id;
 public final class ModStackSizes {
 
    // tagPrefix MUST also be a valid prefix for a tag. no backslashes or other special characters
-   // which would mess up the regex replaceFirst().
+   // which would mess up the regex replaceFirst(). Should move to a public class for use by other mods' datagen
    private static final String TAG_PREFIX = "upstack:max_stack_size/";
 
    /**
@@ -39,14 +38,36 @@ public final class ModStackSizes {
       tags();
       items();
 
+      // For each tag with the prefix #TAG_PREFIX, the
       BuiltInRegistries.ITEM.getTagNames()
-            .map(ModStackSizes::toValue)
+            .map(ModStackSizes::parseStackSize)
             .flatMap(Optional::stream)
-            .forEach(size -> setMaxStackSize(toTag(size), size));
+            .forEach(size -> setMaxStackSize(tag(size), size));
    }
 
-   private static @NotNull TagKey<Item> toTag(Integer size) {
+   private static @NotNull TagKey<Item> tag(Integer size) {
       return TagUtil.item(TAG_PREFIX + size);
+   }
+
+   /**
+    * Return the stack size represented by the item tag, if applicable.
+    * <p>
+    * An item tag represents a stack size if its location is {@link #TAG_PREFIX}
+    * followed by the stack size it represents (an unsigned integer). This method
+    * does not verify that the represented stack size is in-range, to avoid redundancy
+    * when called with {@link flyinely.mcm.upstack.util.ItemComponentUtil#setMaxStackSize(TagKey, int)}.
+    * @param
+    * @return
+    */
+   private static Optional<Integer> parseStackSize(@NotNull TagKey<Item> tag) {
+      String id = tag.location().toString();
+      if (id.startsWith(TAG_PREFIX)) {
+         try {
+            return Optional.of(Integer.parseUnsignedInt(id.replaceFirst(TAG_PREFIX, "")));
+         } catch (NumberFormatException ignored) {
+         }
+      }
+      return Optional.empty();
    }
 
    private static void tags() {
@@ -56,7 +77,7 @@ public final class ModStackSizes {
       setMaxStackSize(ItemTags.BOATS, StackSize.Common.BOATS.get());
 
       // c
-      ItemComponentUtil.setMaxStackSize(ModItemTags.C.BANNER_PATTERNS, StackSize.Common.BANNER_PATTERNS.get());
+      setMaxStackSize(ModItemTags.C.BANNER_PATTERNS, StackSize.Common.BANNER_PATTERNS.get());
       setMaxStackSize(ModItemTags.C.BUCKETS, StackSize.Common.BUCKETS.get());
       setMaxStackSize(ModItemTags.C.CHICKEN_EGGS, StackSize.Common.CHICKEN_EGGS.get());
       setMaxStackSize(ModItemTags.C.HORSE_ARMOR, StackSize.Common.HORSE_ARMOR.get());
@@ -122,19 +143,5 @@ public final class ModStackSizes {
 
       // farmersdelight
       setMaxStackSize(id("farmersdelight:cooking_pot"), StackSize.Farmersdelight.COOKING_POT.get());
-   }
-
-   /**
-    * Out-of-range stack sizes are to be handled by setMaxStackSize, so we don't check them here.
-    */
-   private static Optional<Integer> toValue(@NotNull TagKey<Item> key) {
-      String id = key.location().toString();
-      if (id.startsWith(TAG_PREFIX)) {
-         try {
-            return Optional.of(Integer.parseUnsignedInt(id.replaceFirst(TAG_PREFIX, "")));
-         } catch (NumberFormatException ignored) {
-         }
-      }
-      return Optional.empty();
    }
 }
