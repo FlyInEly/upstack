@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 
 import static flyinely.mcm.upstack.registry.ModConfig.StackSize;
-import static flyinely.mcm.upstack.util.ItemComponentUtil.*;
+import static flyinely.mcm.upstack.util.ItemComponentUtil.setMaxStackSize;
 import static flyinely.mcm.upstack.util.ResUtil.id;
 
 /**
@@ -40,12 +40,12 @@ public final class ModStackSizes {
       items();
 
       BuiltInRegistries.ITEM.getTagNames()
-            .map(ModStackSizes::parseStackSize)
+            .map(ModStackSizes::toValue)
             .flatMap(Optional::stream)
-            .forEach(size -> setMaxStackSize(tag(size), size));
+            .forEach(size -> setMaxStackSize(toTag(size), size));
    }
 
-   private static @NotNull TagKey<Item> tag(Integer size) {
+   private static @NotNull TagKey<Item> toTag(Integer size) {
       return TagUtil.item(TAG_PREFIX + size);
    }
 
@@ -124,14 +124,14 @@ public final class ModStackSizes {
       setMaxStackSize(id("farmersdelight:cooking_pot"), StackSize.Farmersdelight.COOKING_POT.get());
    }
 
-   private static Optional<Integer> parseStackSize(@NotNull TagKey<Item> key) {
+   /**
+    * Out-of-range stack sizes are to be handled by setMaxStackSize, so we don't check them here.
+    */
+   private static Optional<Integer> toValue(@NotNull TagKey<Item> key) {
       String id = key.location().toString();
       if (!id.startsWith(TAG_PREFIX)) {
          try {
-            var value = Integer.parseUnsignedInt(id.replaceFirst(TAG_PREFIX, ""));
-            if (ABSOLUTE_MIN_STACK_SIZE <= value && value <= ABSOLUTE_MAX_STACK_SIZE) {
-               return Optional.of(value);
-            }
+            return Optional.of(Integer.parseUnsignedInt(id.replaceFirst(TAG_PREFIX, "")));
          } catch (NumberFormatException ignored) {
          }
       }
