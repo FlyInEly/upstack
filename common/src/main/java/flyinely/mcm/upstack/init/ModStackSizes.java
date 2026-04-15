@@ -6,8 +6,11 @@ import flyinely.mcm.upstack.util.ItemComponentUtil;
 import flyinely.mcm.upstack.util.TagUtil;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
@@ -22,6 +25,8 @@ import static flyinely.mcm.upstack.util.ResUtil.id;
 @SoftSided.Server
 public final class ModStackSizes {
 
+   // tagPrefix MUST also be a valid prefix for a tag. no backslashes or other special characters
+   // which would mess up the regex replaceFirst().
    private static final String TAG_PREFIX = "upstack:max_stack_size/";
 
    /**
@@ -34,17 +39,14 @@ public final class ModStackSizes {
       tags();
       items();
 
-      // TODO: max_stack_size as a constant stored somewhere, for use in other mods' datagen
-      // tagPrefix MUST also be a valid prefix for a tag. no backslashes or other special characters
-      // which would mess up the regex replaceFirst().
-
       BuiltInRegistries.ITEM.getTagNames()
-            .map(k -> k.location().toString())
             .map(ModStackSizes::parseStackSize)
-            .filter(Optional::isPresent)
-            .forEach(s -> setMaxStackSize(TagUtil.item(TAG_PREFIX + s.get()), s.get()));
+            .flatMap(Optional::stream)
+            .forEach(size -> setMaxStackSize(tag(size), size));
+   }
 
-      setMaxStackSize(TagUtil.item("upstack:max_stack_size/64"), 64);
+   private static @NotNull TagKey<Item> tag(Integer size) {
+      return TagUtil.item(TAG_PREFIX + size);
    }
 
    private static void tags() {
@@ -122,13 +124,14 @@ public final class ModStackSizes {
       setMaxStackSize(id("farmersdelight:cooking_pot"), StackSize.Farmersdelight.COOKING_POT.get());
    }
 
-   private static Optional<Integer> parseStackSize(String tagLocation) {
-      if (tagLocation.startsWith(TAG_PREFIX)) {
-         tagLocation = tagLocation.replaceFirst(TAG_PREFIX, "");
+   private static Optional<Integer> parseStackSize(@NotNull TagKey<Item> key) {
+      String id = key.location().toString();
+      if (!id.startsWith(TAG_PREFIX)) {
          try {
-            var stackSize = Integer.parseUnsignedInt(tagLocation);
-            if (ABSOLUTE_MIN_STACK_SIZE <= stackSize && stackSize <= ABSOLUTE_MAX_STACK_SIZE)
-               return Optional.of(stackSize);
+            var value = Integer.parseUnsignedInt(id.replaceFirst(TAG_PREFIX, ""));
+            if (ABSOLUTE_MIN_STACK_SIZE <= value && value <= ABSOLUTE_MAX_STACK_SIZE) {
+               return Optional.of(value);
+            }
          } catch (NumberFormatException ignored) {
          }
       }
