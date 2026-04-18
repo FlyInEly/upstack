@@ -1,4 +1,4 @@
-package flyinely.mcm.upstack.mixin.registry;
+package flyinely.mcm.upstack.mixin;
 
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.world.item.Item;

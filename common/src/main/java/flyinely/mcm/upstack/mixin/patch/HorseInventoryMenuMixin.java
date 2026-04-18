@@ -1,4 +1,4 @@
-package flyinely.mcm.upstack.mixin;
+package flyinely.mcm.upstack.mixin.patch;
 
 
 import flyinely.mcm.upstack.Constants;

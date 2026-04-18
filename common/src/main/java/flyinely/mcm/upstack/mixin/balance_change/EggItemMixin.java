@@ -1,4 +1,4 @@
-package flyinely.mcm.upstack.mixin;
+package flyinely.mcm.upstack.mixin.balance_change;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;

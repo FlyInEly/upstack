@@ -1,4 +1,4 @@
-package flyinely.mcm.upstack.mixin;
+package flyinely.mcm.upstack.mixin.patch;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BucketItem;
