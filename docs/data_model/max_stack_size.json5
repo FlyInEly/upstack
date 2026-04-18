@@ -1,0 +1,11 @@
+{
+  "items": {
+    "minecraft:egg": 64,
+    "pastel:resonance_shard": 64
+  },
+  "tags": {
+    "minecraft:beds": 16,
+    "pastel:shooting_stars": 16
+  },
+  "rule": "at_least" // at_most, exactly, yield (if no others are setting limitations)
+}
