@@ -4,3 +4,6 @@
 # Contains absolute classpaths
 /compiler.xml
 runConfigurations/
+
+# Cache
+jarRepositories.xml
