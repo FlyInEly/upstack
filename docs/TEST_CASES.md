@@ -1,3 +1,6 @@
+### PlayerMixin
+Test both overstack splitting and understack combining.
+
 ### HorseInventoryMenuMixin
 Configure the max stack sizes of minecraft:saddle and #c:horse_armor to 16.
 Do not modify the max stack size of minecraft:cobblestone (64).
