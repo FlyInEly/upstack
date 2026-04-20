@@ -1,8 +1,7 @@
-package flyinely.mcm.upstack.mixin.patch;
+package flyinely.mcm.upstack.mixin.balance_change;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import flyinely.mcm.upstack.mixin.balance_change.ThrowablePotionItemMixin;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
