@@ -10,6 +10,7 @@
     "HorseInventoryMenuMixin",
     "LingeringPotionItemMixin",
     "LoomMenuMixin",
+    "PlayerMixin",
     "SnowballItemMixin",
     "SolidBucketItemMixin",
     "SplashPotionItemMixin",

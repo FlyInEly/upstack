@@ -2,7 +2,7 @@ package flyinely.mcm.upstack.util;
 
 import flyinely.mcm.upstack.Constants;
 import flyinely.mcm.upstack.annotation.SoftSided;
-import flyinely.mcm.upstack.mixin.registry.ItemAccessor;
+import flyinely.mcm.upstack.mixin.ItemAccessor;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponentType;
@@ -11,11 +11,14 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Objects;
 
 /**
  * Utility for modifying {@link net.minecraft.world.item.Item} components. Generally, desired modifications
@@ -35,6 +38,23 @@ public class ItemComponentUtil {
    private static final Logger LOG = LoggerFactory.getLogger(Constants.LOG.getName() + "/" + ItemComponentUtil.class.getSimpleName());
 
    // GENERAL
+	
+	/**
+	 * Resets the specified component of the stack to the default value for that item.
+	 * Returns whether the component's value was changed.
+	 *
+	 * @param stack     the target item stack
+	 * @param component the component
+	 * @return true if and only if the component's value was changed
+	 */
+	public static <T> boolean reset(ItemStack stack, DataComponentType<T> component) {
+		T defaultValue = stack.getItem().components().get(component);
+		if (Objects.equals(stack.get(component), defaultValue)) {
+			stack.set(component, defaultValue);
+			return true;
+		}
+		return false;
+	}
 
    /**
     * Sets each component to its given mapped value.
