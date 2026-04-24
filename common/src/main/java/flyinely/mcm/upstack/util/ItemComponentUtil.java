@@ -56,11 +56,11 @@ public class ItemComponentUtil {
 		return false;
 	}
 
-   public static <T> T getDefault(ItemStack stack, DataComponentType<T> component) {
+   public static <T> T getDefault(@NotNull ItemStack stack, DataComponentType<T> component) {
       return stack.getItem().getDefaultInstance().get(component);
    }
 
-   public static <T> boolean isDefault(ItemStack stack, DataComponentType<T> component) {
+   public static <T> boolean isDefault(@NotNull ItemStack stack, DataComponentType<T> component) {
       return Objects.equals(stack.get(component), getDefault(stack, component));
    }
 
