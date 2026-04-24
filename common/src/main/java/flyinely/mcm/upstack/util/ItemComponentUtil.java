@@ -48,15 +48,21 @@ public class ItemComponentUtil {
 	 * @return true if and only if the component's value was changed
 	 */
 	public static <T> boolean reset(ItemStack stack, DataComponentType<T> component) {
-		T defaultValue = stack.getItem().getDefaultInstance().get(component);
-		if (!Objects.equals(stack.get(component), defaultValue)) {
-         Constants.LOG.info("set {} to {}", stack.get(component), defaultValue);
+		T defaultValue = getDefault(stack, component);
+      if (Objects.equals(stack.get(component), defaultValue)) {
 			stack.set(component, defaultValue);
 			return true;
 		}
-      Constants.LOG.info("not set {} to {}", stack.get(component), defaultValue);
 		return false;
 	}
+
+   public static <T> T getDefault(ItemStack stack, DataComponentType<T> component) {
+      return stack.getItem().getDefaultInstance().get(component);
+   }
+
+   public static <T> boolean isDefault(ItemStack stack, DataComponentType<T> component) {
+      return Objects.equals(stack.get(component), getDefault(stack, component));
+   }
 
    /**
     * Sets each component to its given mapped value.

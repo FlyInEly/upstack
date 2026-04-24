@@ -5,6 +5,7 @@
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_18",
   "mixins": [
+    "AbstractContainerMenuMixin",
     "ItemAccessor",
     "PlayerMixin",
     "balance_change.EggItemMixin",
@@ -17,7 +18,9 @@
     "patch.LoomMenuMixin",
     "patch.SolidBucketItemMixin"
   ],
-  "client": [],
+  "client": [
+    "GuiGraphicsMixin"
+  ],
   "server": [],
   "injectors": {
     "defaultRequire": 1

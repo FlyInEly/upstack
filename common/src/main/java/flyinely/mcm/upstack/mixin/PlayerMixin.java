@@ -13,6 +13,9 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin(Player.class)
 public class PlayerMixin {
 
+   // TODO: Patch picking up items of unfixed stack sizes but which fit in the current stack size ending up splitting the item stack awkwardly
+
+
    @WrapMethod(method = "drop(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;")
    private ItemEntity handleDropItem(ItemStack droppedItem, boolean dropAround, boolean includeThrowerName, Operation<ItemEntity> original) {
       ItemEntity result = original.call(droppedItem, dropAround, includeThrowerName);
@@ -21,7 +24,7 @@ public class PlayerMixin {
          // TODO: Patch visually incorrect item counts, or include as limitation of the mod
          // Using droppedItem works because droppedItem is mutable and is retained by original.call
          if (ItemComponentUtil.reset(droppedItem, DataComponents.MAX_STACK_SIZE)) {
-            Constants.LOG.debug("Set the max stack size of item entity {} to the default for item {}", result, droppedItem.getItem());
+            Constants.LOG.info("Set the max stack size of {} to the default for {}", result, droppedItem.getItem());
          }
       }
       return result;
