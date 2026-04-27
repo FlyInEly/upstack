@@ -29,7 +29,6 @@ public class GuiGraphicsMixin {
 			poseStack.translate(0, 0, 190); // 10 layers below item counts
 			graphics.drawString(mFont, "#", mX, mY, Constants.OVERSTACKED_COLOR);
 			poseStack.popPose();
-			// TODO: Add a tooltip that indicates that the item is overstacked
 		}
 		original.call(instance);
 	}

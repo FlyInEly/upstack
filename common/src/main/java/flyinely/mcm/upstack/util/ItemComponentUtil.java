@@ -31,13 +31,13 @@ import java.util.Objects;
  */
 @SoftSided.Server
 public class ItemComponentUtil {
-
-   public static final int ABSOLUTE_MIN_STACK_SIZE = 1; // hardcoded: value copied from DataComponents.MAX_STACK_SIZE
-   public static final int ABSOLUTE_MAX_STACK_SIZE = Item.ABSOLUTE_MAX_STACK_SIZE;
-
-   private static final Logger LOG = LoggerFactory.getLogger(Constants.LOG.getName() + "/" + ItemComponentUtil.class.getSimpleName());
-
-   // GENERAL
+	
+	public static final int ABSOLUTE_MIN_STACK_SIZE = 1; // hardcoded: value copied from DataComponents.MAX_STACK_SIZE
+	public static final int ABSOLUTE_MAX_STACK_SIZE = Item.ABSOLUTE_MAX_STACK_SIZE;
+	
+	private static final Logger LOG = LoggerFactory.getLogger(Constants.LOG.getName() + "/" + ItemComponentUtil.class.getSimpleName());
+	
+	// GENERAL
 	
 	/**
 	 * Resets the specified component of the stack to the default value for that item.
@@ -48,123 +48,139 @@ public class ItemComponentUtil {
 	 * @return true if and only if the component's value was changed
 	 */
 	public static <T> boolean reset(ItemStack stack, DataComponentType<T> component) {
-		T defaultValue = getDefault(stack, component);
-      if (Objects.equals(stack.get(component), defaultValue)) {
+		T defaultValue = stack.getItem().getDefaultInstance().get(component);
+		if (Objects.equals(stack.get(component), defaultValue)) {
 			stack.set(component, defaultValue);
 			return true;
 		}
 		return false;
 	}
-
-   public static <T> T getDefault(@NotNull ItemStack stack, DataComponentType<T> component) {
-      return stack.getItem().getDefaultInstance().get(component);
-   }
-
-   public static <T> boolean isDefault(@NotNull ItemStack stack, DataComponentType<T> component) {
-      return Objects.equals(stack.get(component), getDefault(stack, component));
-   }
-
-   /**
-    * Sets each component to its given mapped value.
-    *
-    * @param item the target item
-    * @param map  the component map
-    * @implNote Replaces the item's current map with the given map.
-    */
+	
+	/**
+	 * Sets each component to its given mapped value.
+	 *
+	 * @param item the target item
+	 * @param map  the component map
+	 * @implNote Replaces the item's current map with the given map.
+	 */
 	@SoftSided.Server
-   public static void setAll(@NotNull Item item, @NotNull DataComponentMap map) {
-      LOG.debug("Modifying {}", item);
-      ((ItemAccessor) item).setComponents(map);
-   }
-
-   /**
-    * Sets each component to its given mapped value, unless that value is {@code null}.
-    *
-    * @param item the target item
-    * @param map  the component map
-    * @implNote Replaces the item's current map with a modified copy: the given map composed onto the current map.
-    * @see DataComponentMap#composite(DataComponentMap, DataComponentMap)
-    */
+	public static void setAll(@NotNull Item item, @NotNull DataComponentMap map) {
+		LOG.debug("Modifying {}", item);
+		((ItemAccessor) item).setComponents(map);
+	}
+	
+	/**
+	 * Sets each component to its given mapped value, unless that value is {@code null}.
+	 *
+	 * @param item the target item
+	 * @param map  the component map
+	 * @implNote Replaces the item's current map with a modified copy: the given map composed onto the current map.
+	 * @see DataComponentMap#composite(DataComponentMap, DataComponentMap)
+	 */
 	@SuppressWarnings("unused")
-   @SoftSided.Server
-   @ApiStatus.Experimental // Currently unused, and quick to replicate. Documentation is good though.
-   public static void setAllNonNull(@NotNull Item item, @NotNull DataComponentMap map) {
-      setAll(item, DataComponentMap.composite(item.components(), map));
-   }
-
-   /**
-    * Sets the component to the given value.
-    *
-    * @param item      the target item
-    * @param component the target component
-    * @param value     the component value
-    * @param <T>       of the component value
-    * @implNote Replaces the item's current map with a modified copy: the current map with the given modification.
-    */
 	@SoftSided.Server
-   public static <T> void set(@NotNull Item item, @NotNull DataComponentType<T> component, @Nullable T value) {
-      setAll(item, DataComponentMap.builder().addAll(item.components()).set(component, value).build());
-   }
-
-   /**
-    * Sets the component to the given value, on all items in the given tag.
-    *
-    * @param tag       the target tag
-    * @param component the target component
-    * @param value     the component value
-    * @param <T>       of the component value
-    * @see #set(Item, DataComponentType, Object)
-    */
+	@ApiStatus.Experimental // Currently unused, and quick to replicate. Documentation is good though.
+	public static void setAllNonNull(@NotNull Item item, @NotNull DataComponentMap map) {
+		setAll(item, DataComponentMap.composite(item.components(), map));
+	}
+	
+	/**
+	 * Sets the component to the given value.
+	 *
+	 * @param item      the target item
+	 * @param component the target component
+	 * @param value     the component value
+	 * @param <T>       of the component value
+	 * @implNote Replaces the item's current map with a modified copy: the current map with the given modification.
+	 */
 	@SoftSided.Server
-   public static <T> void set(@NotNull TagKey<Item> tag, @NotNull DataComponentType<T> component, @Nullable T value) {
-      if (BuiltInRegistries.ITEM.getTag(tag).isEmpty()) {
-         LOG.warn("Tried to modify {} of all items in #{}, but the tag is empty. Was modification attempted too early?", component, tag.location());
-      } else {
-         LOG.info("Modifying {} of all items in #{}", component, tag.location());
-         BuiltInRegistries.ITEM.getTag(tag).get().stream().filter(Holder::isBound).map(Holder::value).forEach(item -> set(item, component, value));
-      }
-   }
-
-   // SPECIFIC
-
-   /**
-    * Sets the {@link DataComponents#MAX_STACK_SIZE} component to the given value,
-    * if the value is within [1, {@link Item#ABSOLUTE_MAX_STACK_SIZE}].
-    *
-    * @param item  the target item
-    * @param value the max stack size value
-    */
+	public static <T> void set(@NotNull Item item, @NotNull DataComponentType<T> component, @Nullable T value) {
+		setAll(item, DataComponentMap.builder().addAll(item.components()).set(component, value).build());
+	}
+	
+	/**
+	 * Sets the component to the given value, on all items in the given tag.
+	 *
+	 * @param tag       the target tag
+	 * @param component the target component
+	 * @param value     the component value
+	 * @param <T>       of the component value
+	 * @see #set(Item, DataComponentType, Object)
+	 */
 	@SoftSided.Server
-   public static void setMaxStackSize(@NotNull Item item, int value) {
-      if (value >= ABSOLUTE_MIN_STACK_SIZE && value <= ABSOLUTE_MAX_STACK_SIZE) {
-         set(item, DataComponents.MAX_STACK_SIZE, value);
-      }
-   }
-
-   /**
-    * Sets the {@link DataComponents#MAX_STACK_SIZE} component to the given value on the
-    * item with the given ID, if the value is within [1, {@link Item#ABSOLUTE_MAX_STACK_SIZE}]
-    * and the item is registered.
-    *
-    * @param id    the id of the target item
-    * @param value the max stack size value
-    */
+	public static <T> void set(@NotNull TagKey<Item> tag, @NotNull DataComponentType<T> component, @Nullable T value) {
+		if (BuiltInRegistries.ITEM.getTag(tag).isEmpty()) {
+			LOG.warn("Tried to modify {} of all items in #{}, but the tag is empty. Was modification attempted too early?", component, tag.location());
+		} else {
+			LOG.info("Modifying {} of all items in #{}", component, tag.location());
+			BuiltInRegistries.ITEM.getTag(tag).get().stream().filter(Holder::isBound).map(Holder::value).forEach(item -> set(item, component, value));
+		}
+	}
+	
+	// SPECIFIC
+	
+	/**
+	 * Sets the {@link DataComponents#MAX_STACK_SIZE} component to the given value,
+	 * if the value is within [1, {@link Item#ABSOLUTE_MAX_STACK_SIZE}].
+	 *
+	 * @param item  the target item
+	 * @param value the max stack size value
+	 */
 	@SoftSided.Server
-   public static void setMaxStackSize(@NotNull ResourceLocation id, int value) {
-      BuiltInRegistries.ITEM.getOptional(id).ifPresent(item -> setMaxStackSize(item, value));
-   }
-
-   /**
-    * Sets the {@link DataComponents#MAX_STACK_SIZE} component to the given value on all items
-    * in the tag, if the value is within [1, {@link Item#ABSOLUTE_MAX_STACK_SIZE}].
-    *
-    * @param tag   the target tag
-    * @param value the max stack size value
-    */
+	public static void setMaxStackSize(@NotNull Item item, int value) {
+		if (value >= ABSOLUTE_MIN_STACK_SIZE && value <= ABSOLUTE_MAX_STACK_SIZE) {
+			set(item, DataComponents.MAX_STACK_SIZE, value);
+		}
+	}
+	
+	/**
+	 * Sets the {@link DataComponents#MAX_STACK_SIZE} component to the given value on the
+	 * item with the given ID, if the value is within [1, {@link Item#ABSOLUTE_MAX_STACK_SIZE}]
+	 * and the item is registered.
+	 *
+	 * @param id    the id of the target item
+	 * @param value the max stack size value
+	 */
 	@SoftSided.Server
-   public static void setMaxStackSize(@NotNull TagKey<Item> tag, int value) {
-      if (value >= ABSOLUTE_MIN_STACK_SIZE && value <= ABSOLUTE_MAX_STACK_SIZE) {
-         set(tag, DataComponents.MAX_STACK_SIZE, value);
-      }
-   }
+	public static void setMaxStackSize(@NotNull ResourceLocation id, int value) {
+		BuiltInRegistries.ITEM.getOptional(id).ifPresent(item -> setMaxStackSize(item, value));
+	}
+	
+	/**
+	 * Sets the {@link DataComponents#MAX_STACK_SIZE} component to the given value on all items
+	 * in the tag, if the value is within [1, {@link Item#ABSOLUTE_MAX_STACK_SIZE}].
+	 *
+	 * @param tag   the target tag
+	 * @param value the max stack size value
+	 */
+	@SoftSided.Server
+	public static void setMaxStackSize(@NotNull TagKey<Item> tag, int value) {
+		if (value >= ABSOLUTE_MIN_STACK_SIZE && value <= ABSOLUTE_MAX_STACK_SIZE) {
+			set(tag, DataComponents.MAX_STACK_SIZE, value);
+		}
+	}
+	
+	public static class MaxStackSize {
+		public static int getDefault(@NotNull ItemStack stack) {
+			return stack.getItem().getDefaultInstance().getOrDefault(DataComponents.MAX_STACK_SIZE, 1);
+		}
+		
+		public static boolean isDefault(@NotNull ItemStack stack) {
+			return Objects.equals(stack.getMaxStackSize(), getDefault(stack));
+		}
+		
+		public static void reset(@NotNull ItemStack stack) {
+			int defaultValue = getDefault(stack);
+			stack.set(DataComponents.MAX_STACK_SIZE, defaultValue);
+		}
+		
+		public static boolean resetIfAtMostDefault(@NotNull ItemStack stack) {
+			int defaultValue = getDefault(stack);
+			if (stack.getCount() <= defaultValue) {
+				stack.set(DataComponents.MAX_STACK_SIZE, defaultValue);
+				return true;
+			}
+			return false;
+		}
+	}
 }
