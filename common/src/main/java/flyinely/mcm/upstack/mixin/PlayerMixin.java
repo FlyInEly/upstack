@@ -26,7 +26,7 @@ public class PlayerMixin {
          // TODO: Patch visually incorrect item counts, or include as limitation of the mod
          // Using droppedItem works because droppedItem is mutable and is retained by original.call
          if (ItemComponentUtil.reset(droppedItem, DataComponents.MAX_STACK_SIZE)) {
-            Constants.LOG.info("Set the max stack size of {} to the default for {}", result, droppedItem.getItem());
+            Constants.LOG.info("Set the max stack size of {} to its default", result);
          }
       }
       return result;
