@@ -14,7 +14,9 @@ import org.spongepowered.asm.mixin.Mixin;
 public class PlayerMixin {
 
    // TODO: Patch picking up items of unfixed stack sizes but which fit in the current stack size ending up splitting the item stack awkwardly
-
+	// TODO FIX: Patch using numbers to swap overstacked items with a building block, causing strange desync that makes the overstacked
+	// 	item act like the building block (and even get voided upon placing the block in survival)
+	//		Was not able to reproduce the voiding behavior
 
    @WrapMethod(method = "drop(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;")
    private ItemEntity handleDropItem(ItemStack droppedItem, boolean dropAround, boolean includeThrowerName, Operation<ItemEntity> original) {

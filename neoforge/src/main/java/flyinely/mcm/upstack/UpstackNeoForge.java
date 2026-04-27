@@ -1,5 +1,6 @@
 package flyinely.mcm.upstack;
 
+import flyinely.mcm.upstack.event.TooltipHandler;
 import flyinely.mcm.upstack.registry.ModConfig;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -7,6 +8,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.javafmlmod.FMLModContainer;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,13 +23,18 @@ public class UpstackNeoForge {
       // Register config w/screen
       container.registerConfig(net.neoforged.fml.config.ModConfig.Type.COMMON, ModConfig.SPEC);
       container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
-
+		
       Constants.LOG.info("Finished NeoForge init");
    }
 
    @SubscribeEvent
    public static void onServerStarting(ServerStartingEvent event) {
       Constants.LOG.info("Bootstrapping server starting");
-      UpstackCommon.onServerStarting(); // Bootstrap
+      UpstackCommon.onServerStarting();
    }
+	
+	@SubscribeEvent
+	public static void onItemTooltip(ItemTooltipEvent event) {
+		TooltipHandler.onHandleTooltip(event.getItemStack(), event.getToolTip());
+	}
 }
