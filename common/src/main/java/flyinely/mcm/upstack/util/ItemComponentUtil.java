@@ -162,7 +162,7 @@ public class ItemComponentUtil {
 	
 	public static class MaxStackSize {
 		public static int getDefault(@NotNull ItemStack stack) {
-			return stack.getItem().getDefaultInstance().getOrDefault(DataComponents.MAX_STACK_SIZE, 1);
+			return stack.getItem().getDefaultMaxStackSize(); // TESTING
 		}
 		
 		public static boolean isDefault(@NotNull ItemStack stack) {
@@ -174,13 +174,11 @@ public class ItemComponentUtil {
 			stack.set(DataComponents.MAX_STACK_SIZE, defaultValue);
 		}
 		
-		public static boolean resetIfAtMostDefault(@NotNull ItemStack stack) {
+		public static void resetIfAtMostDefault(@NotNull ItemStack stack) {
 			int defaultValue = getDefault(stack);
 			if (stack.getCount() <= defaultValue) {
 				stack.set(DataComponents.MAX_STACK_SIZE, defaultValue);
-				return true;
-			}
-			return false;
-		}
+         }
+      }
 	}
 }

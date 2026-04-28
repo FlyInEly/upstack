@@ -2,10 +2,7 @@ package flyinely.mcm.upstack.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import flyinely.mcm.upstack.Constants;
-import flyinely.mcm.upstack.util.ItemComponentUtil;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickType;
@@ -18,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static flyinely.mcm.upstack.util.ItemComponentUtil.*;
+import static flyinely.mcm.upstack.util.ItemComponentUtil.MaxStackSize;
 
 // TODO: FIX: First load of the world after a stack size reduction seems to cause overstacks
 //    to degrade to unstackables. Reloading the world a second time fixes the issue.
@@ -29,32 +26,33 @@ public class AbstractContainerMenuMixin {
 	//		See on-paper design reference for possible ways to change stack size correction, but
 	//		note that it is more involved. Probably would involve modifying doClick
 	// TODO: Fix issue with stack size set to 0 does not behave as expected
-//	@Inject(method = "setCarried", at = @At(value = "HEAD"))
-//	void onSetCarried(ItemStack stack, CallbackInfo ci) {
-//		if (MaxStackSize.resetIfAtMostDefault(stack)) { // Only correct max stack size when count is below it
-//			Constants.LOG.info("Set max stack size of {} to the default", stack);
-//		}
-//	}
+   // May be necessary here for the quick stack to cursor double click action.
+	@Inject(method = "setCarried", at = @At(value = "HEAD"))
+	void onSetCarried(ItemStack stack, CallbackInfo ci) {
+		MaxStackSize.resetIfAtMostDefault(stack); // Only correct max stack size when count is below it
+	}
 //
-//	@Shadow
-//	@Final
-//	public NonNullList<Slot> slots;
-//
-//	@WrapOperation(method = "moveItemStackTo", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;isSameItemSameComponents(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"))
-//	boolean onMoveItemStackTo(ItemStack stack, ItemStack other, Operation<Boolean> original) {
-//		MaxStackSize.resetIfAtMostDefault(stack);
-//		MaxStackSize.resetIfAtMostDefault(other);
-//		// one of these will get reset O(n) times, which is not good. this is temoprary
-//		return original.call(stack, other);
-//	}
+	@Shadow
+	@Final
+	public NonNullList<Slot> slots;
+
+
+   // Necessary to utilize increased default max stack size
+	@WrapOperation(method = "moveItemStackTo", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;isSameItemSameComponents(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"))
+	boolean onMoveItemStackTo(ItemStack stack, ItemStack other, Operation<Boolean> original) {
+		MaxStackSize.resetIfAtMostDefault(stack);
+		MaxStackSize.resetIfAtMostDefault(other);
+		// one of these will get reset O(n) times, which is not good. this is temoprary
+		return original.call(stack, other);
+	}
 //
 //	//    This seems to cover carrying and merging, including by quick move, ubt not what happens when
 //	//    clicking an overstacked stack, nor the issue that overstacked unstackables are not showing their stack size
-//	@Inject(method = "doClick", at = @At(value = "HEAD"))
-//	void onDoClick(int slotId, int button, ClickType clickType, Player player, CallbackInfo ci) {
-//		if (slotId >= 0 && slotId < slots.size()) {
-//			MaxStackSize.resetIfAtMostDefault(slots.get(slotId).getItem());
-//		}
-//	}
+	@Inject(method = "doClick", at = @At(value = "HEAD"))
+	void onDoClick(int slotId, int button, ClickType clickType, Player player, CallbackInfo ci) {
+		if (slotId >= 0 && slotId < slots.size()) {
+			MaxStackSize.resetIfAtMostDefault(slots.get(slotId).getItem());
+		}
+	}
 	
 }
