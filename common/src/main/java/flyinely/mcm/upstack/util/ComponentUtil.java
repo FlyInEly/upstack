@@ -21,15 +21,16 @@ import org.slf4j.LoggerFactory;
 import java.util.Objects;
 
 /**
- * Utility for modifying {@link net.minecraft.world.item.Item} components. Generally, desired modifications
- * should be made on server start and resource reload; mod initialization is too early for methods like
- * {@link #set(TagKey, DataComponentType, Object)}, which have no effect if tags are unpopulated.
+ * Static utility to modify instances of {@link DataComponentType}.
+ * <p>
+ * Generally, desired modifications should be made on server start and/or resource reload. Mod initialization is too early
+ * for methods which have no effect if tags are unpopulated, like {@link #set(TagKey, DataComponentType, Object)}.
  * <p>
  * Each tag or item modification produces an info-level or debug-level log message respectively.
- * Due to the aforementioned expectation that method calls are infrequent, these debug messages should hopefully
- * be more helpful than spammy.
+ * Due to the aforementioned expectation that method calls are infrequent, these debug messages are believed to be
+ * more helpful than spammy.
  *
- * @since 1.0.0
+ * @since 2.0.0
  */
 @SoftSided.Server
 public class ComponentUtil {
@@ -37,12 +38,12 @@ public class ComponentUtil {
    private static final Logger LOG = LoggerFactory.getLogger(Constants.LOG.getName() + "/" + ComponentUtil.class.getSimpleName());
 
    /**
-    * Sets each component to its given mapped value.
+    * Sets each component of the item to its mapped value.
     *
     * @param item the target item
-    * @param map  the component map
+    * @param map  the value map
     * @implNote Replaces the item's current map with the given map.
-    * @since 1.0.0
+    * @since 2.0.0
     */
    @SoftSided.Server
    public static void setAll(@NotNull Item item, @NotNull DataComponentMap map) {
@@ -51,14 +52,14 @@ public class ComponentUtil {
    }
 
    /**
-    * Sets the component to the given value.
+    * Sets the component of the item to the given value.
     *
     * @param item      the target item
     * @param component the target component
-    * @param value     the component value
-    * @param <T>       of the component value
-    * @implNote Replaces the item's current map with a modified copy: the current map with the given modification.
-    * @since 1.0.0
+    * @param value     the value
+    * @param <T>       of the value
+    * @implNote Replaces the item's current map with a modified copy.
+    * @since 2.0.0
     */
    @SoftSided.Server
    public static <T> void set(@NotNull Item item, @NotNull DataComponentType<T> component, @Nullable T value) {
@@ -66,14 +67,14 @@ public class ComponentUtil {
    }
 
    /**
-    * Sets the component to the given value, on all items in the given tag.
+    * Sets the component of all items in the tag to the given value.
     *
     * @param tag       the target tag
     * @param component the target component
-    * @param value     the component value
-    * @param <T>       of the component value
+    * @param value     the value
+    * @param <T>       of the value
     * @see #set(Item, DataComponentType, Object)
-    * @since 1.0.0
+    * @since 2.0.0
     */
    @SoftSided.Server
    public static <T> void set(@NotNull TagKey<Item> tag, @NotNull DataComponentType<T> component, @Nullable T value) {
@@ -140,7 +141,7 @@ public class ComponentUtil {
        * Checks whether the max stack size of the stack is the default for its item.
        *
        * @param stack the target stack
-       * @return whether the stack's max stack size is the default for its item
+       * @return true if and only if the stack's max stack size is the default for its item
        * @since 2.0.0
        */
       @ApiStatus.Experimental
