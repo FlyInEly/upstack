@@ -45,7 +45,6 @@ public class ComponentUtil {
     * @implNote Replaces the item's current map with the given map.
     * @since 2.0.0
     */
-   @SoftSided.Server
    public static void setAll(@NotNull Item item, @NotNull DataComponentMap map) {
       LOG.debug("Modifying {}", item);
       ((ItemAccessor) item).setComponents(map);
@@ -61,7 +60,6 @@ public class ComponentUtil {
     * @implNote Replaces the item's current map with a modified copy.
     * @since 2.0.0
     */
-   @SoftSided.Server
    public static <T> void set(@NotNull Item item, @NotNull DataComponentType<T> component, @Nullable T value) {
       setAll(item, DataComponentMap.builder().addAll(item.components()).set(component, value).build());
    }
@@ -76,7 +74,6 @@ public class ComponentUtil {
     * @see #set(Item, DataComponentType, Object)
     * @since 2.0.0
     */
-   @SoftSided.Server
    public static <T> void set(@NotNull TagKey<Item> tag, @NotNull DataComponentType<T> component, @Nullable T value) {
       if (BuiltInRegistries.ITEM.getTag(tag).isEmpty()) {
          LOG.warn("Tried to modify {} of all items in #{}, but the tag is empty. Was modification attempted too early?", component, tag.location());
@@ -95,7 +92,6 @@ public class ComponentUtil {
     * @return true if and only if the component's value was changed
     * @since 2.0.0
     */
-   @SoftSided.Server
    public static <T> boolean reset(@NotNull ItemStack stack, DataComponentType<T> component) {
       T defaultValue = stack.getItem().getDefaultInstance().get(component);
       if (Objects.equals(stack.get(component), defaultValue)) {
@@ -182,7 +178,6 @@ public class ComponentUtil {
        * @param value the max stack size value
        * @since 2.0.0
        */
-      @SoftSided.Server
       public static void set(@NotNull Item item, int value) {
          if (value >= MIN && value <= MAX) {
             ComponentUtil.set(item, DataComponents.MAX_STACK_SIZE, value);
@@ -197,7 +192,6 @@ public class ComponentUtil {
        * @param value the max stack size value
        * @since 2.0.0
        */
-      @SoftSided.Server
       public static void set(@NotNull ResourceLocation id, int value) {
          BuiltInRegistries.ITEM.getOptional(id).ifPresent(item -> set(item, value));
       }
@@ -210,7 +204,6 @@ public class ComponentUtil {
        * @param value the max stack size value
        * @since 2.0.0
        */
-      @SoftSided.Server
       public static void set(@NotNull TagKey<Item> tag, int value) {
          if (value >= MIN && value <= MAX) {
             ComponentUtil.set(tag, DataComponents.MAX_STACK_SIZE, value);
