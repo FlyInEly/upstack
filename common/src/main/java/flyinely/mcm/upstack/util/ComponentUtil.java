@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -103,24 +104,68 @@ public class ComponentUtil {
       return false;
    }
 
+   /**
+    * Static utility to manipulate the {@link DataComponents#MAX_STACK_SIZE} of items and item stacks.
+    *
+    * @since 2.0.0
+    */
    public static class MaxStackSize {
-      
-      public static final int MIN = 1; // hardcoded: value copied from DataComponents.MAX_STACK_SIZE
-      
+
+      /**
+       * The lowest allowed max stack size (inclusive).
+       *
+       * @implNote This value is a hardcoded copy of the one encoded in {@link DataComponents#MAX_STACK_SIZE}.
+       */
+      public static final int MIN = 1;
+
+      /**
+       * The highest allowed max stack size (inclusive).
+       *
+       * @implNote This value is {@link Item#ABSOLUTE_MAX_STACK_SIZE}.
+       */
       public static final int MAX = Item.ABSOLUTE_MAX_STACK_SIZE;
 
+      /**
+       * Gets the default max stack size for the stack's item.
+       *
+       * @param stack the target stack
+       * @return the default max stack size for the stack's item
+       * @since 2.0.0
+       */
       public static int getDefault(@NotNull ItemStack stack) {
          return stack.getItem().getDefaultMaxStackSize();
       }
 
+      /**
+       * Checks whether the max stack size of the stack is the default for its item.
+       *
+       * @param stack the target stack
+       * @return whether the stack's max stack size is the default for its item
+       * @since 2.0.0
+       */
+      @ApiStatus.Experimental
       public static boolean isDefault(@NotNull ItemStack stack) {
          return stack.getMaxStackSize() == getDefault(stack);
       }
 
+      /**
+       * Resets the max stack size of the stack to the default for its item.
+       *
+       * @param stack the target stack
+       * @since 2.0.0
+       */
       public static void reset(@NotNull ItemStack stack) {
          stack.set(DataComponents.MAX_STACK_SIZE, getDefault(stack));
       }
 
+      /**
+       * Resets the max stack size of the stack to the default for its item,
+       * if the current stack size does not exceed the default max stack size.
+       *
+       * @param stack the target stack
+       * @since 2.0.0
+       */
+      @ApiStatus.Experimental
       public static void resetIfAtMostDefault(@NotNull ItemStack stack) {
          int defaultValue = getDefault(stack);
          if (stack.getCount() <= defaultValue) {
@@ -129,11 +174,12 @@ public class ComponentUtil {
       }
 
       /**
-       * Sets the {@link DataComponents#MAX_STACK_SIZE} component to the given value,
-       * if the value is within [1, {@link Item#ABSOLUTE_MAX_STACK_SIZE}].
+       * Sets the max stack size of the item to the given value,
+       * if the value is within [{@link #MIN}, {@link #MAX}].
        *
        * @param item  the target item
        * @param value the max stack size value
+       * @since 2.0.0
        */
       @SoftSided.Server
       public static void set(@NotNull Item item, int value) {
@@ -143,12 +189,12 @@ public class ComponentUtil {
       }
 
       /**
-       * Sets the {@link DataComponents#MAX_STACK_SIZE} component to the given value on the
-       * item with the given ID, if the value is within [1, {@link Item#ABSOLUTE_MAX_STACK_SIZE}]
-       * and the item is registered.
+       * Sets the max stack size of the identified item to the given value,
+       * if the item exists and the value is within [{@link #MIN}, {@link #MAX}].
        *
-       * @param id    the id of the target item
+       * @param id    the target item's ID
        * @param value the max stack size value
+       * @since 2.0.0
        */
       @SoftSided.Server
       public static void set(@NotNull ResourceLocation id, int value) {
@@ -156,11 +202,12 @@ public class ComponentUtil {
       }
 
       /**
-       * Sets the {@link DataComponents#MAX_STACK_SIZE} component to the given value on all items
-       * in the tag, if the value is within [1, {@link Item#ABSOLUTE_MAX_STACK_SIZE}].
+       * Sets the max stack size of each item in the tag to the given value,
+       * if the value is within [{@link #MIN}, {@link #MAX}].
        *
        * @param tag   the target tag
        * @param value the max stack size value
+       * @since 2.0.0
        */
       @SoftSided.Server
       public static void set(@NotNull TagKey<Item> tag, int value) {
