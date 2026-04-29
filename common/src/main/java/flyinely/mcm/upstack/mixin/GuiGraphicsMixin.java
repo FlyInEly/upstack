@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import static flyinely.mcm.upstack.util.ItemComponentUtil.MaxStackSize;
+import static flyinely.mcm.upstack.util.ComponentUtil.MaxStackSize;
 
 @Mixin(GuiGraphics.class)
 public class GuiGraphicsMixin {

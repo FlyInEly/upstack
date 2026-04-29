@@ -2,7 +2,7 @@ package flyinely.mcm.upstack.registry;
 
 import flyinely.mcm.upstack.annotation.CContract.StaticInit;
 import flyinely.mcm.upstack.annotation.CContract.StaticRegistry;
-import flyinely.mcm.upstack.util.ItemComponentUtil;
+import flyinely.mcm.upstack.util.ComponentUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -68,8 +68,8 @@ public class ModConfig {
 
 
       // A value of MIN_STACK_SIZE - 1 indicates that the item(s)' stack size should be left unmodified.
-      private static final int MIN = ItemComponentUtil.ABSOLUTE_MIN_STACK_SIZE - 1;
-      private static final int MAX = ItemComponentUtil.ABSOLUTE_MAX_STACK_SIZE;
+      private static final int MIN = ComponentUtil.MaxStackSize.MIN - 1;
+      private static final int MAX = ComponentUtil.MaxStackSize.MAX;
 
       public static IntValue tag(TagKey<Item> tag, int defaultValue) {
          return BUILDER.worldRestart().comment(tagString(tag)).defineInRange(tag.location().getPath(), defaultValue, MIN, MAX);

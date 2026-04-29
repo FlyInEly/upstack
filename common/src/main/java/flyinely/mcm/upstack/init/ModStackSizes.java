@@ -2,6 +2,7 @@ package flyinely.mcm.upstack.init;
 
 import flyinely.mcm.upstack.annotation.SoftSided;
 import flyinely.mcm.upstack.registry.ModItemTags;
+import flyinely.mcm.upstack.util.ComponentUtil;
 import flyinely.mcm.upstack.util.TagUtil;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.ItemTags;
@@ -14,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 
 import static flyinely.mcm.upstack.registry.ModConfig.StackSize;
-import static flyinely.mcm.upstack.util.ItemComponentUtil.setMaxStackSize;
+import static flyinely.mcm.upstack.util.ComponentUtil.MaxStackSize.set;
 import static flyinely.mcm.upstack.util.ResUtil.id;
 
 /**
@@ -42,7 +43,7 @@ public final class ModStackSizes {
       BuiltInRegistries.ITEM.getTagNames()
             .map(ModStackSizes::parseStackSize)
             .flatMap(Optional::stream)
-            .forEach(size -> setMaxStackSize(tag(size), size));
+            .forEach(size -> set(tag(size), size));
    }
 
    private static @NotNull TagKey<Item> tag(Integer size) {
@@ -55,7 +56,7 @@ public final class ModStackSizes {
     * An item tag represents a stack size if its location is {@link #TAG_PREFIX}
     * followed by the stack size it represents (an unsigned integer). This method
     * does not verify that the represented stack size is in-range, to avoid redundancy
-    * when called with {@link flyinely.mcm.upstack.util.ItemComponentUtil#setMaxStackSize(TagKey, int)}.
+    * when called with {@link ComponentUtil.MaxStackSize#set(TagKey, int)}.
     * <p>
     * In the future, upgrade this system to use custom JSON. Using tags means that a given item can be
     * tagged with multiple different stack sizes, with no control over precedence.
@@ -76,76 +77,76 @@ public final class ModStackSizes {
 
    private static void tags() {
       // minecraft
-      setMaxStackSize(ItemTags.BANNERS, StackSize.Common.BANNERS.get());
-      setMaxStackSize(ItemTags.BEDS, StackSize.Common.BEDS.get());
-      setMaxStackSize(ItemTags.BOATS, StackSize.Common.BOATS.get());
+      set(ItemTags.BANNERS, StackSize.Common.BANNERS.get());
+      set(ItemTags.BEDS, StackSize.Common.BEDS.get());
+      set(ItemTags.BOATS, StackSize.Common.BOATS.get());
 
       // c
-      setMaxStackSize(ModItemTags.C.BANNER_PATTERNS, StackSize.Common.BANNER_PATTERNS.get());
-      setMaxStackSize(ModItemTags.C.BUCKETS, StackSize.Common.BUCKETS.get());
-      setMaxStackSize(ModItemTags.C.CHICKEN_EGGS, StackSize.Common.CHICKEN_EGGS.get());
-      setMaxStackSize(ModItemTags.C.HORSE_ARMOR, StackSize.Common.HORSE_ARMOR.get());
-      setMaxStackSize(ModItemTags.C.MILK_BOTTLES, StackSize.Common.MILK_BOTTLES.get());
-      setMaxStackSize(ModItemTags.C.MINECARTS, StackSize.Common.MINECARTS.get());
-      setMaxStackSize(ModItemTags.C.MUSIC_DISCS, StackSize.Common.MUSIC_DISCS.get());
-      setMaxStackSize(ModItemTags.C.SOUPS, StackSize.Common.SOUPS.get());
+      set(ModItemTags.C.BANNER_PATTERNS, StackSize.Common.BANNER_PATTERNS.get());
+      set(ModItemTags.C.BUCKETS, StackSize.Common.BUCKETS.get());
+      set(ModItemTags.C.CHICKEN_EGGS, StackSize.Common.CHICKEN_EGGS.get());
+      set(ModItemTags.C.HORSE_ARMOR, StackSize.Common.HORSE_ARMOR.get());
+      set(ModItemTags.C.MILK_BOTTLES, StackSize.Common.MILK_BOTTLES.get());
+      set(ModItemTags.C.MINECARTS, StackSize.Common.MINECARTS.get());
+      set(ModItemTags.C.MUSIC_DISCS, StackSize.Common.MUSIC_DISCS.get());
+      set(ModItemTags.C.SOUPS, StackSize.Common.SOUPS.get());
 
       // pastel
-      setMaxStackSize(ModItemTags.Pastel.BULBS, StackSize.Pastel.BULBS.get());
-      setMaxStackSize(ModItemTags.Pastel.FUSION_SHRINES, StackSize.Pastel.FUSION_SHRINES.get());
-      setMaxStackSize(ModItemTags.Pastel.ITEM_BOWLS, StackSize.Pastel.ITEM_BOWLS.get());
-      setMaxStackSize(ModItemTags.Pastel.NETWORK_NODES, StackSize.Pastel.NETWORK_NODES.get());
-      setMaxStackSize(ModItemTags.Pastel.PEDESTALS, StackSize.Pastel.PEDESTALS.get());
-      setMaxStackSize(ModItemTags.Pastel.ROUNDELS, StackSize.Pastel.ROUNDELS.get());
-      setMaxStackSize(ModItemTags.Pastel.SHOOTING_STARS, StackSize.Pastel.SHOOTING_STARS.get());
-      setMaxStackSize(ModItemTags.Pastel.STRUCTURE_UPGRADES, StackSize.Pastel.STRUCTURE_UPGRADES.get());
+      set(ModItemTags.Pastel.BULBS, StackSize.Pastel.BULBS.get());
+      set(ModItemTags.Pastel.FUSION_SHRINES, StackSize.Pastel.FUSION_SHRINES.get());
+      set(ModItemTags.Pastel.ITEM_BOWLS, StackSize.Pastel.ITEM_BOWLS.get());
+      set(ModItemTags.Pastel.NETWORK_NODES, StackSize.Pastel.NETWORK_NODES.get());
+      set(ModItemTags.Pastel.PEDESTALS, StackSize.Pastel.PEDESTALS.get());
+      set(ModItemTags.Pastel.ROUNDELS, StackSize.Pastel.ROUNDELS.get());
+      set(ModItemTags.Pastel.SHOOTING_STARS, StackSize.Pastel.SHOOTING_STARS.get());
+      set(ModItemTags.Pastel.STRUCTURE_UPGRADES, StackSize.Pastel.STRUCTURE_UPGRADES.get());
 
       // farmersdelight
-      setMaxStackSize(ModItemTags.Farmersdelight.FEASTS, StackSize.Farmersdelight.FEASTS.get());
+      set(ModItemTags.Farmersdelight.FEASTS, StackSize.Farmersdelight.FEASTS.get());
    }
 
    private static void items() {
       // minecraft
-      setMaxStackSize(Items.ARMOR_STAND, StackSize.Common.ARMOR_STAND.get());
-      setMaxStackSize(Items.BUCKET, StackSize.Common.BUCKET.get());
-      setMaxStackSize(Items.CAKE, StackSize.Common.CAKE.get());
-      setMaxStackSize(Items.ENCHANTED_BOOK, StackSize.Common.ENCHANTED_BOOK.get());
-      setMaxStackSize(Items.ENDER_PEARL, StackSize.Common.ENDER_PEARL.get());
-      setMaxStackSize(Items.HONEY_BOTTLE, StackSize.Common.HONEY_BOTTLE.get());
-      setMaxStackSize(Items.LINGERING_POTION, StackSize.Common.LINGERING_POTION.get());
-      setMaxStackSize(Items.POTION, StackSize.Common.POTION.get());
-      setMaxStackSize(Items.SADDLE, StackSize.Common.SADDLE.get());
-      setMaxStackSize(Items.SNOWBALL, StackSize.Common.SNOWBALL.get());
-      setMaxStackSize(Items.SPLASH_POTION, StackSize.Common.SPLASH_POTION.get());
-      setMaxStackSize(Items.TOTEM_OF_UNDYING, StackSize.Common.TOTEM_OF_UNDYING.get());
-      setMaxStackSize(Items.WRITABLE_BOOK, StackSize.Common.WRITABLE_BOOK.get());
-      setMaxStackSize(Items.WRITTEN_BOOK, StackSize.Common.WRITTEN_BOOK.get());
+      ComponentUtil.MaxStackSize.set(Items.ARMOR_STAND, StackSize.Common.ARMOR_STAND.get());
+      ComponentUtil.MaxStackSize.set(Items.BUCKET, StackSize.Common.BUCKET.get());
+      ComponentUtil.MaxStackSize.set(Items.CAKE, StackSize.Common.CAKE.get());
+      ComponentUtil.MaxStackSize.set(Items.ENCHANTED_BOOK, StackSize.Common.ENCHANTED_BOOK.get());
+      ComponentUtil.MaxStackSize.set(Items.ENDER_PEARL, StackSize.Common.ENDER_PEARL.get());
+      ComponentUtil.MaxStackSize.set(Items.HONEY_BOTTLE, StackSize.Common.HONEY_BOTTLE.get());
+      ComponentUtil.MaxStackSize.set(Items.LINGERING_POTION, StackSize.Common.LINGERING_POTION.get());
+      ComponentUtil.MaxStackSize.set(Items.POTION, StackSize.Common.POTION.get());
+      ComponentUtil.MaxStackSize.set(Items.SADDLE, StackSize.Common.SADDLE.get());
+      ComponentUtil.MaxStackSize.set(Items.SNOWBALL, StackSize.Common.SNOWBALL.get());
+      ComponentUtil.MaxStackSize.set(Items.SPLASH_POTION, StackSize.Common.SPLASH_POTION.get());
+      ComponentUtil.MaxStackSize.set(Items.TOTEM_OF_UNDYING, StackSize.Common.TOTEM_OF_UNDYING.get());
+      ComponentUtil.MaxStackSize.set(Items.WRITABLE_BOOK, StackSize.Common.WRITABLE_BOOK.get());
+      ComponentUtil.MaxStackSize.set(Items.WRITTEN_BOOK, StackSize.Common.WRITTEN_BOOK.get());
 
       // pastel
-      setMaxStackSize(id("pastel:aether_vestiges"), StackSize.Pastel.AETHER_VESTIGES.get());
-      setMaxStackSize(id("pastel:bag_of_holding"), StackSize.Pastel.BAG_OF_HOLDING.get());
-      setMaxStackSize(id("pastel:cinderhearth"), StackSize.Pastel.CINDERHEARTH.get());
-      setMaxStackSize(id("pastel:clotted_cream"), StackSize.Pastel.CLOTTED_CREAM.get());
-      setMaxStackSize(id("pastel:color_picker"), StackSize.Pastel.COLOR_PICKER.get());
-      setMaxStackSize(id("pastel:crystal_apothecary"), StackSize.Pastel.CRYSTAL_APOTHECARY.get());
-      setMaxStackSize(id("pastel:crystallarieum"), StackSize.Pastel.CRYSTALLARIEUM.get());
-      setMaxStackSize(id("pastel:downstone_fragments"), StackSize.Pastel.DOWNSTONE_FRAGMENTS.get());
-      setMaxStackSize(id("pastel:dragonbone_broth"), StackSize.Pastel.DRAGONBONE_BROTH.get());
-      setMaxStackSize(id("pastel:enchanter"), StackSize.Pastel.ENCHANTER.get());
-      setMaxStackSize(id("pastel:ender_splice"), StackSize.Pastel.ENDER_SPLICE.get());
-      setMaxStackSize(id("pastel:jadeite_lotus_flower"), StackSize.Pastel.JADEITE_LOTUS_FLOWER.get());
-      setMaxStackSize(id("pastel:moonstone_core"), StackSize.Pastel.MOONSTONE_CORE.get());
-      setMaxStackSize(id("pastel:palteria_gem"), StackSize.Pastel.PALTERIA_GEM.get());
-      setMaxStackSize(id("pastel:potion_workshop"), StackSize.Pastel.POTION_WORKSHOP.get());
-      setMaxStackSize(id("pastel:resonance_shard"), StackSize.Pastel.RESONANCE_SHARD.get());
-      setMaxStackSize(id("pastel:spirit_instiller"), StackSize.Pastel.SPIRIT_INSTILLER.get());
-      setMaxStackSize(id("pastel:star_fragment"), StackSize.Pastel.STAR_FRAGMENT.get());
-      setMaxStackSize(id("pastel:stardust_block"), StackSize.Pastel.STARDUST_BLOCK.get());
-      setMaxStackSize(id("pastel:stratine_gem"), StackSize.Pastel.STRATINE_GEM.get());
-      setMaxStackSize(id("pastel:triple_meat_pot_pie"), StackSize.Pastel.TRIPLE_MEAT_POT_PIE.get());
-      setMaxStackSize(id("pastel:triple_meat_pot_stew"), StackSize.Pastel.TRIPLE_MEAT_POT_STEW.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:aether_vestiges"), StackSize.Pastel.AETHER_VESTIGES.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:bag_of_holding"), StackSize.Pastel.BAG_OF_HOLDING.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:cinderhearth"), StackSize.Pastel.CINDERHEARTH.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:clotted_cream"), StackSize.Pastel.CLOTTED_CREAM.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:color_picker"), StackSize.Pastel.COLOR_PICKER.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:crystal_apothecary"), StackSize.Pastel.CRYSTAL_APOTHECARY.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:crystallarieum"), StackSize.Pastel.CRYSTALLARIEUM.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:downstone_fragments"), StackSize.Pastel.DOWNSTONE_FRAGMENTS.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:dragonbone_broth"), StackSize.Pastel.DRAGONBONE_BROTH.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:enchanter"), StackSize.Pastel.ENCHANTER.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:ender_splice"), StackSize.Pastel.ENDER_SPLICE.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:jadeite_lotus_flower"), StackSize.Pastel.JADEITE_LOTUS_FLOWER.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:moonstone_core"), StackSize.Pastel.MOONSTONE_CORE.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:palteria_gem"), StackSize.Pastel.PALTERIA_GEM.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:potion_workshop"), StackSize.Pastel.POTION_WORKSHOP.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:resonance_shard"), StackSize.Pastel.RESONANCE_SHARD.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:spirit_instiller"), StackSize.Pastel.SPIRIT_INSTILLER.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:star_fragment"), StackSize.Pastel.STAR_FRAGMENT.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:stardust_block"), StackSize.Pastel.STARDUST_BLOCK.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:stratine_gem"), StackSize.Pastel.STRATINE_GEM.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:triple_meat_pot_pie"), StackSize.Pastel.TRIPLE_MEAT_POT_PIE.get());
+      ComponentUtil.MaxStackSize.set(id("pastel:triple_meat_pot_stew"), StackSize.Pastel.TRIPLE_MEAT_POT_STEW.get());
 
       // farmersdelight
-      setMaxStackSize(id("farmersdelight:cooking_pot"), StackSize.Farmersdelight.COOKING_POT.get());
+      ComponentUtil.MaxStackSize.set(id("farmersdelight:cooking_pot"), StackSize.Farmersdelight.COOKING_POT.get());
    }
 }

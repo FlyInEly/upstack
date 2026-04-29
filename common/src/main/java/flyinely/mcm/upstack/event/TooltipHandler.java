@@ -6,7 +6,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
-import static flyinely.mcm.upstack.util.ItemComponentUtil.*;
+import static flyinely.mcm.upstack.util.ComponentUtil.MaxStackSize;
 
 public class TooltipHandler {
 	

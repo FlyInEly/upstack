@@ -3,7 +3,7 @@ package flyinely.mcm.upstack.mixin;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import flyinely.mcm.upstack.Constants;
-import flyinely.mcm.upstack.util.ItemComponentUtil;
+import flyinely.mcm.upstack.util.ComponentUtil;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -25,7 +25,7 @@ public class PlayerMixin {
          // TODO: Only hook this class (EventBus?) if autofix is enabled on the server.
          // TODO: Patch visually incorrect item counts, or include as limitation of the mod
          // Using droppedItem works because droppedItem is mutable and is retained by original.call
-         if (ItemComponentUtil.reset(droppedItem, DataComponents.MAX_STACK_SIZE)) {
+         if (ComponentUtil.reset(droppedItem, DataComponents.MAX_STACK_SIZE)) {
             Constants.LOG.info("Set the max stack size of {} to its default", result);
          }
       }

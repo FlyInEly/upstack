@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static flyinely.mcm.upstack.util.ItemComponentUtil.MaxStackSize;
+import static flyinely.mcm.upstack.util.ComponentUtil.MaxStackSize;
 
 // TODO: FIX: First load of the world after a stack size reduction seems to cause overstacks
 //    to degrade to unstackables. Reloading the world a second time fixes the issue.

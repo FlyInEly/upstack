@@ -1,6 +1,6 @@
 package flyinely.mcm.upstack.unused;
 
-import flyinely.mcm.upstack.util.ItemComponentUtil;
+import flyinely.mcm.upstack.util.ComponentUtil;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
