@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Objects;
 
 /**
- * Static utility to modify instances of {@link DataComponentType}.
+ * Static utility to manipulate the data components of items and item stacks.
  * <p>
  * Generally, desired modifications should be made on server start and/or resource reload. Mod initialization is too early
  * for methods which have no effect if tags are unpopulated, like {@link #set(TagKey, DataComponentType, Object)}.
@@ -31,6 +31,7 @@ import java.util.Objects;
  * more helpful than spammy.
  *
  * @since 2.0.0
+ * @see DataComponentType
  */
 @SoftSided.Server
 public class ComponentUtil {
