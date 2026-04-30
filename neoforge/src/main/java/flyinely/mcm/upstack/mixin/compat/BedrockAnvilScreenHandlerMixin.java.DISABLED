@@ -3,7 +3,7 @@ package flyinely.mcm.upstack.mixin.compat;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import earth.terrarium.pastel.inventories.BedrockAnvilScreenHandler;
-import flyinely.mcm.upstack.mixin.patch.AnvilMenuMixin;
+import flyinely.mcm.upstack.mixin.patch.assumption.AnvilMenuMixin;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.AnvilMenu;
 import net.minecraft.world.item.ItemStack;

@@ -12,15 +12,18 @@
   "tag.item.pastel.structure_upgrades": "Structure Upgrades",
   "tag.item.pastel.fusion_shrines": "Fusion Shrines",
 
-  "upstack.configuration.cooldowns": "Cooldowns",
+  "upstack.configuration.add_use_cooldown": "Add Use Cooldown",
   "upstack.configuration.snowball": "Snowball",
   "upstack.configuration.egg": "Egg",
   "upstack.configuration.throwable_potion": "Throwable Potion",
 
-  "upstack.configuration.stack_size": "Stack Size",
+  "upstack.configuration.patches": "Patches",
+  "upstack.configuration.update_data": "Update Data",
+  "upstack.configuration.on_drop": "On Drop",
+
   "upstack.configuration.tags": "Tags",
 
-  "upstack.configuration._common": "Common",
+  "upstack.configuration.common": "Common",
   "upstack.configuration.banners": "Banners",
   "upstack.configuration.banner_patterns": "Banner Patterns",
   "upstack.configuration.beds": "Beds",

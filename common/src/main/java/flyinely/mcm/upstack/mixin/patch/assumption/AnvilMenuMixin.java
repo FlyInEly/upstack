@@ -1,4 +1,4 @@
-package flyinely.mcm.upstack.mixin.patch;
+package flyinely.mcm.upstack.mixin.patch.assumption;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;

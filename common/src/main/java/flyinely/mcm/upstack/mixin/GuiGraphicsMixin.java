@@ -17,7 +17,6 @@ import static flyinely.mcm.upstack.util.ComponentUtil.MaxStackSize;
 public class GuiGraphicsMixin {
 	
 	// TODO: fix non-rendering of overstacked unstackable items (Witnessed with feasts on NeoForge, but is only the issue inside of containers)
-	// TODO: Have the color of overstacked items customizeable (and disableable)
 	
 	@WrapOperation(method = "renderItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
 	at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;pushPose()V"))

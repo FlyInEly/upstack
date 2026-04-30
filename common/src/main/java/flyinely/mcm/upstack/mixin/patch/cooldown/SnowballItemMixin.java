@@ -1,4 +1,4 @@
-package flyinely.mcm.upstack.mixin.balance_change;
+package flyinely.mcm.upstack.mixin.patch.cooldown;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -18,11 +18,11 @@ public abstract class SnowballItemMixin {
 	
 	/**
 	 * Sets and enforces a use cooldown for {@link Items#SNOWBALL} using the cooldown duration (in ticks) supplied by
-	 * {@link ModConfig.Cooldowns#SNOWBALL_THROW_COOLDOWN}, if greater than zero.
+	 * {@link ModConfig.Patch.Cooldown#SNOWBALL}, if greater than zero.
 	 */
 	@WrapMethod(method = "use")
 	protected InteractionResultHolder<ItemStack> useWithCooldown(Level level, Player player, InteractionHand hand, Operation<InteractionResultHolder<ItemStack>> original) {
-		int duration = ModConfig.Cooldowns.SNOWBALL_THROW_COOLDOWN.getAsInt();
+		int duration = ModConfig.Patch.Cooldown.SNOWBALL.getAsInt();
 		if (duration > 0) {
 			ItemStack stack = player.getItemInHand(hand);
 			ItemCooldowns cooldowns = player.getCooldowns();

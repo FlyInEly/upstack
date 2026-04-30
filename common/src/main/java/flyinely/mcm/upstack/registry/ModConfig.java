@@ -8,6 +8,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
 import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
@@ -16,6 +17,8 @@ import org.jetbrains.annotations.NotNull;
 import static flyinely.mcm.upstack.util.ResUtil.id;
 import static flyinely.mcm.upstack.util.TagUtil.tagString;
 
+// NOTE: Order of pushes appears to be reflected in the final config menu!
+// TODO: Add comments to each push to give detail
 @ApiStatus.Internal
 @StaticRegistry
 public class ModConfig {
@@ -24,52 +27,99 @@ public class ModConfig {
    public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
    static {
+      Patch.init();
       StackSize.init();
-      Cooldowns.init();
 
       SPEC = BUILDER.build();
    }
 
    @StaticRegistry
-   @SuppressWarnings("EmptyMethod") // They are dummy methods to trigger static init
-   public static class Cooldowns {
+   public static class Patch {
 
-      private static final int MIN = 0;
-      private static final int MAX = Integer.MAX_VALUE;
+      static {
+         BUILDER.push("patches");
 
-      public static final IntValue POTION_THROW_COOLDOWN;
-      public static final IntValue EGG_THROW_COOLDOWN;
-      public static final IntValue SNOWBALL_THROW_COOLDOWN;
+         DataUpdate.init();
+         Cooldown.init();
+
+         BUILDER.pop(); // patches
+      }
+
+      @StaticRegistry
+      public static class DataUpdate {
+
+         public static final BooleanValue ON_DROP;
+
+         static {
+            BUILDER.push("update_data");
+
+            ON_DROP = BUILDER
+                  .comment("When a stack is dropped by the player, update its max stack size to the default for that item.")
+                  .define("on_drop", true);
+
+            BUILDER.pop(); // update_stack_size
+         }
+
+         @Contract
+         @StaticInit
+         @SuppressWarnings("EmptyMethod")
+         public static void init() {}
+
+      }
+
+      @StaticRegistry
+      public static class Cooldown {
+
+         private static final int MIN = 0;
+         private static final int MAX = Integer.MAX_VALUE;
+
+         public static final IntValue THROWABLE_POTION;
+         public static final IntValue EGG;
+         public static final IntValue SNOWBALL;
+
+         static {
+            BUILDER.push("add_use_cooldown");
+
+            THROWABLE_POTION = BUILDER
+                  .comment("Cooldown, in ticks, of throwing splash and lingering potions. Set 0 to disable.")
+                  .defineInRange("throwable_potion", 10, MIN, MAX); // default: half of ender pearls. not lower due to combat balance implications, but not higher to cause less friction.
+            EGG = BUILDER
+                  .comment("Cooldown, in ticks, of throwing eggs. Set 0 to disable.")
+                  .defineInRange("egg", 0, MIN, MAX); // default: unchanged.
+            SNOWBALL = BUILDER
+                  .comment("Cooldown, in ticks, of throwing snowballs. Set 0 to disable.")
+                  .defineInRange("snowball", 5, MIN, MAX); // default: quarter of ender pearls. not lower due to cheap projectile, esp. on blazes.
+
+            BUILDER.pop(); // cooldown
+         }
+
+         @Contract
+         @StaticInit
+         @SuppressWarnings("EmptyMethod")
+         public static void init() {}
+
+      }
 
       @Contract
       @StaticInit
       public static void init() {}
-
-      static {
-         BUILDER.push("cooldowns");
-
-         POTION_THROW_COOLDOWN = BUILDER
-               .comment("Cooldown, in ticks, of throwing splash and lingering potions. Set 0 to disable.")
-               .defineInRange("throwable_potion", 10, MIN, MAX); // default: half of ender pearls. not lower due to combat balance implications, but not higher to cause less friction.
-         EGG_THROW_COOLDOWN = BUILDER
-               .comment("Cooldown, in ticks, of throwing eggs. Set 0 to disable.")
-               .defineInRange("egg", 0, MIN, MAX); // default: unchanged.
-         SNOWBALL_THROW_COOLDOWN = BUILDER
-               .comment("Cooldown, in ticks, of throwing snowballs. Set 0 to disable.")
-               .defineInRange("snowball", 5, MIN, MAX); // default: quarter of ender pearls. not lower due to cheap projectile, esp. on blazes.
-
-         BUILDER.pop(); // cooldowns
-      }
-
    }
 
-   @SuppressWarnings("EmptyMethod") // They are dummy methods to trigger static init
    public static class StackSize {
-
 
       // A value of MIN_STACK_SIZE - 1 indicates that the item(s)' stack size should be left unmodified.
       private static final int MIN = ComponentUtil.MaxStackSize.MIN - 1;
       private static final int MAX = ComponentUtil.MaxStackSize.MAX;
+
+      static {
+         // BUILDER.push("stack_size");
+
+         Common.init();
+         Pastel.init();
+         Farmersdelight.init();
+
+         // BUILDER.pop(); // stack_size
+      }
 
       public static IntValue tag(TagKey<Item> tag, int defaultValue) {
          return BUILDER.worldRestart().comment(tagString(tag)).defineInRange(tag.location().getPath(), defaultValue, MIN, MAX);
@@ -116,12 +166,14 @@ public class ModConfig {
 
          @Contract
          @StaticInit
+         @SuppressWarnings("EmptyMethod")
          public static void init() {}
 
          static {
             BUILDER.push("pastel");
 
             BUILDER.push("tags");
+
             BULBS = tag(ModItemTags.Pastel.BULBS, 64); // mod: 16
             FUSION_SHRINES = tag(ModItemTags.Pastel.FUSION_SHRINES, 64); // mod: 1
             ITEM_BOWLS = tag(ModItemTags.Pastel.ITEM_BOWLS, 64); // mod: 16 (exc. enlightenment bowl: 64)
@@ -130,6 +182,7 @@ public class ModConfig {
             ROUNDELS = tag(ModItemTags.Pastel.ROUNDELS, 64); // mod: 16 (exc. preservation roundel: 64)
             SHOOTING_STARS = tag(ModItemTags.Pastel.SHOOTING_STARS, 16); // mod: 1. entity-spawning
             STRUCTURE_UPGRADES = tag(ModItemTags.Pastel.STRUCTURE_UPGRADES, 64); // mod: 16
+
             BUILDER.pop(); // tags
 
             AETHER_VESTIGES = item(id("pastel", "aether_vestiges"), 64); // mod: 1
@@ -154,12 +207,14 @@ public class ModConfig {
             STRATINE_GEM = item(id("pastel", "stratine_gem"), 0); // mod: 16
             TRIPLE_MEAT_POT_PIE = item(id("pastel", "triple_meat_pot_pie"), 16); // mod: 8. upstack: parity with farmers' delight bowl foods
             TRIPLE_MEAT_POT_STEW = item(id("pastel", "triple_meat_pot_stew"), 16); // mod: 8. upstack: parity with farmers' delight bowl foods. Overrides #c:soups
+
             BUILDER.pop(); // pastel
          }
       }
 
       @StaticRegistry
       public static class Farmersdelight {
+
          // TAGS
          public static final IntValue FEASTS;
 
@@ -168,6 +223,7 @@ public class ModConfig {
 
          @Contract
          @StaticInit
+         @SuppressWarnings("EmptyMethod")
          public static void init() {}
 
          static {
@@ -217,9 +273,10 @@ public class ModConfig {
          public static final IntValue MILK_BOTTLES;
 
          static {
-            BUILDER.push("_common"); // Underscore to hoist folder
+            BUILDER.push("common");
 
             BUILDER.push("tags");
+
             BANNERS = tag(ItemTags.BANNERS, 64); // vanilla: 16. default: parity w/general items.
             BEDS = tag(ItemTags.BEDS, 16); // vanilla: 1. default: not higher due to cheap explosive power.
             BOATS = tag(ItemTags.BOATS, 16); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
@@ -231,6 +288,7 @@ public class ModConfig {
             MINECARTS = tag(ModItemTags.C.MINECARTS, 16); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
             MUSIC_DISCS = tag(ModItemTags.C.MUSIC_DISCS, 64); // vanilla: 1.
             SOUPS = tag(ModItemTags.C.SOUPS, 16); // vanilla: 1. default: parity w/farmersdelight; makes soups actually viable food
+
             BUILDER.pop(); // tags
 
             ARMOR_STAND = item(id("minecraft", "armor_stand"), 64); // vanilla: 16. default: parity w/general items.
@@ -255,18 +313,9 @@ public class ModConfig {
          public static void init() {}
       }
 
-      static {
-         BUILDER.push("stack_size");
-
-         Common.init();
-         Pastel.init();
-         Farmersdelight.init();
-
-         BUILDER.pop(); // stack_size
-      }
-
       @Contract
       @StaticInit
+      @SuppressWarnings("EmptyMethod")
       static void init() {}
 
    }

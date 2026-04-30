@@ -1,8 +1,9 @@
-package flyinely.mcm.upstack.mixin;
+package flyinely.mcm.upstack.mixin.patch.data_update;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import flyinely.mcm.upstack.Constants;
+import flyinely.mcm.upstack.registry.ModConfig;
 import flyinely.mcm.upstack.util.ComponentUtil;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -20,13 +21,14 @@ public class PlayerMixin {
 
    @WrapMethod(method = "drop(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;")
    private ItemEntity handleDropItem(ItemStack droppedItem, boolean dropAround, boolean includeThrowerName, Operation<ItemEntity> original) {
+
       ItemEntity result = original.call(droppedItem, dropAround, includeThrowerName);
-      if (result != null) {
-         // TODO: Only hook this class (EventBus?) if autofix is enabled on the server.
-         // TODO: Patch visually incorrect item counts, or include as limitation of the mod
-         // Using droppedItem works because droppedItem is mutable and is retained by original.call
-         if (ComponentUtil.reset(droppedItem, DataComponents.MAX_STACK_SIZE)) {
-            Constants.LOG.info("Set the max stack size of {} to its default", result);
+      if (ModConfig.Patch.DataUpdate.ON_DROP.get()) { // TODO: Un-hook this class if the config isn't enabled on the server at time of server load. Mark config as onWorldRestart().
+         if (result != null) {
+            // Using droppedItem works because droppedItem is mutable and is retained by original.call
+            if (ComponentUtil.reset(droppedItem, DataComponents.MAX_STACK_SIZE)) {
+               Constants.LOG.info("Set the max stack size of {} to its default", result);
+            }
          }
       }
       return result;

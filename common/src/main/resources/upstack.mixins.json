@@ -5,18 +5,18 @@
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_18",
   "mixins": [
-    "AbstractContainerMenuMixin",
     "ItemAccessor",
-    "PlayerMixin",
-    "balance_change.EggItemMixin",
-    "balance_change.LingeringPotionItemMixin",
-    "balance_change.SnowballItemMixin",
-    "balance_change.SplashPotionItemMixin",
-    "balance_change.ThrowablePotionItemMixin",
-    "patch.AnvilMenuMixin",
-    "patch.HorseInventoryMenuMixin",
-    "patch.LoomMenuMixin",
-    "patch.SolidBucketItemMixin"
+    "patch.assumption.AnvilMenuMixin",
+    "patch.assumption.HorseInventoryMenuMixin",
+    "patch.assumption.LoomMenuMixin",
+    "patch.assumption.SolidBucketItemMixin",
+    "patch.cooldown.EggItemMixin",
+    "patch.cooldown.LingeringPotionItemMixin",
+    "patch.cooldown.SnowballItemMixin",
+    "patch.cooldown.SplashPotionItemMixin",
+    "patch.cooldown.ThrowablePotionItemMixin",
+    "patch.data_update.AbstractContainerMenuMixin",
+    "patch.data_update.PlayerMixin"
   ],
   "client": [
     "GuiGraphicsMixin"
