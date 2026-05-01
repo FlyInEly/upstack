@@ -1,8 +1,12 @@
+# Next
 - NEXT: Come up with a more robust way to test stack size modifications, as behavior is hard to classify currently
 - Add a safe way to apply stack size modifications to existing stacks? Player tosses item on floor
 - Add sophisticated backpacks to dev mods for testing
-- Work on basic data-driven stack sizes through item tags
+- Add data-fixing config adapter, as config paths have changed
+- Make config comments translatable?
+# Later
 - Disable cooldowns if not present on server, ensure stack size mods are run only on server
 - Establish release workflow, including project errors check
 - Move non-essential README to Wiki pages
 - Remove unused library functions and move to Upstream
+- Work on basic data-driven stack sizes through item tags

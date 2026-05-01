@@ -18,7 +18,6 @@ import static flyinely.mcm.upstack.util.ResUtil.id;
 import static flyinely.mcm.upstack.util.TagUtil.tagString;
 
 // NOTE: Order of pushes appears to be reflected in the final config menu!
-// TODO: Add comments to each push to give detail
 @ApiStatus.Internal
 @StaticRegistry
 public class ModConfig {
@@ -37,7 +36,7 @@ public class ModConfig {
    public static class Patch {
 
       static {
-         BUILDER.push("patches");
+         BUILDER.comment("Configure patches which complement changes in max stack size.").push("patches");
 
          DataUpdate.init();
          Cooldown.init();
@@ -51,13 +50,14 @@ public class ModConfig {
          public static final BooleanValue ON_DROP;
 
          static {
-            BUILDER.push("update_data");
+            BUILDER.comment("Configure when existing stacks should be updated to match their configured max stack size.")
+                  .push("update_existing_stacks");
 
             ON_DROP = BUILDER
-                  .comment("When a stack is dropped by the player, update its max stack size to the default for that item.")
+                  .comment("When a stack is dropped by the player, update it to match its configured max stack size.")
                   .define("on_drop", true);
 
-            BUILDER.pop(); // update_stack_size
+            BUILDER.pop(); // update_existing_stacks
          }
 
          @Contract
@@ -78,16 +78,16 @@ public class ModConfig {
          public static final IntValue SNOWBALL;
 
          static {
-            BUILDER.push("add_use_cooldown");
+            BUILDER.comment("Configure item cooldowns added to balance items with increased max stack sizes.").push("item_cooldowns");
 
             THROWABLE_POTION = BUILDER
-                  .comment("Cooldown, in ticks, of throwing splash and lingering potions. Set 0 to disable.")
+                  .comment("The cooldown, in ticks, of throwing a splash potion or lingering potion. Set 0 to disable.")
                   .defineInRange("throwable_potion", 10, MIN, MAX); // default: half of ender pearls. not lower due to combat balance implications, but not higher to cause less friction.
             EGG = BUILDER
-                  .comment("Cooldown, in ticks, of throwing eggs. Set 0 to disable.")
+                  .comment("The cooldown, in ticks, of throwing an egg. Set 0 to disable.")
                   .defineInRange("egg", 0, MIN, MAX); // default: unchanged.
             SNOWBALL = BUILDER
-                  .comment("Cooldown, in ticks, of throwing snowballs. Set 0 to disable.")
+                  .comment("The cooldown, in ticks, of throwing a snowball. Set 0 to disable.")
                   .defineInRange("snowball", 5, MIN, MAX); // default: quarter of ender pearls. not lower due to cheap projectile, esp. on blazes.
 
             BUILDER.pop(); // cooldown
@@ -112,21 +112,108 @@ public class ModConfig {
       private static final int MAX = ComponentUtil.MaxStackSize.MAX;
 
       static {
-         // BUILDER.push("stack_size");
-
+         // Currently, stack sizes are located in the root config.
          Common.init();
          Pastel.init();
          Farmersdelight.init();
-
-         // BUILDER.pop(); // stack_size
       }
 
-      public static IntValue tag(TagKey<Item> tag, int defaultValue) {
-         return BUILDER.worldRestart().comment(tagString(tag)).defineInRange(tag.location().getPath(), defaultValue, MIN, MAX);
+      /**
+       * Defines the config value for the max stack size of all items in the tag. Mutates {@link #BUILDER}.
+       *
+       * @param tag          the tag
+       * @param defaultValue the default value
+       * @return the config value
+       */
+      private static IntValue tag(TagKey<Item> tag, int defaultValue) {
+         return BUILDER.worldRestart().comment("Configure the stack size of " + tagString(tag) + "items.").defineInRange(tag.location().getPath(), defaultValue, MIN, MAX);
       }
 
-      public static IntValue item(@NotNull ResourceLocation id, int defaultValue) {
-         return BUILDER.worldRestart().comment(id.toString()).defineInRange(id.getPath(), defaultValue, MIN, MAX);
+      /**
+       * Defines the config value for the max stack size of the item. Mutates {@link #BUILDER}.
+       *
+       * @param id           the item's ID
+       * @param defaultValue the default value
+       * @return the config value
+       */
+      private static IntValue item(@NotNull ResourceLocation id, int defaultValue) {
+         return BUILDER.worldRestart().comment("Configure the stack size of " + id + ".").defineInRange(id.getPath(), defaultValue, MIN, MAX);
+      }
+
+      // Include minecraft: and c: here
+      @StaticRegistry
+      public static class Common {
+
+         // TAGS
+         public static final IntValue BANNERS;
+         public static final IntValue BEDS;
+         public static final IntValue BOATS;
+         public static final IntValue BUCKETS;
+         public static final IntValue CHICKEN_EGGS;
+         public static final IntValue HORSE_ARMOR;
+         public static final IntValue MINECARTS;
+
+         // ITEMS
+         public static final IntValue ARMOR_STAND;
+         public static final IntValue BUCKET;
+         public static final IntValue CAKE;
+         public static final IntValue ENDER_PEARL;
+         public static final IntValue HONEY_BOTTLE;
+         public static final IntValue LINGERING_POTION;
+         public static final IntValue POTION;
+         public static final IntValue SADDLE;
+         public static final IntValue SNOWBALL;
+         public static final IntValue SPLASH_POTION;
+         public static final IntValue TOTEM_OF_UNDYING;
+         public static final IntValue WRITTEN_BOOK;
+         public static final IntValue MUSIC_DISCS;
+         public static final IntValue SOUPS;
+         public static final IntValue WRITABLE_BOOK;
+         public static final IntValue BANNER_PATTERNS;
+         public static final IntValue ENCHANTED_BOOK;
+         public static final IntValue MILK_BOTTLES;
+
+         static {
+            BUILDER.comment("Configure the max stack size of common items.").push("common_items");
+
+            BUILDER.push("tags");
+
+            BANNERS = tag(ItemTags.BANNERS, 64); // vanilla: 16. default: parity w/general items.
+            BEDS = tag(ItemTags.BEDS, 16); // vanilla: 1. default: not higher due to cheap explosive power.
+            BOATS = tag(ItemTags.BOATS, 16); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
+            CHICKEN_EGGS = tag(ModItemTags.C.CHICKEN_EGGS, 64); // vanilla: 16. default: parity w/general items, for crafting QOL.
+            BANNER_PATTERNS = tag(ModItemTags.C.BANNER_PATTERNS, 64); // vanilla: 1. default: parity w/general items, for carrying QOL. they are dupable and aren't
+            BUCKETS = tag(ModItemTags.C.BUCKETS, 16); // vanilla: 1. default: parity w/honey bottles.
+            HORSE_ARMOR = tag(ModItemTags.C.HORSE_ARMOR, 16); // vanilla: 1. default: not lower due to lack of durability and foreseen balance issues.
+            MILK_BOTTLES = tag(ModItemTags.C.MILK_BOTTLES, 0); // usually 16. included for configurability.
+            MINECARTS = tag(ModItemTags.C.MINECARTS, 16); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
+            MUSIC_DISCS = tag(ModItemTags.C.MUSIC_DISCS, 64); // vanilla: 1.
+            SOUPS = tag(ModItemTags.C.SOUPS, 16); // vanilla: 1. default: parity w/farmersdelight; makes soups actually viable food
+
+            BUILDER.pop(); // tags
+
+            ARMOR_STAND = item(id("minecraft", "armor_stand"), 64); // vanilla: 16. default: parity w/general items.
+            BUCKET = item(id("minecraft", "bucket"), 64); // vanilla: 16. default: parity w/empty bottles. Overrides #c:buckets
+            CAKE = item(id("minecraft", "cake"), 16); // vanilla: 1. default: parity w/default for milk buckets, for crafting QOL.
+            ENDER_PEARL = item(id("minecraft", "ender_pearl"), 0); // default: unchanged.
+            ENCHANTED_BOOK = item(id("minecraft", "enchanted_book"), 64); // vanilla: 1. default: parity w/general items
+            HONEY_BOTTLE = item(id("minecraft", "honey_bottle"), 0); // default: unchanged.
+            LINGERING_POTION = item(id("minecraft", "lingering_potion"), 16); // vanilla: 1. default: parity w/ender pearls.
+            POTION = item(id("minecraft", "potion"), 16); // vanilla: 1. default: parity w/honey bottles.
+            SADDLE = item(id("minecraft", "saddle"), 16); // vanilla: 1. default: not lower due to lack of durability and foreseen balance issues.
+            SNOWBALL = item(id("minecraft", "snowball"), 64); // vanilla: 16. default: parity w/general items, for crafting QOL.
+            SPLASH_POTION = item(id("minecraft", "splash_potion"), 16); // vanilla: 1. default: parity w/ender pearls.
+            TOTEM_OF_UNDYING = item(id("minecraft", "totem_of_undying"), 0); // default: unchanged.
+            WRITABLE_BOOK = item(id("minecraft", "writable_book"), 64); // vanilla: 1. default: fixes undefined behavior when writing to a stack of more than one
+            WRITTEN_BOOK = item(id("minecraft", "written_book"), 64); // vanilla: 16. default: parity w/general items.
+
+            BUILDER.pop(); // common_items
+         }
+
+         @Contract
+         @StaticInit
+         @SuppressWarnings("EmptyMethod")
+         public static void init() {}
       }
 
       @StaticRegistry
@@ -164,13 +251,8 @@ public class ModConfig {
          public static final IntValue TRIPLE_MEAT_POT_PIE;
          public static final IntValue TRIPLE_MEAT_POT_STEW;
 
-         @Contract
-         @StaticInit
-         @SuppressWarnings("EmptyMethod")
-         public static void init() {}
-
          static {
-            BUILDER.push("pastel");
+            BUILDER.comment("Configure the max stack size of items from Pastel.").push("pastel_items");
 
             BUILDER.push("tags");
 
@@ -208,8 +290,13 @@ public class ModConfig {
             TRIPLE_MEAT_POT_PIE = item(id("pastel", "triple_meat_pot_pie"), 16); // mod: 8. upstack: parity with farmers' delight bowl foods
             TRIPLE_MEAT_POT_STEW = item(id("pastel", "triple_meat_pot_stew"), 16); // mod: 8. upstack: parity with farmers' delight bowl foods. Overrides #c:soups
 
-            BUILDER.pop(); // pastel
+            BUILDER.pop(); // pastel_items
          }
+
+         @Contract
+         @StaticInit
+         @SuppressWarnings("EmptyMethod")
+         public static void init() {}
       }
 
       @StaticRegistry
@@ -227,7 +314,7 @@ public class ModConfig {
          public static void init() {}
 
          static {
-            BUILDER.push("farmersdelight");
+            BUILDER.comment("Configure the max stack size of items from Farmer's Delight.").push("farmersdelight_items");
 
             BUILDER.push("tags");
             FEASTS = tag(ModItemTags.Farmersdelight.FEASTS, 16); // mod: 1. upstack: parity with bowl foods. feasts contain many serves, but aren't directly edible anyway
@@ -235,82 +322,8 @@ public class ModConfig {
 
             COOKING_POT = item(id("farmersdelight", "cooking_pot"), 16); // mod: 1. upstack: moderate QOL on par with filled bucket, especially for crafting/moving empty pots
 
-            BUILDER.pop(); // farmersdelight
+            BUILDER.pop(); // farmersdelight_items
          }
-      }
-
-      // Include minecraft: and c: here
-      @StaticRegistry
-      public static class Common {
-
-         // TAGS
-         public static final IntValue BANNERS;
-         public static final IntValue BEDS;
-         public static final IntValue BOATS;
-         public static final IntValue BUCKETS;
-         public static final IntValue CHICKEN_EGGS;
-         public static final IntValue HORSE_ARMOR;
-         public static final IntValue MINECARTS;
-
-         // ITEMS
-         public static final IntValue ARMOR_STAND;
-         public static final IntValue BUCKET;
-         public static final IntValue CAKE;
-         public static final IntValue ENDER_PEARL;
-         public static final IntValue HONEY_BOTTLE;
-         public static final IntValue LINGERING_POTION;
-         public static final IntValue POTION;
-         public static final IntValue SADDLE;
-         public static final IntValue SNOWBALL;
-         public static final IntValue SPLASH_POTION;
-         public static final IntValue TOTEM_OF_UNDYING;
-         public static final IntValue WRITTEN_BOOK;
-         public static final IntValue MUSIC_DISCS;
-         public static final IntValue SOUPS;
-         public static final IntValue WRITABLE_BOOK;
-         public static final IntValue BANNER_PATTERNS;
-         public static final IntValue ENCHANTED_BOOK;
-         public static final IntValue MILK_BOTTLES;
-
-         static {
-            BUILDER.push("common");
-
-            BUILDER.push("tags");
-
-            BANNERS = tag(ItemTags.BANNERS, 64); // vanilla: 16. default: parity w/general items.
-            BEDS = tag(ItemTags.BEDS, 16); // vanilla: 1. default: not higher due to cheap explosive power.
-            BOATS = tag(ItemTags.BOATS, 16); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
-            CHICKEN_EGGS = tag(ModItemTags.C.CHICKEN_EGGS, 64); // vanilla: 16. default: parity w/general items, for crafting QOL.
-            BANNER_PATTERNS = tag(ModItemTags.C.BANNER_PATTERNS, 64); // vanilla: 1. default: parity w/general items, for carrying QOL. they are dupable and aren't
-            BUCKETS = tag(ModItemTags.C.BUCKETS, 16); // vanilla: 1. default: parity w/honey bottles.
-            HORSE_ARMOR = tag(ModItemTags.C.HORSE_ARMOR, 16); // vanilla: 1. default: not lower due to lack of durability and foreseen balance issues.
-            MILK_BOTTLES = tag(ModItemTags.C.MILK_BOTTLES, 0); // usually 16. included for configurability.
-            MINECARTS = tag(ModItemTags.C.MINECARTS, 16); // vanilla: 1. default: parity w/vanilla for entity-spawning items.
-            MUSIC_DISCS = tag(ModItemTags.C.MUSIC_DISCS, 64); // vanilla: 1.
-            SOUPS = tag(ModItemTags.C.SOUPS, 16); // vanilla: 1. default: parity w/farmersdelight; makes soups actually viable food
-
-            BUILDER.pop(); // tags
-
-            ARMOR_STAND = item(id("minecraft", "armor_stand"), 64); // vanilla: 16. default: parity w/general items.
-            BUCKET = item(id("minecraft", "bucket"), 64); // vanilla: 16. default: parity w/empty bottles. Overrides #c:buckets
-            CAKE = item(id("minecraft", "cake"), 16); // vanilla: 1. default: parity w/default for milk buckets, for crafting QOL.
-            ENDER_PEARL = item(id("minecraft", "ender_pearl"), 0); // default: unchanged.
-            ENCHANTED_BOOK = item(id("minecraft", "enchanted_book"), 64); // vanilla: 1. default: parity w/general items
-            HONEY_BOTTLE = item(id("minecraft", "honey_bottle"), 0); // default: unchanged.
-            LINGERING_POTION = item(id("minecraft", "lingering_potion"), 16); // vanilla: 1. default: parity w/ender pearls.
-            POTION = item(id("minecraft", "potion"), 16); // vanilla: 1. default: parity w/honey bottles.
-            SADDLE = item(id("minecraft", "saddle"), 16); // vanilla: 1. default: not lower due to lack of durability and foreseen balance issues.
-            SNOWBALL = item(id("minecraft", "snowball"), 64); // vanilla: 16. default: parity w/general items, for crafting QOL.
-            SPLASH_POTION = item(id("minecraft", "splash_potion"), 16); // vanilla: 1. default: parity w/ender pearls.
-            TOTEM_OF_UNDYING = item(id("minecraft", "totem_of_undying"), 0); // default: unchanged.
-            WRITABLE_BOOK = item(id("minecraft", "writable_book"), 64); // vanilla: 1. default: fixes undefined behavior when writing to a stack of more than one
-            WRITTEN_BOOK = item(id("minecraft", "written_book"), 64); // vanilla: 16. default: parity w/general items.
-
-            BUILDER.pop(); // common
-         }
-
-         @Contract
-         public static void init() {}
       }
 
       @Contract

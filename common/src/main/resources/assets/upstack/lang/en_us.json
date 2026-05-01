@@ -12,18 +12,19 @@
   "tag.item.pastel.structure_upgrades": "Structure Upgrades",
   "tag.item.pastel.fusion_shrines": "Fusion Shrines",
 
-  "upstack.configuration.add_use_cooldown": "Add Use Cooldown",
+  "upstack.configuration.patches": "Patches",
+
+  "upstack.configuration.update_existing_stacks": "Update Existing Stacks",
+  "upstack.configuration.on_drop": "On Drop",
+
+  "upstack.configuration.item_cooldowns": "Item Cooldowns",
   "upstack.configuration.snowball": "Snowball",
   "upstack.configuration.egg": "Egg",
   "upstack.configuration.throwable_potion": "Throwable Potion",
 
-  "upstack.configuration.patches": "Patches",
-  "upstack.configuration.update_data": "Update Data",
-  "upstack.configuration.on_drop": "On Drop",
-
   "upstack.configuration.tags": "Tags",
 
-  "upstack.configuration.common": "Common",
+  "upstack.configuration.common_items": "Common Items",
   "upstack.configuration.banners": "Banners",
   "upstack.configuration.banner_patterns": "Banner Patterns",
   "upstack.configuration.beds": "Beds",
@@ -49,7 +50,7 @@
   "upstack.configuration.writable_book": "Writable Book",
   "upstack.configuration.written_book": "Written Book",
 
-  "upstack.configuration.pastel": "Pastel",
+  "upstack.configuration.pastel_items": "Pastel Items",
   "upstack.configuration.bulbs": "Bulbs",
   "upstack.configuration.fusion_shrines": "Fusion Shrines",
   "upstack.configuration.item_bowls": "Item Bowls",
@@ -81,7 +82,7 @@
   "upstack.configuration.triple_meat_pot_pie": "Triple Meat Pot Pie",
   "upstack.configuration.triple_meat_pot_stew": "Triple Meat Pot Stew",
 
-  "upstack.configuration.farmersdelight": "Farmer's Delight",
+  "upstack.configuration.farmersdelight_items": "Farmer's Delight Items",
   "upstack.configuration.cooking_pot": "Cooking Pot",
   "upstack.configuration.feasts": "Feasts"
 }

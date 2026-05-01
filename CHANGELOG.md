@@ -1,3 +1,6 @@
+# v2.0.0-alpha
+* Add descriptive comments to config directories (shown on hover).
+
 # v1.0.0
 * Make stack sizes configurable for common items and tags in vanilla, Pastel, Farmer's Delight, Cobblemon, and Vanilla
   Backport
