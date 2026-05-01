@@ -1,6 +1,7 @@
+# Now
+- Come up with a more robust way to test stack size modifications, as behavior is hard to classify currently
 # Next
-- NEXT: Come up with a more robust way to test stack size modifications, as behavior is hard to classify currently
-- Add a safe way to apply stack size modifications to existing stacks? Player tosses item on floor
+- Finalize stack size fix on drop
 - Add sophisticated backpacks to dev mods for testing
 - Add data-fixing config adapter, as config paths have changed
 - Make config comments translatable?
