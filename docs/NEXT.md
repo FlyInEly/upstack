@@ -4,6 +4,7 @@
 - Add sophisticated backpacks to dev mods for testing
 - Add data-fixing config adapter, as config paths have changed
 - Make config comments translatable?
+- Push new changelog changes to all sources? (Though they won't be reflected inside releases)
 # Later
 - Disable cooldowns if not present on server, ensure stack size mods are run only on server
 - Establish release workflow, including project errors check
