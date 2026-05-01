@@ -21,7 +21,7 @@ public abstract class ThrowablePotionItemMixin {
 
    /**
     * Sets and enforces a joint use cooldown for {@link Items#SPLASH_POTION} and {@link Items#LINGERING_POTION}
-    * using the cooldown duration (in ticks) supplied by {@link ModConfig.Patch.Cooldown#THROWABLE_POTION}, if greater
+    * using the cooldown duration (in ticks) supplied by {@link ModConfig.Patch.ItemCooldown#THROWABLE_POTION}, if greater
     * than zero.
     *
     * @implNote For optimization and safety, it is assumed that the used item is either a {@link Items#SPLASH_POTION}
@@ -30,7 +30,7 @@ public abstract class ThrowablePotionItemMixin {
     */
    @Unique
 	protected InteractionResultHolder<ItemStack> upstack$useWithCooldown(Level level, Player player, InteractionHand hand, Operation<InteractionResultHolder<ItemStack>> original) {
-      int duration = ModConfig.Patch.Cooldown.THROWABLE_POTION.getAsInt();
+      int duration = ModConfig.Patch.ItemCooldown.THROWABLE_POTION.getAsInt();
       if (duration > 0) {
             ItemStack stack = player.getItemInHand(hand);
             ItemCooldowns cooldowns = player.getCooldowns();

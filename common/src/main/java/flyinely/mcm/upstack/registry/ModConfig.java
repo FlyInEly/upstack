@@ -39,7 +39,7 @@ public class ModConfig {
          BUILDER.comment("Configure patches which complement changes in max stack size.").push("patches");
 
          DataUpdate.init();
-         Cooldown.init();
+         ItemCooldown.init();
 
          BUILDER.pop(); // patches
       }
@@ -68,7 +68,7 @@ public class ModConfig {
       }
 
       @StaticRegistry
-      public static class Cooldown {
+      public static class ItemCooldown {
 
          private static final int MIN = 0;
          private static final int MAX = Integer.MAX_VALUE;

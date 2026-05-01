@@ -18,11 +18,11 @@ public abstract class SnowballItemMixin {
 	
 	/**
 	 * Sets and enforces a use cooldown for {@link Items#SNOWBALL} using the cooldown duration (in ticks) supplied by
-	 * {@link ModConfig.Patch.Cooldown#SNOWBALL}, if greater than zero.
+	 * {@link ModConfig.Patch.ItemCooldown#SNOWBALL}, if greater than zero.
 	 */
 	@WrapMethod(method = "use")
 	protected InteractionResultHolder<ItemStack> useWithCooldown(Level level, Player player, InteractionHand hand, Operation<InteractionResultHolder<ItemStack>> original) {
-		int duration = ModConfig.Patch.Cooldown.SNOWBALL.getAsInt();
+		int duration = ModConfig.Patch.ItemCooldown.SNOWBALL.getAsInt();
 		if (duration > 0) {
 			ItemStack stack = player.getItemInHand(hand);
 			ItemCooldowns cooldowns = player.getCooldowns();
