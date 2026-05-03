@@ -16,7 +16,8 @@ import static flyinely.mcm.upstack.util.ComponentUtil.MaxStackSize;
 @Mixin(GuiGraphics.class)
 public class GuiGraphicsMixin {
 	
-	// TODO: fix non-rendering of overstacked unstackable items (Witnessed with feasts on NeoForge, but is only the issue inside of containers)
+	// TODO: fix non-rendering of the count and overstackedDecor on overstacked unstackable items
+	//		inside containers.
 	
 	@WrapOperation(method = "renderItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
 	at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;pushPose()V"))
@@ -32,17 +33,4 @@ public class GuiGraphicsMixin {
 		original.call(instance);
 	}
 
-   @WrapOperation(method = "renderItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
-         at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;pushPose()V"))
-   void understackedDecor(PoseStack instance, Operation<Void> original, Font mFont, @NotNull ItemStack mStack, int mX, int mY, String mText) {
-      if (mStack.getMaxStackSize() < MaxStackSize.getDefault(mStack)) {
-         GuiGraphics graphics = (GuiGraphics) (Object) this;
-         PoseStack poseStack = graphics.pose();
-         poseStack.pushPose();
-         poseStack.translate(0, 0, 191); // 9 layers below item counts
-         graphics.drawString(mFont, "#", mX, mY, Constants.UNDERSTACKED_COLOR);
-         poseStack.popPose();
-      }
-      original.call(instance);
-   }
 }

@@ -14,9 +14,7 @@
     "patch.cooldown.LingeringPotionItemMixin",
     "patch.cooldown.SnowballItemMixin",
     "patch.cooldown.SplashPotionItemMixin",
-    "patch.cooldown.ThrowablePotionItemMixin",
-    "patch.data_update.AbstractContainerMenuMixin",
-    "patch.data_update.PlayerMixin"
+    "patch.cooldown.ThrowablePotionItemMixin"
   ],
   "client": [
     "GuiGraphicsMixin"

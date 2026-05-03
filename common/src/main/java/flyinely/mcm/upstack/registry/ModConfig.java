@@ -38,33 +38,10 @@ public class ModConfig {
       static {
          BUILDER.comment("Configure patches which complement changes in max stack size.").push("patches");
 
-         DataUpdate.init();
+         // AssumptionPatches.init();
          ItemCooldown.init();
 
          BUILDER.pop(); // patches
-      }
-
-      @StaticRegistry
-      public static class DataUpdate {
-
-         public static final BooleanValue ON_DROP;
-
-         static {
-            BUILDER.comment("Configure when existing stacks should be updated to match their configured max stack size.")
-                  .push("update_existing_stacks");
-
-            ON_DROP = BUILDER
-                  .comment("When a stack is dropped by the player, update it to match its configured max stack size.")
-                  .define("on_drop", true);
-
-            BUILDER.pop(); // update_existing_stacks
-         }
-
-         @Contract
-         @StaticInit
-         @SuppressWarnings("EmptyMethod")
-         public static void init() {}
-
       }
 
       @StaticRegistry

@@ -1,7 +1,8 @@
 # Now
 - Come up with a more robust way to test stack size modifications, as behavior is hard to classify currently
 # Next
-- Finalize stack size fix on drop
+- Finalize stack size fix on drop 
+- Fix issue with stack size set to 0 does not behave as expected
 - Add sophisticated backpacks to dev mods for testing
 - Add data-fixing config adapter, as config paths have changed
 - Make config comments translatable?

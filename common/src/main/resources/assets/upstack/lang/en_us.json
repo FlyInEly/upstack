@@ -14,9 +14,6 @@
 
   "upstack.configuration.patches": "Patches",
 
-  "upstack.configuration.update_existing_stacks": "Update Existing Stacks",
-  "upstack.configuration.on_drop": "On Drop",
-
   "upstack.configuration.item_cooldowns": "Item Cooldowns",
   "upstack.configuration.snowball": "Snowball",
   "upstack.configuration.egg": "Egg",

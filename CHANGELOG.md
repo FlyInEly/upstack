@@ -1,5 +1,5 @@
 # v2.0.0-alpha
-* Add a configurable patch to update the max stack size of existing stacks when dropped by a player
+* (Were there issues with changing the stack size of existing items in the first place?)
 * Change configuration paths and comments to improve organization and descriptiveness respectively
 
 # v1.0.0
