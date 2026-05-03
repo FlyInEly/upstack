@@ -2,6 +2,7 @@ package flyinely.mcm.upstack.mixin.patch.assumption;
 
 
 import flyinely.mcm.upstack.Constants;
+import flyinely.mcm.upstack.registry.ModConfig;
 import net.minecraft.world.inventory.HorseInventoryMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
@@ -14,8 +15,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 /**
- * Common-side mixin.
- * Fixes issues due to the vanilla assumption that {@link net.minecraft.world.item.SaddleItem} is not stackable.
+ * Common-side mixin. Does nothing if {@link ModConfig.Patch.Fix#LIMIT_SADDLE_SLOT} is disabled.
+ * Fixes issues due to vanilla's assumption that saddles are not stackable.
  * Affects horses, mules, and donkeys (but not striders).
  * <ul>
  * <li>Container slot 0 holds up to 64 saddles, but equipping >1 saddle is redundant.</li>
@@ -43,24 +44,28 @@ public abstract class HorseInventoryMenuMixin {
 	)
 	Slot modifyMaxStackSize(@NotNull Slot original) {
 		
-		// Modify saddle slot only
-		if (original.getContainerSlot() == 0) {
-			upstack$LOG.debug("Restricting the max stack size of the horse saddle slot (container slot: 0).");
-			return new Slot(original.container, original.getContainerSlot(), original.x, original.y) {
-				
-				// Override max stack size
-				
-				@Override
-				public int getMaxStackSize() { return 1; }
-				
-				// Delegate other behavior(s)
-				
-				@Override
-				public boolean mayPlace(@NotNull ItemStack stack) { return original.mayPlace(stack); }
-				
-				@Override
-				public boolean isActive() { return original.isActive(); }
-			};
+		// If enabled
+		if (ModConfig.Patch.Fix.LIMIT_SADDLE_SLOT.get()) {
+			
+			// Modify saddle slot only
+			if (original.getContainerSlot() == 0) {
+				upstack$LOG.debug("Restricting the max stack size of the horse saddle slot to 1 (container slot: 0).");
+				return new Slot(original.container, original.getContainerSlot(), original.x, original.y) {
+					
+					// Override max stack size
+					
+					@Override
+					public int getMaxStackSize() {return 1;}
+					
+					// Delegate other behavior(s)
+					
+					@Override
+					public boolean mayPlace(@NotNull ItemStack stack) {return original.mayPlace(stack);}
+					
+					@Override
+					public boolean isActive() {return original.isActive();}
+				};
+			}
 		}
 		return original;
 	}

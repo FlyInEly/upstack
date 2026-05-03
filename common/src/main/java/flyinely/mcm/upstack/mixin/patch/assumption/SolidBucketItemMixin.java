@@ -1,5 +1,6 @@
 package flyinely.mcm.upstack.mixin.patch.assumption;
 
+import flyinely.mcm.upstack.registry.ModConfig;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
@@ -11,15 +12,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 /**
- * Common-side mixin.
+ * Common-side mixin. Does nothing if {@link ModConfig.Patch.Fix#DECREMENT_SOLID_BUCKETS} is disabled.
  * <p>
- * Fixes issues due to the vanilla assumption that {@link SolidBucketItem} is not stackable.
+ * Fixes issues due to vanilla's assumption that {@link SolidBucketItem} is not stackable.
+ * (In vanilla, the powder snow bucket is the only solid bucket item.)
  */
 @Mixin(SolidBucketItem.class)
 public abstract class SolidBucketItemMixin {
 
    /**
-    * When placing a {@link SolidBucketItem} without infinite materials:
+    * When placing a solid bucket item without infinite materials:
     * <ul>
     *    <li>
     *       Replace the filled stack with the empty stack <i>only if</i> the filled stack has no items. (It has already been decremented in
@@ -34,16 +36,21 @@ public abstract class SolidBucketItemMixin {
          value = "INVOKE",
          target = "Lnet/minecraft/world/item/BucketItem;getEmptySuccessItem(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/item/ItemStack;"))
     ItemStack preserveFilledStack(ItemStack filledStack, @NotNull Player player) {
-      // This check is to ensure that when player.hasInfiniteMaterials(), we do not duplicate filledStack
-      // by adding getEmptySuccessItem() == filledStack to the inventory.
-      if (!player.hasInfiniteMaterials()) {
-         ItemStack emptyStack = BucketItem.getEmptySuccessItem(filledStack, player);
-         if (filledStack.isEmpty()) {
-            return emptyStack;
-         } else if (!player.getInventory().add(emptyStack)) {
-            player.drop(emptyStack, false);
-         }
-      }
+		
+		// If enabled
+		if (ModConfig.Patch.Fix.DECREMENT_SOLID_BUCKETS.get()) {
+			
+			// This check is to ensure that when player.hasInfiniteMaterials(), we do not duplicate filledStack
+			// by adding getEmptySuccessItem() == filledStack to the inventory.
+			if (!player.hasInfiniteMaterials()) {
+				ItemStack emptyStack = BucketItem.getEmptySuccessItem(filledStack, player);
+				if (filledStack.isEmpty()) {
+					return emptyStack;
+				} else if (!player.getInventory().add(emptyStack)) {
+					player.drop(emptyStack, false);
+				}
+			}
+		}
       return filledStack;
    }
 

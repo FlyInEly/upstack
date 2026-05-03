@@ -12,14 +12,16 @@ Upstack must be installed on _both the client and the server_ to function proper
 
 ### Version Support
 
+
 | MC     | NeoForge | Fabric |
-|--------|----------|--------|
-| 1.21.1 | ✅        | ✅      |
+| ------ | -------- | ------ |
+| 1.21.1 | ✅       | ✅     |
 
 ### Dependencies
 
+
 |             | NeoForge | Fabric                                                                                                                                  |
-|-------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| ----------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | Required    | None     | [Fabric API](https://modrinth.com/mod/fabric-api)<br/>[Forge Config API Port](https://modrinth.com/mod/forge-config-api-port) (21.1.6+) |
 | Recommended | None     | [Mod Menu](https://modrinth.com/mod/modmenu) (for in-game configuration)                                                                |
 
@@ -69,10 +71,10 @@ However, there are several known exceptions, each resulting in different issues:
 2. Multiple banner patterns can be placed in a loom at a time, even though banner patterns non-consumable (redundant).
 3. Placing one powder snow bucket deletes all remaining items in the stack (bug).
 4. Combining a stack of X items with a stack of Y enchanted books in an anvil violates item conservation (bug, exploit).
-    1. Enchants all X items, even if there aren't enough enchanted books to do so (Y < X).
-    2. Consumes all Y enchanted books, even if there are fewer items to enchant (X < Y).
-    3. Costs Y times the experience of enchanting one item, even if the actual number of items enchanted differs (X /=
-       Y).
+   1. Enchants all X items, even if there aren't enough enchanted books to do so (Y < X).
+   2. Consumes all Y enchanted books, even if there are fewer items to enchant (X < Y).
+   3. Costs Y times the experience of enchanting one item, even if the actual number of items enchanted differs (X /=
+      Y).
 5. Throwing splash potions, lingering potions, eggs, and snowballs has no cooldown, even though this could cause balance
    issues (balance issue).
 
@@ -80,11 +82,11 @@ Upstack injects the following patches to address these issues:
 
 1. Set the max stack size of the horse/donkey/mule's saddle slot to 1.
 2. Set the max stack size of the loom's banner pattern slot to 1.
-3. When a powder snow bucket is placed, decrement the stack size instead of deleting the stack.
+3. When a stack of powder snow buckets is placed, decrement the stack instead of deleting it.
 4. When a stack of X items is combined with a stack of Y enchanted books:
-    1. Enchant only 1 item at a time.
-    2. Consume only 1 enchanted book at a time.
-    3. Cost the experience of enchanting one item.
+   1. Enchant only 1 item at a time.
+   2. Consume only 1 enchanted book at a time.
+   3. Cost the experience of enchanting one item.
 5. Add optional, configurable cooldowns to splash potions, lingering potions, eggs, and snowballs.
 
 ## Feature Roadmap

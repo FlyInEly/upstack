@@ -1,6 +1,7 @@
 package flyinely.mcm.upstack.mixin.patch.assumption;
 
 import flyinely.mcm.upstack.Constants;
+import flyinely.mcm.upstack.registry.ModConfig;
 import net.minecraft.world.inventory.LoomMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
@@ -13,8 +14,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 /**
- * Common-side mixin.
- * Fixes issues due to the vanilla assumption that {@link net.minecraft.world.item.BannerPatternItem} is not stackable.
+ * Common-side mixin. Does nothing if {@link ModConfig.Patch.Fix#LIMIT_BANNER_PATTERN_SLOT} is disabled.
+ * Fixes issues due to vanilla's assumption that banner patterns are not stackable.
  * <ul>
  * <li>Slot 2 holds up to 64 banner patterns. Issue: Using >1 banner pattern is redundant - banner patterns are not consumed
  * on use (unlike the dyes used to print them).</li>
@@ -35,18 +36,22 @@ public class LoomMenuMixin {
 	)
 	Slot modifyMaxStackSize(Slot slot) {
 		
-		// Modify banner pattern slot only
-		if (slot.getContainerSlot() == 2) {
-			upstack$LOG.debug("Restricting the max stack size of loom banner pattern slot (container slot: 2).");
-			return new Slot(slot.container, slot.getContainerSlot(), slot.x, slot.y) {
-				
-				// Override max stack size
-				@Override
-				public int getMaxStackSize() { return 1; }
-				
-				// Delegate other behavior(s)
-				public boolean mayPlace(@NotNull ItemStack stack) { return slot.mayPlace(stack); }
-			};
+		// If enabled
+		if (ModConfig.Patch.Fix.LIMIT_BANNER_PATTERN_SLOT.get()) {
+			
+			// Modify banner pattern slot only
+			if (slot.getContainerSlot() == 2) {
+				upstack$LOG.debug("Restricting the max stack size of loom banner pattern slot (container slot: 2).");
+				return new Slot(slot.container, slot.getContainerSlot(), slot.x, slot.y) {
+					
+					// Override max stack size
+					@Override
+					public int getMaxStackSize() {return 1;}
+					
+					// Delegate other behavior(s)
+					public boolean mayPlace(@NotNull ItemStack stack) {return slot.mayPlace(stack);}
+				};
+			}
 		}
 		return slot;
 	}

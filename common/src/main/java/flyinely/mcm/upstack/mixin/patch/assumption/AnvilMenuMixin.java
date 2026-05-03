@@ -2,6 +2,8 @@ package flyinely.mcm.upstack.mixin.patch.assumption;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import flyinely.mcm.upstack.registry.ModConfig;
+import flyinely.mcm.upstack.registry.ModConfig.Patch.Fix;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AnvilMenu;
@@ -17,8 +19,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import static net.minecraft.world.inventory.AnvilMenu.*;
 
 /**
- * Common-side mixin.
- * Fixes issues caused by the vanilla assumption that {@link net.minecraft.world.item.Items#ENCHANTED_BOOK} is not stackable.
+ * Common-side mixin. Does nothing if {@link ModConfig.Patch.Fix#FIX_ANVIL_ENCHANTING} is disabled.
+ * Fixes issues caused by vanilla's assumption that enchanted books are not stackable.
  */
 @Mixin(AnvilMenu.class)
 public class AnvilMenuMixin {
@@ -26,11 +28,9 @@ public class AnvilMenuMixin {
 	@Shadow
 	private int repairItemCountCost;
 	
-	// TODO: Remove extraneous logic. Clean (succinct) docs.
-	
 	/**
 	 * Pretends that there's only one item in the input slot so that the game's logic doesn't auto-set
-	 * the price to 40 levels (too expensive in survival).
+	 * the price to 40 levels, the "too expensive" threshold in survival.
 	 */
 	@WrapOperation(
 			method = "createResult",
@@ -42,13 +42,15 @@ public class AnvilMenuMixin {
 					to = @At(
 							value = "INVOKE",
 							target = "Lnet/minecraft/world/inventory/ResultContainer;setItem(ILnet/minecraft/world/item/ItemStack;)V")))
-	int test(ItemStack inputStackInstance, Operation<Integer> getCountOriginal) {
-		return (getCountOriginal.call(inputStackInstance) > 1) ? 1 : getCountOriginal.call(inputStackInstance);
+	int fixResultCost(ItemStack inputStackInstance, Operation<Integer> getCountOriginal) {
+		return (Fix.FIX_ANVIL_ENCHANTING.get() && getCountOriginal.call(inputStackInstance) > 1) ? 1 : getCountOriginal.call(inputStackInstance);
 	}
 	
 	
 	@Inject(method = "createResult", at = @At("TAIL"))
 	void setOutputCountOnTake(CallbackInfo ci) {
+		if (!Fix.FIX_ANVIL_ENCHANTING.get()) return; // exit if config disabled
+		
 		var self = (AnvilMenu) (Object) this;
 		Slot resultSlot = self.getSlot(RESULT_SLOT);
 		if (self.getSlot(INPUT_SLOT).getItem().getCount() > 1
@@ -70,6 +72,8 @@ public class AnvilMenuMixin {
 	 */
 	@Inject(method = "onTake", at = @At("TAIL"))
 	void refreshResultOnTake(Player pPlayer, ItemStack pStack, CallbackInfo ci) {
+		if (!Fix.FIX_ANVIL_ENCHANTING.get()) return; // exit if config disabled
+		
 		var self = (AnvilMenu) (Object) this;
 		if (self.getSlot(RESULT_SLOT).hasItem()) {
 			self.createResult(); // recalculate cost
@@ -90,7 +94,7 @@ public class AnvilMenuMixin {
 	@WrapOperation(method = "onTake", at = @At(
 			value = "INVOKE", target = "Lnet/minecraft/world/Container;setItem(ILnet/minecraft/world/item/ItemStack;)V"))
 	void shrinkInputStacks(Container instance, int pSlot, ItemStack pStack, Operation<Void> original) {
-		if (pStack.isEmpty()) {
+		if (Fix.FIX_ANVIL_ENCHANTING.get() && pStack.isEmpty()) {
 			if (pSlot == INPUT_SLOT && !instance.getItem(ADDITIONAL_SLOT).isEmpty()) {
 				pStack = instance.getItem(INPUT_SLOT);
 				original.call(instance, pSlot, pStack.copyWithCount(pStack.getCount() - 1));
