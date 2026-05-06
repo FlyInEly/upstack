@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 /**
- * Common-side mixin. Does nothing if {@link ModConfig.Patch.Fix#DECREMENT_SOLID_BUCKETS} is disabled.
+ * Common-side mixin. Does nothing if {@link ModConfig.Patch.Fix#FIX_SOLID_BUCKET_PLACING} is disabled.
  * <p>
  * Fixes issues due to vanilla's assumption that {@link SolidBucketItem} is not stackable.
  * (In vanilla, the powder snow bucket is the only solid bucket item.)
@@ -38,7 +38,7 @@ public abstract class SolidBucketItemMixin {
     ItemStack preserveFilledStack(ItemStack filledStack, @NotNull Player player) {
 		
 		// If enabled
-		if (ModConfig.Patch.Fix.DECREMENT_SOLID_BUCKETS.get()) {
+		if (ModConfig.Patch.Fix.FIX_SOLID_BUCKET_PLACING.get()) {
 			
 			// This check is to ensure that when player.hasInfiniteMaterials(), we do not duplicate filledStack
 			// by adding getEmptySuccessItem() == filledStack to the inventory.

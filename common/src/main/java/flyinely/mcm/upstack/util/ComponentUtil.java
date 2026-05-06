@@ -182,6 +182,10 @@ public class ComponentUtil {
       public static void set(@NotNull Item item, int value) {
          if (value >= MIN && value <= MAX) {
             ComponentUtil.set(item, DataComponents.MAX_STACK_SIZE, value);
+//         } else {
+//            Items.BUCKET.getDefaultMaxStackSize()
+            // TODO: Do we need game restart for our component changes to be undone? Given that the initializers
+            //    are static, it would make sense. Yes, it looks like it.
          }
       }
 

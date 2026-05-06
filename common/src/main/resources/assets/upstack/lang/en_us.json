@@ -14,6 +14,12 @@
 
   "upstack.configuration.patches": "Patches",
 
+  "upstack.configuration.fixes": "Fixes",
+  "upstack.configuration.limit_saddle_slot": "Limit Saddle Slot",
+  "upstack.configuration.limit_banner_pattern_slot": "Limit Banner Pattern Slot",
+  "upstack.configuration.fix_solid_bucket_placing": "Fix Solid Bucket Placing",
+  "upstack.configuration.fix_anvil_enchanting": "Fix Anvil Enchanting",
+
   "upstack.configuration.item_cooldowns": "Item Cooldowns",
   "upstack.configuration.snowball": "Snowball",
   "upstack.configuration.egg": "Egg",

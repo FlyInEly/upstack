@@ -15,7 +15,8 @@ import org.jetbrains.annotations.NotNull;
 
 import static flyinely.mcm.upstack.util.ResUtil.id;
 import static flyinely.mcm.upstack.util.TagUtil.tagString;
-import static net.neoforged.neoforge.common.ModConfigSpec.*;
+import static net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
+import static net.neoforged.neoforge.common.ModConfigSpec.Builder;
 
 // NOTE: Order of pushes appears to be reflected in the final config menu!
 @ApiStatus.Internal
@@ -49,7 +50,7 @@ public class ModConfig {
 			
 			public static final BooleanValue LIMIT_SADDLE_SLOT;
 			public static final BooleanValue LIMIT_BANNER_PATTERN_SLOT;
-			public static final BooleanValue DECREMENT_SOLID_BUCKETS;
+			public static final BooleanValue FIX_SOLID_BUCKET_PLACING;
 			public static final BooleanValue FIX_ANVIL_ENCHANTING;
 			
 			static {
@@ -64,9 +65,9 @@ public class ModConfig {
 								+ "redundant. (Banner patterns are non-consumable.)")
 						.define("limit_banner_pattern_slot", true);
 				
-				DECREMENT_SOLID_BUCKETS = BUILDER
+				FIX_SOLID_BUCKET_PLACING = BUILDER
 						.comment("When a stack of powder snow buckets is placed, decrement the stack instead of deleting it.")
-						.define("decrement_solid_buckets", true);
+						.define("fix_solid_bucket_placing", true);
 				
 				FIX_ANVIL_ENCHANTING = BUILDER
 						.comment("When a stack of enchanted books is applied in the anvil, enchant one item at a time instead of "
@@ -141,7 +142,8 @@ public class ModConfig {
 		 * @return the config value
 		 */
 		private static IntValue tag(TagKey<Item> tag, int defaultValue) {
-			return BUILDER.worldRestart().comment("Configure the stack size of " + tagString(tag) + "items.").defineInRange(tag.location().getPath(), defaultValue, MIN, MAX);
+			return BUILDER.worldRestart().comment("The max stack size of " + tagString(tag) + " items. " +
+               "To restore the default, set to 0 and restart the game.").defineInRange(tag.location().getPath(), defaultValue, MIN, MAX);
 		}
 		
 		/**
@@ -152,7 +154,8 @@ public class ModConfig {
 		 * @return the config value
 		 */
 		private static IntValue item(@NotNull ResourceLocation id, int defaultValue) {
-			return BUILDER.worldRestart().comment("Configure the stack size of " + id + ".").defineInRange(id.getPath(), defaultValue, MIN, MAX);
+			return BUILDER.worldRestart().comment("The max stack size of " + id + ". " +
+               "To restore the default, set to 0 and restart the game.").defineInRange(id.getPath(), defaultValue, MIN, MAX);
 		}
 		
 		// Include minecraft: and c: here
