@@ -1,10 +1,6 @@
-# Now
-- Come up with a more robust way to test stack size modifications, as behavior is hard to classify currently
 # Next
-- Fix issue with stack size set to 0 does not behave as expected
 - Add sophisticated backpacks to dev mods for testing
 - Add data-fixing config adapter, as config paths have changed
-- Make config comments translatable?
 - Push new changelog changes to all sources? (Though they won't be reflected inside releases)
 # Later
 - Disable cooldowns if not present on server, ensure stack size mods are run only on server

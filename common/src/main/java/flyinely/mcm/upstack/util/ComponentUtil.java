@@ -29,6 +29,9 @@ import java.util.Objects;
  * Each tag or item modification produces an info-level or debug-level log message respectively.
  * Due to the aforementioned expectation that method calls are infrequent, these debug messages are believed to be
  * more helpful than spammy.
+ * <p>
+ * WARNING: Currently, until the game is restarted, there is no way to reset an item's components to its vanilla
+ * default. This is because the game uses (one-time) static initialization to set those components.
  *
  * @since 2.0.0
  * @see DataComponentType
@@ -182,10 +185,6 @@ public class ComponentUtil {
       public static void set(@NotNull Item item, int value) {
          if (value >= MIN && value <= MAX) {
             ComponentUtil.set(item, DataComponents.MAX_STACK_SIZE, value);
-//         } else {
-//            Items.BUCKET.getDefaultMaxStackSize()
-            // TODO: Do we need game restart for our component changes to be undone? Given that the initializers
-            //    are static, it would make sense. Yes, it looks like it.
          }
       }
 

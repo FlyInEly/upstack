@@ -1,10 +1,17 @@
-# v2.0.0-alpha
+## Unreleased
+### Added
 * (Were there issues with changing the stack size of existing items in the first place?)
-* Make the mod's bugfix patches configurable
-* Change configuration paths and comments to improve organization and descriptiveness respectively
 
-# v1.0.0
-* Make the max stack size of common items configurable: in vanilla, Pastel, Farmer's Delight, Cobblemon, Vanilla Backport
-* Add patches to fix issues that occur when making saddles, banner patterns, powder snow buckets, and enchanted books stackable
-* Add configurable cooldowns for throwable potions, eggs, and snowballs to address potential balance issues with
-  increasing their stack size
+### Changed
+* Make the mod's patches configurable.
+* Change configuration paths to improve organization and configuration comments to improve descriptiveness.
+
+## v1.0.0
+### Added
+* Make the max stack size of common items configurable.
+* Patch issues that occur when some items are made stackable.
+  * Allow a horse, donkey, or mule to equip only one saddle at a time.
+  * Allow only one banner pattern in a loom at a time.
+  * Placing a stack of multiple powder snow buckets no longer deletes all but one item.
+  * Costs are now accurate when combining a stack of multiple enchanted books in an anvil.
+  * Throwable potions, eggs, and snowballs now have configurable cooldowns.
