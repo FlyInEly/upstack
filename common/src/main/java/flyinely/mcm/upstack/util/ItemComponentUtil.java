@@ -11,7 +11,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -47,21 +46,6 @@ public class ItemComponentUtil {
    public static void setAll(@NotNull Item item, @NotNull DataComponentMap map) {
       LOG.debug("Modifying {}", item);
       ((ItemAccessor) item).setComponents(map);
-   }
-
-   /**
-    * Sets each component to its given mapped value, unless that value is {@code null}.
-    *
-    * @param item the target item
-    * @param map  the component map
-    * @implNote Replaces the item's current map with a modified copy: the given map composed onto the current map.
-    * @see DataComponentMap#composite(DataComponentMap, DataComponentMap)
-    */
-	@SuppressWarnings("unused")
-   @SoftSided.Server
-   @ApiStatus.Experimental // Currently unused, and quick to replicate. Documentation is good though.
-   public static void setAllNonNull(@NotNull Item item, @NotNull DataComponentMap map) {
-      setAll(item, DataComponentMap.composite(item.components(), map));
    }
 
    /**
