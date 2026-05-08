@@ -38,7 +38,7 @@
   "upstack.configuration.ender_pearl": "Ender Pearl",
   "upstack.configuration.ender_splice": "Ender Splice",
   "upstack.configuration.farmersdelight_items": "Farmer's Delight Items",
-  "upstack.configuration.feasts": "Feasts"
+  "upstack.configuration.feasts": "Feasts",
   "upstack.configuration.fix_anvil_enchanting": "Fix Anvil Enchanting",
   "upstack.configuration.fix_solid_bucket_placing": "Fix Solid Bucket Placing",
   "upstack.configuration.fixes": "Fixes",
@@ -80,5 +80,5 @@
   "upstack.configuration.triple_meat_pot_pie": "Triple Meat Pot Pie",
   "upstack.configuration.triple_meat_pot_stew": "Triple Meat Pot Stew",
   "upstack.configuration.writable_book": "Writable Book",
-  "upstack.configuration.written_book": "Written Book",
+  "upstack.configuration.written_book": "Written Book"
 }
