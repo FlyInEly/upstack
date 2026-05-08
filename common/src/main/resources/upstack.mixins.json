@@ -16,7 +16,9 @@
     "ThrowablePotionItemMixin",
     "registry.ItemAccessor"
   ],
-  "client": [],
+  "client": [
+    "GuiGraphicsMixin"
+  ],
   "server": [],
   "injectors": {
     "defaultRequire": 1
