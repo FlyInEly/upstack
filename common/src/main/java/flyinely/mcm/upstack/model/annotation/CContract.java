@@ -16,4 +16,22 @@ public abstract class CContract {
    public @interface ConstantReturn {
 
    }
+
+   /**
+    * Indicates that the method promises that it is empty, and is used to trigger the class's static initializer block.
+    */
+   @Retention(RetentionPolicy.SOURCE)
+   @Target({ElementType.METHOD})
+   public @interface StaticInit {
+   }
+
+   /**
+    * Indicates that the class promises that all public members are {@code static final}, and there
+    * are no public methods not annotated {@link StaticInit}. If this class is a nested class,
+    * it must be static. Public nested classes inside this class must also be {@link StaticRegistry}.
+    */
+   @Retention(RetentionPolicy.SOURCE)
+   @Target({ElementType.TYPE})
+   public @interface StaticRegistry {
+   }
 }

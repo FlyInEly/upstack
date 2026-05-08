@@ -1,5 +1,7 @@
 package flyinely.mcm.upstack.config;
 
+import flyinely.mcm.upstack.model.annotation.CContract.StaticInit;
+import flyinely.mcm.upstack.model.annotation.CContract.StaticRegistry;
 import flyinely.mcm.upstack.registry.MItemTags;
 import flyinely.mcm.upstack.util.ItemComponentUtil;
 import net.minecraft.tags.ItemTags;
@@ -9,6 +11,7 @@ import org.jetbrains.annotations.Contract;
 
 import static flyinely.mcm.upstack.util.TagUtil.tagString;
 
+@StaticRegistry
 public class Config {
 	
 	public static final ModConfigSpec SPEC;
@@ -21,7 +24,7 @@ public class Config {
 		SPEC = BUILDER.build();
 	}
 
-   @SuppressWarnings("EmptyMethod") // They are dummy methods to trigger static init
+   @StaticRegistry
 	public static class Cooldowns {
 		
 		private static final int MIN = 0;
@@ -30,9 +33,6 @@ public class Config {
 		public static final IntValue POTION_THROW_COOLDOWN;
 		public static final IntValue EGG_THROW_COOLDOWN;
 		public static final IntValue SNOWBALL_THROW_COOLDOWN;
-		
-		@Contract
-		public static void init() {}
 		
 		static {
 			BUILDER.push("cooldowns");
@@ -49,18 +49,23 @@ public class Config {
 			
 			BUILDER.pop(); // cooldowns
 		}
-		
+
+      @Contract
+      @StaticInit
+      @SuppressWarnings("EmptyMethod")
+      public static void init() {}
 	}
 
-   @SuppressWarnings("EmptyMethod") // They are dummy methods to trigger static init
+   @StaticRegistry
 	public static class StackSize {
-		
-		
+
 		// A value of MIN_STACK_SIZE - 1 indicates that the item(s)' stack size should be left unmodified.
 		private static final int MIN = ItemComponentUtil.ABSOLUTE_MIN_STACK_SIZE - 1;
 		private static final int MAX = ItemComponentUtil.ABSOLUTE_MAX_STACK_SIZE;
 
+      @StaticRegistry
       public static class Pastel {
+
 			// TAGS
 			public static final IntValue BULBS;
 			public static final IntValue FUSION_SHRINES;
@@ -70,6 +75,7 @@ public class Config {
 			public static final IntValue ROUNDELS;
 			public static final IntValue SHOOTING_STARS;
 			public static final IntValue STRUCTURE_UPGRADES;
+
 			// ITEMS
 			public static final IntValue AETHER_VESTIGES;
 			public static final IntValue BAG_OF_HOLDING;
@@ -93,9 +99,6 @@ public class Config {
 			public static final IntValue STRATINE_GEM;
 			public static final IntValue TRIPLE_MEAT_POT_PIE;
 			public static final IntValue TRIPLE_MEAT_POT_STEW;
-			
-			@Contract
-			public static void init() {}
 			
 			static {
 				BUILDER.push("pastel");
@@ -195,17 +198,21 @@ public class Config {
 						.defineInRange("triple_meat_pot_stew", 16, MIN, MAX); // mod: 8. upstack: parity with farmers' delight bowl foods
 				BUILDER.pop(); // pastel
 			}
+
+         @Contract
+         @StaticInit
+         @SuppressWarnings("EmptyMethod")
+         public static void init() {}
 		}
-		
+
+      @StaticRegistry
 		public static class Farmersdelight {
+
 			// TAGS
 			public static final IntValue FEASTS;
 			
 			// ITEMS
 			public static final IntValue COOKING_POT;
-			
-			@Contract
-			public static void init() {}
 			
 			static {
 				BUILDER.push("farmersdelight");
@@ -222,8 +229,14 @@ public class Config {
 				
 				BUILDER.pop(); // farmersdelight
 			}
+
+         @Contract
+         @StaticInit
+         @SuppressWarnings("EmptyMethod")
+         public static void init() {}
 		}
-		
+
+      @StaticRegistry
 		// Include minecraft: and c: here
 		public static class Common {
 			
@@ -342,6 +355,8 @@ public class Config {
 			}
 			
 			@Contract
+			@StaticInit
+			@SuppressWarnings("EmptyMethod")
 			public static void init() {}
 		}
 		
@@ -355,10 +370,10 @@ public class Config {
 			BUILDER.pop(); // stack_size
 		}
 		
-		/** Dummy method to trigger the static initializer. */
 		@Contract
-		static void init() {}
-		
+		@StaticInit
+		@SuppressWarnings("EmptyMethod")
+		public static void init() {}
 	}
 	
 }
