@@ -1,8 +1,4 @@
 ## In development
-### Added
-* Add descriptive comments to the mod's config groups.
-* Add a notice that a game restart is required to set a max stack size to the default by setting its config to 0.
-
 ### Fixed
 * Issue #1, which also occurs with both types of new overstacked indicators.
 * Issue #2
@@ -10,6 +6,10 @@
 ## Unreleased
 ### Added
 * Add configurable indicators for overstacked items: stacks whose count exceeds the max stack size.
+
+### Changed
+* Improved the descriptiveness of comments in the config, including a notice that a game restart is required to
+restore the default max stack size of an item. 
 
 ### Removed
 * Remove unused experimental code.
