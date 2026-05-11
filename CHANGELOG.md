@@ -1,9 +1,11 @@
 ## In development
+
 ### Fixed
 * Issue #1, which also occurs with both types of new overstacked indicators.
 * Issue #2
 
 ## Unreleased
+
 ### Added
 * Add configurable indicators for overstacked items: stacks whose count exceeds the max stack size.
 
