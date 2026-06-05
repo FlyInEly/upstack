@@ -44,7 +44,7 @@ public class Config {
       public static final IntValue OVERSTACKED_COLOR; // LATER: Use a ConfigValue which safely accepts direct hex.
 
       static {
-         BUILDER.comment("Configure indicators for overstacked items: stacks whose count exceeds the max stack size.").push("display");
+         BUILDER.push("display");
 
          OVERSTACKED_SYMBOL = BUILDER
                .comment("Overlay a \"#\" symbol on overstacked items: stacks whose count exceeds the max stack size.")
@@ -325,7 +325,7 @@ public class Config {
       }
 
       static {
-         BUILDER.comment("Configure the max stack sizes of supported items.").push("stack_size");
+         BUILDER.push("stack_size");
 
          Common.init();
          Pastel.init();
