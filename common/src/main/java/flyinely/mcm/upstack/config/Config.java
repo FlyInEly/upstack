@@ -78,16 +78,16 @@ public class Config {
       public static final IntValue SNOWBALL_THROW_COOLDOWN;
 
       static {
-         BUILDER.comment("Configure the cooldown of using a throwable item, to counterbalance changes to its max stack size.").push("cooldowns");
+         BUILDER.push("cooldowns");
 
          POTION_THROW_COOLDOWN = BUILDER
-               .comment("Cooldown (in ticks) of throwing splash and lingering potions. Set 0 to disable.")
+               .comment("Cooldown, in ticks, of throwing splash and lingering potions. Set 0 to disable.")
                .defineInRange("throwable_potion", 10, MIN, MAX); // default: half of ender pearls. not lower due to combat balance implications, but not higher to cause less friction.
          EGG_THROW_COOLDOWN = BUILDER
-               .comment("Cooldown (in ticks) of throwing eggs. Set 0 to disable.")
+               .comment("Cooldown, in ticks, of throwing eggs. Set 0 to disable.")
                .defineInRange("egg", 0, MIN, MAX); // default: unchanged.
          SNOWBALL_THROW_COOLDOWN = BUILDER
-               .comment("Cooldown (in ticks) of throwing snowballs. Set 0 to disable.")
+               .comment("Cooldown, in ticks, of throwing snowballs. Set 0 to disable.")
                .defineInRange("snowball", 5, MIN, MAX); // default: quarter of ender pearls. not lower due to cheap projectile, esp. on blazes.
 
          BUILDER.pop(); // cooldowns
@@ -107,8 +107,9 @@ public class Config {
       private static final int MAX = ItemComponentUtil.ABSOLUTE_MAX_STACK_SIZE;
 
       // The comment for groups named "tags" in the config.
-      public static final String TAGS_COMMENT = "Configure the max stack size of all items in a tag, " +
-            "except for those individually configured to have a different max stack size.";
+      public static final String TAGS_COMMENT = "Configure the max stack size of all items in an item tag. " +
+            "If an individual item is configured to have a nonzero max stack size, then that value overrides " +
+            "the value set by its tags.";
 
       /**
        * Defines the config value for the max stack size of all items in the tag. Mutates {@link #BUILDER}.
@@ -118,8 +119,8 @@ public class Config {
        * @return the config value
        */
       private static IntValue tag(TagKey<Item> tag, int defaultValue) {
-         return BUILDER.worldRestart().comment("Max stack size of " + tagString(tag) + " items. Set 0 and restart the game to " +
-               "restore the items' original max stack size.").defineInRange(tag.location().getPath(), defaultValue, MIN, MAX);
+         return BUILDER.worldRestart().comment("The max stack size of " + tagString(tag) + " items. " +
+               "To restore the default, set to 0 and restart the game.").defineInRange(tag.location().getPath(), defaultValue, MIN, MAX);
       }
 
       /**
@@ -130,8 +131,8 @@ public class Config {
        * @return the config value
        */
       private static IntValue item(@NotNull ResourceLocation id, int defaultValue) {
-         return BUILDER.worldRestart().comment("The max stack size of " + id + ". Set 0 and restart the game to restore " +
-               "the item's original max stack size.").defineInRange(id.getPath(), defaultValue, MIN, MAX);
+         return BUILDER.worldRestart().comment("The max stack size of " + id + ". " +
+               "To restore the default, set to 0 and restart the game.").defineInRange(id.getPath(), defaultValue, MIN, MAX);
       }
 
       @StaticRegistry
@@ -168,7 +169,7 @@ public class Config {
          public static final IntValue MILK_BOTTLES;
 
          static {
-            BUILDER.comment("Configure the max stack size of common items.").push("_common");
+            BUILDER.comment("Configure the max stack size of common items.").push("common");
 
             BUILDER.comment(TAGS_COMMENT).push("tags");
 
