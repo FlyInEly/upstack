@@ -1,3 +1,8 @@
+### Now
+- Split display configs into a client-side config.
+- Common config should be server-side?
+
+### Later
 - Disable cooldowns if not present on server, ensure stack size mods are run only on server
 - Test in full modpack environment
 - Initial release (gradle.properties version bump)

@@ -23,10 +23,6 @@ public class UpstackNeoForge {
       UpstackCommon.init();
 
       // Register config w/screen
-      // TESTING FIX (#3)
-      //  runServer NEO, FABRIC pass
-      //  runClient NEO, FABRIC pass
-      //  runClient -> runServer TBD
       container.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
       if (FMLLoader.getDist().isClient()) {
          container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
