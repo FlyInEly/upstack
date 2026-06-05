@@ -7,6 +7,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.javafmlmod.FMLModContainer;
+import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
@@ -22,8 +23,14 @@ public class UpstackNeoForge {
       UpstackCommon.init();
 
       // Register config w/screen
+      // TESTING FIX (#3)
+      //  runServer NEO, FABRIC pass
+      //  runClient NEO, FABRIC pass
+      //  runClient -> runServer TBD
       container.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-      container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+      if (FMLLoader.getDist().isClient()) {
+         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+      }
 
       Constants.LOG.info("Finished NeoForge init");
    }

@@ -1,20 +1,18 @@
-## In development
-
-### Fixed
-* Issue #1, which also occurs with both types of new overstacked indicators.
-* Issue #2
-
 ## Unreleased
 
 ### Added
-* Add configurable indicators for overstacked items: stacks whose count exceeds the max stack size.
+* Add configurable indicators for overstacked items (stacks which exceed the max stack size).
 
 ### Changed
-* Improved the descriptiveness of comments in the config, including a notice that a game restart is required to
-restore the default max stack size of an item. 
+* Make config comments more descriptive, including a notice that a game restart is required to restore the default max 
+stack size of an item.
 
-### Removed
-* Remove unused experimental code.
+### Fixed
+* Fix crash when mod loads on a dedicated server (#3).
+
+### Known Issues
+* Two world restarts are required to update the max stack size of existing items (#2) and show their correct 
+item count (#1). Since v1.0.0.
 
 ## v1.0.0
 * Make stack sizes configurable for common items and tags in vanilla, Pastel, Farmer's Delight, Cobblemon, and Vanilla

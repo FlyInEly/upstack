@@ -4,9 +4,11 @@ import flyinely.mcm.upstack.config.Config;
 import flyinely.mcm.upstack.event.TooltipHandler;
 import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeConfigRegistry;
 import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.client.ConfigScreenFactoryRegistry;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.loader.api.FabricLoader;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 
@@ -19,12 +21,19 @@ public class UpstackFabric implements ModInitializer {
 
       // Register event listeners
       ServerLifecycleEvents.SERVER_STARTING.register(s -> UpstackCommon.onServerStarting());
-      ItemTooltipCallback.EVENT.register((stack, ignoredContext, ignoredFlag, list) ->
-            TooltipHandler.onHandleTooltip(stack, list));
 
-      // Register config w/screen
+      // Register config
       NeoForgeConfigRegistry.INSTANCE.register(Constants.MOD_ID, ModConfig.Type.COMMON, Config.SPEC);
-      ConfigScreenFactoryRegistry.INSTANCE.register(Constants.MOD_ID, ConfigurationScreen::new);
+
+      if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
+
+         // Register config screen
+         ConfigScreenFactoryRegistry.INSTANCE.register(Constants.MOD_ID, ConfigurationScreen::new);
+
+         // Register tooltip handler
+         ItemTooltipCallback.EVENT.register((stack, ignoredContext, ignoredFlag, list) ->
+               TooltipHandler.onHandleTooltip(stack, list));
+      }
 
       Constants.LOG.info("Finished fabric init");
    }
