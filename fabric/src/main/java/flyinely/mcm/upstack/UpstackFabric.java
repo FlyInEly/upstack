@@ -1,12 +1,10 @@
 package flyinely.mcm.upstack;
 
 import flyinely.mcm.upstack.config.Config;
-import flyinely.mcm.upstack.event.TooltipHandler;
 import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeConfigRegistry;
 import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.client.ConfigScreenFactoryRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.neoforged.fml.config.ModConfig;
@@ -30,9 +28,6 @@ public class UpstackFabric implements ModInitializer {
          // Register config screen
          ConfigScreenFactoryRegistry.INSTANCE.register(Constants.MOD_ID, ConfigurationScreen::new);
 
-         // Register tooltip handler
-         ItemTooltipCallback.EVENT.register((stack, ignoredContext, ignoredFlag, list) ->
-               TooltipHandler.onHandleTooltip(stack, list));
       }
 
       Constants.LOG.info("Finished fabric init");
