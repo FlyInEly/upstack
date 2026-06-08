@@ -9,7 +9,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.common.ModConfigSpec;
-import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
 import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
@@ -20,7 +19,7 @@ import static flyinely.mcm.upstack.util.TagUtil.tagString;
 
 @ApiStatus.Internal
 @StaticRegistry
-public class Config {
+public class CommonConfig {
 
    public static final ModConfigSpec SPEC;
    public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
@@ -30,44 +29,11 @@ public class Config {
 
       StackSize.init();
       Cooldowns.init();
-      Display.init();
 
       SPEC = BUILDER.build();
    }
-
-   @StaticRegistry
-   public static class Display {
-
-      public static final BooleanValue OVERSTACKED_SYMBOL;
-      public static final BooleanValue OVERSTACKED_TOOLTIP;
-
-      public static final IntValue OVERSTACKED_COLOR; // LATER: Use a ConfigValue which safely accepts direct hex.
-
-      static {
-         BUILDER.comment("Configure indicators for overstacked items: stacks whose count exceeds the max stack size.").push("display");
-
-         OVERSTACKED_SYMBOL = BUILDER
-               .comment("Overlay a \"#\" symbol on overstacked items: stacks whose count exceeds the max stack size.")
-               .define("overstacked_symbol", true);
-
-         OVERSTACKED_TOOLTIP = BUILDER
-               .comment("Add a descriptive tooltip to overstacked items.")
-               .define("overstacked_tooltip", true);
-
-         OVERSTACKED_COLOR = BUILDER
-               .comment("The color (24-bit RGB) of the overstacked symbol and tooltip on overstacked items.")
-               .defineInRange("overstacked_color", 0xff5454, 0x000000, 0xFFFFFF);
-
-         BUILDER.pop(); // display
-      }
-
-      @Contract
-      @StaticInit
-      @SuppressWarnings("EmptyMethod")
-      public static void init() {}
-   }
-
-   @StaticRegistry
+	
+	@StaticRegistry
    public static class Cooldowns {
 
       private static final int MIN = 0;
@@ -96,7 +62,7 @@ public class Config {
       @Contract
       @StaticInit
       @SuppressWarnings("EmptyMethod")
-      public static void init() {}
+      private static void init() {}
    }
 
    @StaticRegistry
@@ -207,7 +173,7 @@ public class Config {
          @Contract
          @StaticInit
          @SuppressWarnings("EmptyMethod")
-         public static void init() {}
+         private static void init() {}
       }
 
       @StaticRegistry
@@ -292,7 +258,7 @@ public class Config {
          @Contract
          @StaticInit
          @SuppressWarnings("EmptyMethod")
-         public static void init() {}
+         private static void init() {}
       }
 
       @StaticRegistry
@@ -321,7 +287,7 @@ public class Config {
          @Contract
          @StaticInit
          @SuppressWarnings("EmptyMethod")
-         public static void init() {}
+         private static void init() {}
       }
 
       static {
@@ -337,7 +303,7 @@ public class Config {
       @Contract
       @StaticInit
       @SuppressWarnings("EmptyMethod")
-      public static void init() {}
+      private static void init() {}
    }
 
 }

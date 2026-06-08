@@ -1,6 +1,7 @@
 package flyinely.mcm.upstack;
 
-import flyinely.mcm.upstack.config.Config;
+import flyinely.mcm.upstack.config.ClientConfig;
+import flyinely.mcm.upstack.config.CommonConfig;
 import flyinely.mcm.upstack.event.TooltipHandler;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -17,28 +18,30 @@ import org.jetbrains.annotations.NotNull;
 @Mod(Constants.MOD_ID)
 @EventBusSubscriber(modid = Constants.MOD_ID)
 public class UpstackNeoForge {
-
-   public UpstackNeoForge(@NotNull FMLModContainer container) {
-      // Bootstrap common init
-      UpstackCommon.init();
-
-      // Register config w/screen
-      container.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-      if (FMLLoader.getDist().isClient()) {
-         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
-      }
-
-      Constants.LOG.info("Finished NeoForge init");
-   }
-
-   @SubscribeEvent
-   public static void onServerStarting(ServerStartingEvent event) {
-      Constants.LOG.info("Bootstrapping server starting");
-      UpstackCommon.onServerStarting(); // Bootstrap
-   }
-
-   @SubscribeEvent
-   public static void onItemTooltip(ItemTooltipEvent event) {
-      TooltipHandler.onHandleTooltip(event.getItemStack(), event.getToolTip());
-   }
+	
+	public UpstackNeoForge(@NotNull FMLModContainer container) {
+		// Bootstrap common init
+		UpstackCommon.init();
+		
+		// Register configs
+		container.registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
+		container.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC); // automatically client-only
+		
+		if (FMLLoader.getDist().isClient()) {
+			// Register config screen (client-only)
+			container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+		}
+		
+		Constants.LOG.info("Finished NeoForge init.");
+	}
+	
+	@SubscribeEvent
+	public static void onServerStarting(ServerStartingEvent event) {
+		UpstackCommon.onServerStarting();
+	}
+	
+	@SubscribeEvent
+	public static void onItemTooltip(ItemTooltipEvent event) {
+		TooltipHandler.onHandleTooltip(event.getItemStack(), event.getToolTip());
+	}
 }
