@@ -1,5 +1,6 @@
 package flyinely.mcm.upstack.model.annotation;
 
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 
 import java.lang.annotation.ElementType;
@@ -7,6 +8,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+@ApiStatus.Experimental
 @SuppressWarnings("unused") // not for instantiation
 public final class SoftSided {
 
