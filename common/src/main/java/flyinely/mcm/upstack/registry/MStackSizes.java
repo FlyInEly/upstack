@@ -1,6 +1,6 @@
 package flyinely.mcm.upstack.registry;
 
-import flyinely.mcm.upstack.model.annotation.SoftSided;
+import flyinely.mcm.upstack.annotation.SoftSided;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 

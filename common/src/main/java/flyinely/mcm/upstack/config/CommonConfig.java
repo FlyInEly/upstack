@@ -1,7 +1,7 @@
 package flyinely.mcm.upstack.config;
 
-import flyinely.mcm.upstack.model.annotation.CContract.StaticInit;
-import flyinely.mcm.upstack.model.annotation.CContract.StaticRegistry;
+import flyinely.mcm.upstack.annotation.CContract.StaticInit;
+import flyinely.mcm.upstack.annotation.CContract.StaticRegistry;
 import flyinely.mcm.upstack.registry.MItemTags;
 import flyinely.mcm.upstack.util.ItemComponentUtil;
 import net.minecraft.resources.ResourceLocation;

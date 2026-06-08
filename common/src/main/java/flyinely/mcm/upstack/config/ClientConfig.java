@@ -1,7 +1,7 @@
 package flyinely.mcm.upstack.config;
 
-import flyinely.mcm.upstack.model.annotation.CContract;
-import flyinely.mcm.upstack.model.annotation.CContract.StaticRegistry;
+import flyinely.mcm.upstack.annotation.CContract;
+import flyinely.mcm.upstack.annotation.CContract.StaticRegistry;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
 import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
