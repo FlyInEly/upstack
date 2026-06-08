@@ -1,5 +1,6 @@
 ### Now
-- Common config should be server-side?
+- See server config.
+- Common config should be server-side. Find a way to, from now on, version-fix configs from common to server 
 - Finalize client config paths
 
 ### Later

@@ -2,6 +2,7 @@ package flyinely.mcm.upstack;
 
 import flyinely.mcm.upstack.config.ClientConfig;
 import flyinely.mcm.upstack.config.CommonConfig;
+import flyinely.mcm.upstack.config.ServerConfig;
 import flyinely.mcm.upstack.event.TooltipHandler;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -26,6 +27,7 @@ public class UpstackNeoForge {
 		// Register configs
 		container.registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
 		container.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC); // automatically client-only
+		container.registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC); // automatically server-only; synced
 		
 		if (FMLLoader.getDist().isClient()) {
 			// Register config screen (client-only)
